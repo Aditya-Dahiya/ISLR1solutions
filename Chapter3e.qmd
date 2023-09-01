@@ -1,0 +1,939 @@
+---
+title: "Chapter 3 (Exercises)"
+author: "Aditya Dahiya"
+date: 2021-02-01
+subtitle: "Linear Regression"
+execute: 
+  warning: false
+  error: false
+  cache: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# *Conceptual*
+
+## Question 1
+
+The figure is as below:---
+
+![](docs/ISLR-Ch-3-Ex-Q1.jpg){width="431"}\
+\
+
+-   The p-values in this table refer to the null hypothesis
+    $H_o : \beta_i = 0$, where $\beta_i$ refers to the Coefficient
+    relating to the concerned variable.
+
+-   Based on these p-values, I conclude that `TV` and `radio` are
+    significant predictors of variation in `sales`, whereas `newspaper`
+    is not a statistically significant predictor of variation in
+    `sales`.\
+
+## Question 2
+
+-   KNN Classifier is a method used for modeling categorical or
+    qualitative responses. Here, the classifier returns the category of
+    response which is most likely, given the values of predictors in
+    $N_o$ i.e. ***K***-nearest neighbors. KNN classifier first
+    identifies the K points in the training data that are closest to
+    $x_o$, represented by $\mathcal{N}_o$. It then estimates the
+    conditional probability for class $j$ as the fraction of points in
+    $\mathcal{N}_o$ whose response values equal $j$\
+    $$Pr(Y = j |x=x_o) =  \frac{1}{K} \sum_{x_i \in N_o} I(y_i = j)$$
+-   Finally, KNN applies Bayes rule and classifies the test observation
+    $x_o$ to the class with the largest probability. - KNN Regression is
+    a method which models continuous outcomes or responses based on
+    predictors. It calculates the predicted outcome as the average of
+    responses for the ***K***-nearest neighbors of the given $x_o$, i.e.
+    :---\
+    $$\hat{f}(x_o) = \frac{1}{K} \sum_{x_i \in N_o} y_i $$ 
+
+## Question 3
+
+### (a)
+
+(i) This statement is incorrect because coefficient $\hat{\beta}_3$ is
+    positive, meaning thereby that females *(coded as 1)* earn more than
+    males \_(coded as 0)\
+
+(ii) This statement is incorrect because coefficient
+     $\hat{\beta}_3 = 35$ is positive, meaning thereby that females
+     *(coded as 1)* earn more than males \_(coded as 0), but only if the
+     GPA is less than 3.5. This is because the coefficient of
+     interaction term for `Gender` and `GPA` $\hat{\beta}_5 = -10$. Thus
+     above a certain value, males will have higher earnings.\
+
+(iii) **This statement is *correct*** because coefficient
+      $\hat{\beta}_3 = 35$ is positive but the coefficient of
+      interaction term for `Gender` and `GPA` $\hat{\beta}_5 = -10$,
+      meaning thereby that females *(coded as 1)* earn more than males
+      *(coded as 0)* only up to a certain `GPA` level, above which the
+      males earn more.\
+
+(iv) This statement is incorrect for reasons explained above in (iii).
+
+### (b)
+
+The salary of a female with IQ of 110 and a GPA of 4.0 is **137.1**, as
+calculated below :--
+
+\
+$Salary = \beta_0 + (\beta_1*4) + (\beta_2 * 110) + (\beta_3*1) + (\beta_4*110*4) + (\beta_5*4*1)$\
+
+$Salary = 50 + (20*4) + (0.07 * 110) + (35*1) + (0.01*110*4) + (-10*4*1)$\
+
+$Salary = 137.1$\
+
+### (c)
+
+***False***. The magnitude of a coefficient does not tell us anything
+about the significance of the interaction amongst GPA and IQ. This is
+because the magnitude / value of a coefficient depends on the units of
+predictor variables chosen. Rather, the standard error and $p$-value
+associated with the coefficient will tell us whether there is any
+evidence of an interaction or not.\
+
+## Question 4
+
+### (a)
+
+The Training Residual Sum of Squares (RSS) for the cubic regression will
+always be lower than the simple linear regression, even if the true
+population model is linear i.e. $Y = \beta_o + \beta_1(X) + \epsilon$.
+This is because more terms in the cubic regression provide more
+flexibility and thus allows the model to fit each data point more
+closely. Thus, the RSS is reduced. This is not good thing for us though,
+as the cubic regression will lead to overfitting.\
+
+### (b)
+
+For the Test Residual Sum of Squares, the simple linear regression will
+have a lower RSS than cubin regression. This happens because our true
+population model is linear, so cubic regression leads to overfitting.
+This causes Test RSS to rise, as compared to linear regression.\
+
+### (c)
+
+Even if we do not know the form of true population relation between $Y$
+and $x$, the cubic regression will always have a lower Training RSS.
+This is because the cubic regression is a more flexible model, and thus
+always fits the training data more closely leading to a lower Training
+RSS.\
+
+### (d)
+
+For the Test RSS, when the form true relationship between $Y$ and $x$ is
+unknown, we cannot predict whether the linear regression or cubic
+regression will perform better. This will be an empirical question.
+Which of the two models has a lower Test RSS will depend on the exact
+relation between $Y$ and $x$, and how closely it is modeled by the
+linear or cubic regression.
+
+## Question 5
+
+In this question, we are considering the fitted values from a linear
+regression without an intercept, where\
+$$ \hat{y_i} = x_i \hat{\beta_i} $$\
+
+and,
+
+\
+$$\hat{\beta}_{i} = \frac{\sum_{i=1}^{n}x_{i} y_{i}}{\sum_{i'=1}^{n} x_{i'}^{2}}$$\
+
+Thus, we can easily replace the value of $\hat{\beta_i}$ in the equation
+of $y_i$ and solve for $a_i$ as follows ---\
+$$ \hat{y_i} = x_i \times \hat{\beta_i} $$
+$$ \hat{y}_{i} = x_{i} \times \frac{\sum_{i'=1}^{n} x_{i'} y_{i'}}{\sum_{j=1}^{n} x_{j}^{2}} $$
+$$ \hat{y}_{i} = \sum_{i'=1}^{n} \frac{ x_{i'} y_{i'} \times x_{i}}{\sum_{j=1}^{n} x_{j}^{2}} $$
+$$ \hat{y}_{i} = \sum_{i'=1}^{n} \left ( \frac{ x_{i} x_{i'} } { \sum_{j=1}^{n} x_{j}^{2} } \times y_{i'} \right ) $$\
+Thus, we can easily re-write the expression as\
+$$ \hat{y_i} = \sum_{i'=1}^{n} a_{i'}y_i  $$\
+As a result, the value of $a_i$ is ---\
+$$ a_{i'} = \frac{ x_{i} x_{i'} } { \sum_{j=1}^{n} x_{j}^{2} } $$\
+Also, this means that we can interpret this result by saying that the
+fitted values ($\hat{y_i}$) from a linear regression are linear
+combination of the response values ($y_{i'}$).
+
+## Question 6
+
+The least squares regression line is\
+$$ y_i = \hat{\beta_o} + \hat{\beta_1}x_i $$\
+where, $beta_o$ and $beta_1$ are defined as ---\
+$$\hat{\beta_o} = \overline{y} - \hat{\beta_1} \overline{x}$$
+$$\hat{\beta}_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \overline{x}) (y_{i}-\overline{y})}{\sum_{i=1}^{n} (x_{i}-\overline{x})^{2}}$$\
+Now, we need to prove that when $x_i = \overline{x}$, then
+$\hat{y_i} = \overline{y}$. For this, we substitute the value of
+$\beta_o$ with $\overline{y} - \hat{\beta_1} \overline{x}$ and set the
+value of $x_i$ as $\overline{x}$,\
+$$ \hat{y_i} = \hat{\beta_o} + \hat{\beta_1}\overline{x} $$\
+$$ \hat{y_i} = \overline{y} - \hat{\beta_1} \overline{x} + \hat{\beta_1}\overline{x} $$\
+$$ \hat{y_i} = \overline {y}$$\
+Thus, the point ($\overline{x},\overline{y}$) will always lie on the
+least squares regression line.\
+
+## Question 7
+
+Keeping the values of $\overline{x}$ and $\overline{y}$ as 0, the terms
+$R^2$ and $Cor(X,Y)$ are defined as follows
+$$ R^2 = 1 - \frac{RSS}{TSS} = 1 - \frac{\sum(y_i - \hat{y_i})^2}{\sum(y_j-\overline{y})^2} = 1 - \frac{\sum(y_i - \hat{y_i})^2}{\sum{y_j}^2}$$\
+$$ Cor(X,Y) = \frac{\sum_{n}(x_i-\overline{x})(y_i-\overline{y})}{\sum{x_j} \sum{y_j}} = \frac{\sum_{n}x_iy_i}{\sum{x_j} \sum{y_j}}$$\
+Now, keeping $\overline{y}$ and $\overline{x}$ as zero, we can
+substitute the value of $\hat{y_i}$ in $R^2$ as:---\
+$$ y_i = \hat{\beta_o} + \hat{\beta_1}x_i = 0+ \frac{\sum(x_{i} - 0) (y_{i}-0)}{\sum(x_{i}-0)^{2}} = \frac{\sum{x_iy_i}}{\sum{x_i}^2}$$\
+Thus, we have the following expression for $R^2$,
+$$R^2 = 1 - \frac{\sum_i(y_i - \sum_jx_jy_j/\sum_jx_j^2 x_i)^2}{\sum_jy_j^2}$$
+$$R^2 = \frac{\sum_jy_j^2 - (\sum_iy_i^2 - 2\sum_iy_i(\sum_jx_jy_j/\sum_jx_j^2)x_i + \sum_i(\sum_jx_jy_j/\sum_jx_j^2)^2x_i^2)}{\sum_jy_j^2}$$
+$$R^2 = \frac{2(\sum_ix_iy_i)^2/\sum_jx_j^2 - (\sum_ix_iy_i)^2/\sum_jx_j^2}{\sum_jy_j^2}$$
+$$ R^2 = \frac{(\sum_ix_iy_i)^2}{\sum_jx_j^2\sum_jy_j^2} = Cor(X, Y)^2.$$\
+
+# Applied
+
+## Question 8
+
+### (a)
+
+```{r}
+library(ISLR)
+data(Auto)
+fit1 <- lm(mpg ~ horsepower, data = Auto)
+summary(fit1)
+```
+
+(i) There is a relationship between response and predictor, as the
+    overall F-statistic and t-value for the predictor `horsepower` are
+    statistically significant. The p-value is very close to zero.\
+(ii) The strength of the relationship between the response `mpg` and
+     predictor `horsepower` is given by the coefficient of regression
+     i.e. **`-0.16`**, with a 95% confidence interval of
+     **`[-0.17, -0.15]`**.\
+(iii) The relation between the response and predictor is negative, as
+      the coefficient for `horsepower` is negative, i.e. **`-0.16`**.\
+(iv) The predicted `mpg` for a `horsepower` value of 98, with the
+     confidence and prediction intervals is as follows:\
+
+```{r}
+round(predict(fit1, data.frame(horsepower = c(98)), interval = "confidence"), digits = 3)
+round(predict(fit1, data.frame(horsepower = c(98)), interval = "prediction"), digits = 3)
+```
+
+### (b)
+
+```{r}
+plot(x = Auto$horsepower, y = Auto$mpg)
+abline(fit1, lwd = 3, col = "red")
+```
+
+### (c)
+
+The diagnostic plots, along with the required code to produce them, are
+displayed below. The **Residuals vs Fitted plot** shows that the
+residuals are not evenly distributed, and thus there is a non-linear
+relation between the response and predictor. The **Normal Q-Q plot**
+also shows evidence on whether the residuals are normal distributed. The
+current evidence shows that the distribution is somewhat normal. The
+**Spread-Location plot** of $\sqrt{standardized \ residuals}$ vs. fitted
+values shows the spread of residuals along the range of predictor
+values, allowing us to test homoskedasticity. Here, the model `fit1`
+suffers from heteroskedasticity. The last plot of **Residuals vs.
+Leverage** shows us whether any observations are high-leverage. Here,
+none of the observations appear outside the dashed lines and thus there
+is no influential observation which is altering the results of the
+regression model.
+
+```{r}
+par(mfrow = c(2, 2))
+plot(fit1)
+par(mfrow = c(1, 1))
+```
+
+## Question 9
+
+### (a)
+
+A scatter-plot matrix of all the variables in `Auto` data set is
+produced using the function `pairs()` as follows :---\
+
+```{r}
+library(ISLR)
+data(Auto)
+pairs(Auto)
+```
+
+### (b)
+
+The correlation matrix between variables of `Auto` is shown below, after
+excluding the variable `name`. We can use the base `R` command `cor`.
+However, a more beautiful tabular display is shown below using the
+package `corrplot`.
+
+```{r}
+cor(Auto[, -9])
+library(kableExtra)
+library(corrplot)
+corrplot(cor(Auto[, -9]), method = "number", tl.col = "black", sig.level = 0.05)
+```
+
+### (c)
+
+The multiple linear regression of `mpg` on all other variables, except
+`name` is displayed below:\
+
+```{r}
+fit2 <- lm(mpg ~ . - name, data = Auto)
+summary(fit2)
+```
+
+(i) The output shows that there is a relationship between response and
+    predictors. The F-statistic of **252.43** (generated by
+    `summary(fit2)$fstatistic[1]`) has a p-value of nearly zero.\
+(ii) The predictors which appear to have a statistically significant
+     relationship to the response are `displacement`, `weight`, `year`
+     and `origin`.\
+(iii) The coefficient for `year` is 0.751 (`round(fit2$coef[7],3)`).
+      This suggests that with each year, the value of miles per gallon
+      `mpg` increases by 0.75, provided all other variables remain
+      constant. In other words, with each year, fuel efficiency
+      increases by 0.75 \[95% CI = 0.65, 0.85\] mpg/year if other
+      variables remain the same.\
+
+### (d)
+
+The diagnostic plots for this multiple linear regression are shown
+below.\
+
+```{r}
+par(mfrow = c(2, 2))
+plot(fit2)
+```
+
+-   Residuals vs Fitted Plot shows whether the residuals from multiple
+    linear regression have non-linear patterns. We find that the
+    residuals are not evenly spread around the horizontal line.
+    **Perhaps there is some non-linear relationship between the response
+    and predictors, which is not captured by the linear model we have
+    fitted.**
+
+-   Normal Q-Q Plot shows us whether the residuals are normally
+    distributed. Since, residuals follow the straight line when plotted
+    with theoretical quantiles of a normal distribution, this plot
+    suggests that the residuals are somewhat normally distributed,
+    barring a few observations with high residual values.
+
+-   Scale-Location Plot checks the assumption of homoskedasticity. The
+    plot suggests some amount of heteroskedasticity.
+
+-   Residuals vs Leverage Plot helps us to find influential cases with
+    high leverage and outliers (high absolute standardized residual
+    value). In this data set, **around 5 observations like 323, 326,
+    327, 394 etc. are outliers** and *observation 14 has a high
+    leverage*. But, there is no observation outside of the dashed line,
+    the Cook's distance, thus there is no observation which is
+    significantly affecting the regression results.\
+
+### (e)
+
+To fit various interaction terms in the Multiple linear regression
+model, we use two strategies :---\
+
+-   First, we use three interactions to fit to the model, using the
+    three variable pairs which carry the highest correlation from the
+    correlation matrix shown in part (b) above:
+    $displacement \times cylinders$ , $displacement \times weight$ and
+    $weight \times cylinders$.
+-   The results below suggest that only the interaction between
+    `displacement` and `weight` is statistically significant. However,
+    using predictor variables with high correlation means that our
+    fitted model may suffer from **multicollinearity**.\
+
+```{r}
+fit3 <- lm(mpg ~ . - name + displacement:cylinders + displacement:weight + weight:cylinders, data = Auto)
+summary(fit3)
+```
+
+-   Secondly, we can create a lot of permutations of variables to create
+    various interaction terms and use `R` code to select the interaction
+    terms with significant p-values (\<0.05). This is shown below:---\
+
+```{r}
+fit4 <- lm(mpg ~ cylinders * displacement + cylinders * horsepower + cylinders * weight + cylinders * acceleration + cylinders * year + cylinders * origin + displacement * horsepower + displacement * weight + displacement * acceleration + displacement * year + displacement * origin + horsepower * weight + horsepower * acceleration + horsepower * year + horsepower * origin + weight * acceleration + weight * year + weight * origin + acceleration * year + acceleration * origin + year * origin, data = Auto)
+
+round(subset(summary(fit4)$coef[, 4], summary(fit4)$coef[, 4] < 0.05), digits = 4)
+```
+
+-   Thus, as we see above, the interaction terms
+    $displacement \times year$, $acceleration \times year$ and
+    $acceleration \times origin$ are statistically significant
+    predictors of the response `mpg`.
+
+-   It is evident from above two approaches, that the exact model we use
+    decides which interaction terms are statistically significant
+    predictors of the outcome. Thus, interaction terms should be chosen
+    on theoretical basis for interaction effects and then fitted into
+    the model.\
+
+### (f)
+
+Now, we fit different types of models using 3 transformations of the
+predictor and response variables. We use only one predictor variable
+`horsepower` for ease of demonstration. The response variable continues
+to be `mpg`. We compare the models using plots with the fitted
+regression line, along with value of $R^2$ in the top of the graph in
+red font. The plots how that the `log` transformation of the predictor
+variable leads to the best fit and highest $R^2$.\
+
+```{r}
+fit5 <- lm(mpg ~ horsepower, data = Auto)
+fit6 <- lm(mpg ~ I(horsepower^2), data = Auto)
+fit7 <- lm(mpg ~ log(horsepower), data = Auto)
+fit8 <- lm(mpg ~ sqrt(horsepower), data = Auto)
+attach(Auto)
+par(mfrow = c(2, 2))
+plot(horsepower, mpg)
+abline(fit5, col = "red", lwd = 4)
+mtext(round(summary(fit5)$r.squared, 2), col = "red")
+plot(horsepower^2, mpg)
+abline(fit6, col = "red", lwd = 4)
+mtext(round(summary(fit6)$r.squared, 2), col = "red")
+plot(log(horsepower), mpg)
+abline(fit7, col = "red", lwd = 4)
+mtext(round(summary(fit7)$r.squared, 2), col = "red")
+plot(sqrt(horsepower), mpg)
+abline(fit8, col = "red", lwd = 4)
+mtext(round(summary(fit8)$r.squared, 2), col = "red")
+```
+
+## Question 10
+
+### (a)
+
+```{r}
+library(ISLR)
+library(tidyverse)
+fit9 <- lm(Sales ~ Price + Urban + US, data = Carseats)
+round(summary(fit9)$coef, 4)
+```
+
+### (b)
+
+The interpretation of each coefficient in the regression model is given
+below. The response variable is `Sales`, i.e. sales of car seats in
+thousands.
+
+-   For each unit increase in price of `carseats`, the sales decrease by
+    54.4 units.
+
+-   On average, stores located in Urban areas in US sell 21.9 less car
+    seats than stores located in rural areas.
+
+-   On average, stores located in US sell 1200.5 car seats more than
+    stores located in other countries.\
+
+### (c)
+
+This model can be written in equation form as\
+$$ Sales(in \; thousands) = 13.043 -0.054\times Price - 0.022 \times Urban + 1.201 \times US + \epsilon $$
+
+### (d)
+
+For the predictors `Price` and `US`, we can reject the null hypothesis
+$H_o: \beta_j = 0$ because their associated p-value is less than 0.05.\
+
+### (e)
+
+A smaller model is fit as shown below.\
+
+```{r}
+fit10 <- lm(Sales ~ Price + US, data = Carseats)
+round(summary(fit10)$coef, 4)
+```
+
+### (f)
+
+If we compare the two models in (a) and (e), we find that an Analysis of
+Variance tells that the two models are not significantly different from
+each other. How well each model fits the data is revealed by the
+adjusted $R^2$, which is **0.23**
+`round(summary(fit9)$adj.r.squared,4)`for model in (a) and **0.24**
+`round(summary(fit10)$adj.r.squared,4)` for model in (e).\
+
+```{r}
+anova(fit9, fit10)
+```
+
+### (g)
+
+The 95% Confidence Intervals for the coefficients in model from (e) are
+shown below.\
+
+```{r}
+round(confint(fit10), 3)
+```
+
+### (h)
+
+The evidence for outliers and high leverage points in model from (e) can
+be seen using the diagnostic plots and `R` code given below. The plots
+reveal that there are **23** **outliers**
+(`sum(abs(rstudent(fit10))>2)`) with absolute value of studentized
+residual greater than 2, but none of these has an absolute studentized
+residual more than 3. Similarly, there are **20 high leverage
+observations** (`sum(hatvalues(fit10) > 2*mean(hatvalues(fit10)))`)
+where $h_i > 2\overline{h}$. Lastly,
+`sum(cooks.distance(fit10) > 4/length(cooks.distance(fit10)))` **19
+observations** are influential as they Cook's Distance $D_i > 4/n$.
+
+```{r, eval=FALSE}
+sum(abs(rstudent(fit10)) > 2)
+sum(hatvalues(fit10) > 2 * mean(hatvalues(fit10)))
+sum(cooks.distance(fit10) > 4 / length(cooks.distance(fit10)))
+par(mfrow = c(2, 3))
+plot(fit10, which = c(1:6))
+```
+
+## Question 11
+
+### (a)
+
+The simple linear regression of $y$ onto $x$ is shown below. The
+coefficient $\hat{\beta}$ for $x$ is 1.9939. The standard error is
+0.1065. The t-value is 18.73 and p-value is nearly 0. The interpretation
+is that $x$ is a statistically significant predictor of $y$.
+
+```{r}
+set.seed(1)
+x <- rnorm(100)
+y <- 2 * x + rnorm(100)
+fit11 <- lm(y ~ x + 0)
+summary(fit11)
+```
+
+### (b)
+
+The simple linear regression of $x$ onto $y$ is shown below. The
+coefficient $\hat{\beta}$ for $y$ is 0.3911. The standard error is
+0.021. The t-value is 18.73 and p-value is nearly 0. The interpretation
+is that $y$ is a statistically significant predictor of $x$.\
+
+```{r}
+fit12 <- lm(x ~ y + 0)
+summary(fit12)
+```
+
+### (c)
+
+The results obtained in (a) and (b) above have the exact same
+t-statistic, p-value and $R^2$ (both adjusted $R^2$ and multiple $R^2$).
+This is because both models fit the same correlation between $x$ and
+$y$.\
+
+### (d)
+
+In this question, when regression is performed without an intercept, the
+value of $\hat{\beta}$ and $SE(\hat{\beta})$ is given by:\
+$$ \hat{\beta} = \frac{\sum_{i=1}^{n} x_iy_i}{\sum_{i'=1}^{n}x_{i'}^2} = \sum_i{x_i}{y_i}/\sum_j{x_j^2}$$
+$$SE(\hat{\beta}) = \sqrt{\frac{\sum_{i=1}^n(y_i - x_i\hat{\beta})^2}{(n - 1)\sum_{i'=1}^nx_{i'}^2}} = \sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}$$
+Thus, we can show that:---\
+$$ t = \frac{\hat{\beta}}{SE(\hat{\beta})}$$
+$$t = \frac{\sum_ix_iy_i/\sum_jx_j^2}{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}} $$
+$$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{\sum_jx_j^2{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/\sum_jx_j^2}}} $$
+$$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} $$
+$$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} $$\
+We now replace the value of $\hat{\beta}$ into this equation and
+solve:---\
+$$t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{\sum_jx_j^2\sum_i(y_i - x_i\sum_ix_iy_i/\sum_jx_j^2)^2}}$$
+$$t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{(\sum_jx_j^2)(\sum_jy_j^2) - (\sum_jx_jy_j)^2}}$$\
+Further, this result can be confirmed in `R Code` given below which
+shows that the calculated `t-value` using this formula is the same
+`t-value` as shown in models `fit11` and `fit12` :---
+
+```{r}
+t <- sqrt(length(x) - 1) * (x %*% y) / sqrt(sum(x^2) * sum(y^2) - (x %*% y)^2)
+as.numeric(round(t, 2))
+```
+
+### (e)
+
+From the results in (d) above, it is clear that $t-statistic$ will be
+the same even if $x$ and $y$ are interchanged. The equation for
+$t-statistic$ is associative in $x$ and $y$.
+
+### (f)
+
+Now, we perform the regressions with an intercept. The t-values of both
+regressions are displayed using the code below. It is clear that both
+the t-values are equal.
+
+```{r}
+fit13 <- lm(y ~ x)
+fit14 <- lm(x ~ y)
+summary(fit13)$coef[2, 3]
+summary(fit14)$coef[2, 3]
+```
+
+## Question 12
+
+### (a)
+
+The coefficient for regression of $Y$ onto $X$ is given by:\
+$$\hat{\beta} = \frac{\sum_ix_iy_i}{\sum_jx_j^2}$$\
+and, the coefficient for regression of $X$ onto $Y$ is given by:\
+$$\hat{\beta'} = \frac{\sum_ix_iy_i}{\sum_jy_j^2}$$\
+Thus, $\hat{\beta} = \hat{\beta'}$ in a special condition when,\
+$${\sum_jx_j^2} = {\sum_jy_j^2}$$ .
+
+### (b)
+
+The following R code generates the example:
+
+```{r}
+set.seed(1)
+x <- rnorm(100)
+y <- 2 * x + rnorm(100)
+fit15 <- lm(y ~ x)
+fit16 <- lm(x ~ y)
+data.frame(
+  sum_x_sq = sum(x^2),
+  sum_y_sq = sum(y^2),
+  Coef_y_x = coef(fit15)[2],
+  Coef_x_y = coef(fit16)[2]
+) %>%
+  kbl() %>%
+  kable_classic_2()
+```
+
+### (c)
+
+The following R code generates an example with
+${\sum_jx_j^2} = {\sum_jy_j^2}$:-
+
+```{r}
+x <- (1:100)
+y <- (100:1)
+fit17 <- lm(y ~ x)
+fit18 <- lm(x ~ y)
+data.frame(
+  sum_x_sq = sum(x^2),
+  sum_y_sq = sum(y^2),
+  Coef_y_x = coef(fit17)[2],
+  Coef_x_y = coef(fit18)[2]
+) %>%
+  kbl() %>%
+  kable_classic_2()
+```
+
+## Question 13
+
+### (a), (b) & (c)
+
+The R code is given below:
+
+```{r}
+set.seed(1)
+x <- rnorm(100, mean = 0, sd = 1)
+eps <- rnorm(100, mean = 0, sd = sqrt(0.25))
+y <- -1 + 0.5 * x + eps
+length(y)
+```
+
+The length of vector `y` is 100 (`length(y)`). The coefficient $\beta_o$
+is -1, and the coefficient $\beta_1$ is 0.5.\
+
+### (d)
+
+The scatter-plot between `x` and `y` is shown below. We see that there
+is a linear relationship between `x` and `y`, although some random
+variability is introduced by the `eps` noise.
+
+```{r}
+par(mfrow = c(1, 1))
+plot(x, y)
+```
+
+### (e)
+
+```{r}
+fit19 <- lm(y ~ x)
+coef(fit19)
+```
+
+The coefficient $\hat{\beta_o}$ is -1.02 `round(coef(fit19)[1],2)`, and
+the coefficient $\hat{\beta_1}$ is 0.5 `round(coef(fit19)[2],2)`. Both
+these estimates are quite close to the true model coefficients.
+
+### (f)
+
+```{r}
+plot(x, y)
+abline(fit19, col = "red", lty = 2)
+abline(a = -1, b = 0.5, col = "blue")
+legend(-2, 0.5,
+  legend = c("Fitted Least Squares Line", "True Regression Model"),
+  col = c("red", "blue"),
+  lty = 2:1,
+  cex = 0.8
+)
+```
+
+### (g)
+
+After fitting a quadratic term, we observe that there is no significant
+improvement in the model fit because the ANOVA comparison shows a
+p-value \> 0.05.
+
+```{r}
+fit20 <- lm(y ~ x + I(x^2))
+anova(fit19, fit20)
+```
+
+### (h)
+
+Now, we re-create steps in questions (a) to (f), but with a **lower
+variance** in the error terms, say $var(\epsilon) = 0.05$. The results
+how that now the estimated coefficients are much closer to the true
+model parameters. And, the fitted least squares line is much closer to
+the true regression model line. However, the confidence intervals for
+the estimated coefficients are much narrower.\
+
+```{r}
+set.seed(1)
+x <- rnorm(100, mean = 0, sd = 1)
+eps <- rnorm(100, mean = 0, sd = sqrt(0.05))
+y <- -1 + 0.5 * x + eps
+fit21 <- lm(y ~ x)
+plot(x, y)
+abline(fit19, col = "red", lty = 2)
+abline(a = -1, b = 0.5, col = "blue")
+legend(-2, 0.0,
+  legend = c("Fitted Least Squares Line", "True Regression Model"),
+  col = c("red", "blue"), lty = 2:1, cex = 0.8
+)
+```
+
+### (i)
+
+Now, we re-create steps in questions (a) to (f), but with **higher
+variance** in the error terms, say $var(\epsilon) = 5.0$. The results
+how that now the estimated coefficients are further away from the true
+model parameters. And, the fitted least squares line is still somewhat
+close to the true regression model line because we have a large number
+of observations. However, the confidence intervals for the estimated
+coefficients are very wide.\
+
+```{r}
+set.seed(1)
+x <- rnorm(100, mean = 0, sd = 1)
+eps <- rnorm(100, mean = 0, sd = sqrt(5))
+y <- -1 + 0.5 * x + eps
+fit22 <- lm(y ~ x)
+plot(x, y)
+abline(fit19, col = "red", lty = 2)
+abline(a = -1, b = 0.5, col = "blue")
+legend(-2, 4, legend = c("Fitted Least Squares Line", "True Regression Model"), col = c("red", "blue"), lty = 2:1, cex = 0.8)
+```
+
+### (j)
+
+The confidence intervals for the coefficients $\hat{\beta_o}$ and
+$\hat{\beta_1}$ are tabulated below. The results show that the
+confidence intervals for the coefficient estimates are much wider when
+the variance in error terms $\epsilon$ is higher.\
+
+```{r}
+beta_o <- round(rbind(confint(fit19)[1, ], confint(fit21)[1, ], confint(fit22)[1, ]), 3)
+beta_1 <- round(rbind(confint(fit19)[2, ], confint(fit21)[2, ], confint(fit22)[2, ]), 3)
+coefs <- data.frame(cbind(beta_o, beta_1))
+colnames(coefs) <- c("LowerCI_beta_o", "UpperCI_beta_o", "LowerCI_beta_1", "UpperCI_beta_o")
+rownames(coefs) <- c("First Model Var(0.25)", "Narrow Model Var(0.05)", "Wider Model Var(5.0)")
+coefs %>%
+  kbl() %>%
+  kable_classic_2(full_width = F)
+```
+
+## Question 14
+
+### (a)
+
+In the R-code given by the question, and reproduced below, the linear
+model is: $$ y = 2 + 2x_1 \ + \ 0.3x_2 \ + \ \epsilon $$ where,
+$\epsilon \sim \mathcal{N}(0,1)$ is a random error term. The regression
+coefficients are $\beta_o = 2$, $\beta_1 = 2$ and $\beta_2 = 0.3$.\
+
+```{r}
+set.seed(1)
+x1 <- runif(100)
+x2 <- 0.5 * x1 + rnorm(100) / 10
+y <- 2 + 2 * x1 + 0.3 * x2 + rnorm(100)
+```
+
+### (b)
+
+Based on the `R` code given, `x1` and `x2` seems positively correlated.
+The correlation coefficient between `x1` and `x2` calculated using code
+in `R` is **0.84** (`round(cor(x1, x2),2)`). The scatter plot matrix is
+given below:\
+
+```{r}
+cor(x1, x2)
+plot(x1, x2)
+```
+
+### (c)
+
+The regression of `y` onto `x1` and `x2` is fitted below. The results
+show that around 23% variability in `y` is explained by this model, and
+the model is significantly better than a NULL model, i.e.
+$\hat{y} = \overline{y}$. Further, `x1` is a statistically significant
+predictor of `y`, whereas `x2` is not. We can safely reject the two null
+hypotheses $H_o \ : \ \beta_o = 0$ and $H_o \ : \ \beta_1 = 0$. However,
+we cannot reject the null hypothesis $H_o \ : \ \beta_2 = 0$. The
+estimated coefficients of regression are: $\hat{\beta_o} = 2.01$,
+$\hat{\beta_1} = 2.3$ and $\hat{\beta_2} = -0.24$. The estimated
+coefficient for intercept is reasonably close to the true parameter,
+however the estimated coefficients for `x1` and `x2` is totally off
+target.\
+
+```{r}
+fit23 <- lm(y ~ x1 + x2)
+summary(fit23)
+```
+
+### (d)
+
+Now, we fit linear least squares regression using only `x1` as a
+predictor for the response `y`. The resulting model is statistically
+significantly better than the null model due to a very low p-value on
+the F-statistic. Further, it explains 24% of the variability in `y`. We
+can safely reject the two null hypotheses $H_o \ : \ \beta_o = 0$ and
+$H_o \ : \ \beta_{x1} = 0$. The estimated coefficients of regression
+are: $\hat{\beta_o} = 2.01$, $\hat{\beta_{x1}} = 2.2$. They are
+reasonably close to the true parameters.\
+
+```{r}
+fit24 <- lm(y ~ x1)
+summary(fit24)
+```
+
+### (e)
+
+Now, we fit linear least squares regression using only `x2` as a
+predictor for the response `y`. The resulting model is statistically
+significantly better than the null model due to a very low p-value on
+the F-statistic. Further, it explains only 14.8% of the variability in
+`y`. Based on this model, we can safely reject the two null hypotheses
+$H_o \ : \ \beta_o = 0$ and $H_o \ : \ \beta_{x2} = 0$. The estimated
+coefficients of regression are: $\hat{\beta_o} = 2.42$,
+$\hat{\beta_{x2}} = 2.8$. Surprisingly, the coefficient estimates are
+widely off target for both the intercept and the predictor. Despite
+being statistically significant, the estimates do not incorporate the
+true parameter values even in their 95 % confidence interval.\
+
+```{r}
+fit25 <- lm(y ~ x2)
+summary(fit25)
+```
+
+### (f)
+
+At the first sight, the results from (c), (d) and (e) do seem to
+contradict each other. Firstly, the coefficient for `x2` is
+non-significant and negative in the multiple regression, but turns
+positive and highly significant in simple regression. Further, there is
+very high error in estimate of $\hat{\beta_2}$ in the multiple
+regression (because x2 is correlated with x1, and this collinearity
+widens the confidence interval). Secondly, the simple regression using
+only `x2` as a predictor displays a large positive coefficient estimate,
+much more than the true parameter. This is perhaps because `x2` is
+acting as a surrogate for `x1` in the simple regression of `y` onto
+`x2`.\
+The situation in questions (c) to (e) present a text book example of
+collinearity. When two predictors (x1 and x2) are highly correlated, the
+parameter estimates in multiple linear regression tend to have large
+standard errors of estimation. This leads to imprecise estimates with
+wide confidence intervals. Thus, they null hypothesis cannot be rejected
+in the multiple linear regression. However, simple regression performed
+after dropping one of the correlated predictors can solve the problem of
+imprecise estimates. Here, the simple linear regression of either
+predictor shows them to be highly significant predictors of `y`. But, we
+must be wary that simple regression involving such predictors can lead
+to misleading estimates of the true underlying relationship.\
+
+### (g)
+
+Now, we add a new observation as provided in the question and fit the
+three models again. The new models are checked for leverage and
+standardized residual (outlier status) of the new observation. The
+results are compactly produced in the table produced at the end. We
+compare the models and find the following results: - In the multiple
+linear regression model, adding the new observation totally throws off
+the estimated coefficients for x1 and x2. Adding this observation has a
+major impact on the re-fitted model. The new observation is an outlier,
+having an absolute standardized residual \> 2 (though it is \< 3). The
+new observation has high leverage, and thus a high influence on the
+re-fitted model. This is shown in the diagnostic plots as well. Lastly,
+this means that a fitted model with high collinearity is not robust, it
+is very vulnerable to misread observations. - In the simple linear
+regression model with `x1` as predictor, adding the new observation has
+very low impact on the coefficients. The new observation is an extreme
+outlier, with an absolute standardized residual greater than 3. However,
+the new observation has a very low leverage, and thus, it is not
+influential on the re-fitted model at all. - In the simple linear
+regression model with `x2` as predictor, adding the new observation has
+a moderate to low impact on the coefficients. The new observation is not
+an outlier, and thus even though it has somewhat high leverage, it has
+no major influence on the fitted model.
+
+```{r}
+x1 <- c(x1, 0.1)
+x2 <- c(x2, 0.8)
+y <- c(y, 6)
+fit23new <- lm(y ~ x1 + x2)
+fit24new <- lm(y ~ x1)
+fit25new <- lm(y ~ x2)
+Result <- data.frame(
+  Model = c(
+    "y~x1+x2", "y~x1+x2 new", "y~x1",
+    "y~x1 new", "y~x2", "y~x2 new"
+  ),
+  Intercept = rep(NA, 6), Beta_x1 = rep(NA, 6),
+  Beta_x2 = rep(NA, 6), Leverage = rep(NA, 6),
+  Standardized_Residual = rep(NA, 6)
+)
+Result[1, 2:4] <- fit23$coefficients
+Result[2, 2:4] <- fit23new$coefficients
+Result[3, 2:3] <- fit24$coefficients
+Result[4, 2:3] <- fit24new$coefficients
+Result[5, c(2, 4)] <- fit25$coefficients
+Result[6, c(2, 4)] <- fit25new$coefficients
+
+# Code to find Leverage of the new observation
+sum(hatvalues(fit23new) > 2 * mean(hatvalues(fit23new)))
+which.max(hatvalues(fit23new))
+Result[2, 5] <- hatvalues(fit23new)[101]
+which(abs(rstudent(fit23new)) > 2)
+Result[2, 6] <- rstudent(fit23new)[101]
+sum(hatvalues(fit24new) > 2 * mean(hatvalues(fit24new)))
+which.max(hatvalues(fit24new))
+Result[4, 5] <- hatvalues(fit24new)[101]
+which(abs(rstudent(fit24new)) > 2)
+Result[4, 6] <- rstudent(fit24new)[101]
+sum(hatvalues(fit25new) > 2 * mean(hatvalues(fit25new)))
+which.max(hatvalues(fit25new))
+Result[6, 5] <- hatvalues(fit25new)[101]
+which(abs(rstudent(fit25new)) > 2)
+Result[6, 6] <- rstudent(fit25new)[101]
+```
+
+```{r}
+library(kableExtra)
+knitr::kable(Result, digits = 3) %>% kable_classic_2()
+par(mfrow = c(2, 2))
+plot(fit23new)
+par(mfrow = c(2, 2))
+plot(fit24new)
+par(mfrow = c(2, 2))
+plot(fit25new)
+```

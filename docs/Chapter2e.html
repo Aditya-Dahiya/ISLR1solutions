@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Dahiya">
+<meta name="dcterms.date" content="2021-01-31">
+
+<title>Solutions (ISLR 1e) - Chapter 2 (Exercises)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./cover-image.jpg" alt="Solutions: An Introduction to Statistical Learning: with Applications in R (1st Edition)" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Solutions (ISLR 1e)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./solutions.html" rel="" target="">
+ <span class="menu-text">Solutions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chapter2e.html">Chapter 2 (Exercises)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter2e.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 2 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 (Exercises)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercises-chapter-2-islr" id="toc-exercises-chapter-2-islr" class="nav-link active" data-scroll-target="#exercises-chapter-2-islr">2.4 Exercises (Chapter 2: ISLR)</a>
+  <ul class="collapse">
+  <li><a href="#conceptual" id="toc-conceptual" class="nav-link" data-scroll-target="#conceptual">Conceptual</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  </ul></li>
+  <li><a href="#applied" id="toc-applied" class="nav-link" data-scroll-target="#applied">Applied</a>
+  <ul class="collapse">
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/edit/main/Chapter2e.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 2 (Exercises)</h1>
+<p class="subtitle lead">Statistical Learning</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Dahiya </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercises-chapter-2-islr" class="level1">
+<h1>2.4 Exercises (Chapter 2: ISLR)</h1>
+<section id="conceptual" class="level2">
+<h2 class="anchored" data-anchor-id="conceptual">Conceptual</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<p>When sample size <span class="math inline">\(n\)</span> is extremely large, and <span class="math inline">\(p\)</span> is small, a flexible statistical learning method will <strong>perform better than</strong> a non-flexible method, because</p>
+<ul>
+<li>The low <span class="math inline">\(p\)</span> allows us to avoid the curse of dimensionality.</li>
+<li>Large number of <span class="math inline">\(n\)</span> allows us to better predict with a flexible method, lowering the chance of overfitting.</li>
+</ul>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<p>When the sample size <span class="math inline">\(n\)</span> is very small, and number of predictors <span class="math inline">\(p\)</span> is very large, a flexible statistical learning method will perform worse than a non-flexible one because a large number of predictors increase the , making it difficult to identify nearest-neighbors. A small number of observations also means that a highly flexible model to could lead to high variance, or overfitting.</p>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<p>When the relationship between predictors and response is highly non-linear, a flexible model will perform much better because it can better allow for non-linear <span class="math inline">\(f(x)\)</span>, and thus will better approximate a highly non-linear relationship.</p>
+</section>
+<section id="d" class="level4">
+<h4 class="anchored" data-anchor-id="d">(d)</h4>
+<p>When the variance of error terms, i.e.&nbsp;<span class="math inline">\(\sigma^2 = Var(\epsilon)\)</span>, is extremely high, both flexible and non-flexible methods will lead to inaccurate predictions. However, comparatively, a non-flexible method will perform better as it is less likely to overfit or mis-read noise for actual relationship.</p>
+</section>
+</section>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<ul>
+<li>This scenario is a <strong>regression problem</strong>, because the response / outcome is a continuous variable, i.e.&nbsp;CEO Salary.<br>
+</li>
+<li>Here, we are primarily interested in <strong>inference</strong>, rather than prediction, because we want to understand which factors affect CEO salary, rather than predicting the salary for any given CEO.<br>
+</li>
+<li>In this scenario, <span class="math inline">\(n = 500\)</span> and <span class="math inline">\(p = 3\)</span> .</li>
+</ul>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<ul>
+<li>This scenario is a <strong>classification problem</strong>, as the primary response is a qualitative variable (success vs.&nbsp;failure).<br>
+</li>
+<li>Here, we are primarily interested in <strong>prediction</strong> because we wish to know the response our test data, i.e.&nbsp;new product being launched, rather than understanding the factors behind the response.<br>
+</li>
+<li>In this scenario, <span class="math inline">\(n = 20\)</span> and <span class="math inline">\(p = 13\)</span> .</li>
+</ul>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<ul>
+<li>This scenario is a <strong>regression problem</strong>, because the response / outcome is a continuous variable, i.e.&nbsp;percentage change in US dollar.<br>
+</li>
+<li>Here, we are primarily interested in <strong>prediction</strong> instead of inference since our intended purpose to predict % change in US dollar. We are not concerned with the exact factors that cause such a change.<br>
+</li>
+<li>In this scenario, <span class="math inline">\(n = 52\)</span> (i.e.&nbsp;number of weeks in 2012) and <span class="math inline">\(p = 3\)</span> .</li>
+</ul>
+</section>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(a)</h4>
+<p>The sketch is displayed below: —</p>
+<p><img src="docs/ISLR-Ch2-Exercises-3a.jpg" class="img-fluid" width="628">&nbsp;</p>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">(b)</h4>
+<p>In this figure, the <em>curve (C)</em> is the Irreducible Error which is a feature of the data-set, and thus stays constant. The <em>curve(D)</em> represents the <em>Training Error</em> which will always decrease monotonously with increasing flexibility of the fitted model because almost all techniques directly or indirectly aim at reducing the MSE in the training data-set. As flexibility of the method increases, it’s variance will increase <em>[curve (B)]</em> and bias will decrease <em>[curve(D)]</em> because a flexible model is highly variable (change in a single observation will change the fit) and less biased (each observation is closely covered). The sum of curves B, C and E represents the Test Error i.e.&nbsp;<em>Curve A</em>.</p>
+</section>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<section id="a-3" class="level4">
+<h4 class="anchored" data-anchor-id="a-3">(a)</h4>
+<p>Three real-life applications in which <em>classification</em> is useful are: —<br>
+<strong>Email Spam</strong><br>
+1. Response: A qualitative binary indicator whether the email is <em>spam</em> or <em>not spam</em>.<br>
+2. Predictors: Presence of common words in subject of the email (such as offer, lottery etc.), Presence of name of email account holder in text of email, Unverified attachments, Relative frequency of commonly used words.<br>
+3. Goal of the application: Prediction.</p>
+<p><br>
+<strong>Handwriting recognition : ZIP codes on postal envelopes</strong><br>
+1. Response: Each of the 5 digits (0-9) - categorical outcome<br>
+2. Predictors: A matrix corresponding to an image where each pixel corresponds is an entry in the matrix, and its pixel intensity ranges from 0 (black) to 255 (white).<br>
+3. Goal of the application: Prediction</p>
+<p><br>
+<strong>Factors Affecting Consumer purchase amongst competing goods</strong> : Which factors most affect the consumers’ purchase of a particular product amongst competing brands.<br>
+1. Response: Which one of the competing products does a consumer buy?<br>
+2. Predictors: Area, demographics of buyer, advertising revenues etc.<br>
+3. Goal of the application: Inference.</p>
+</section>
+<section id="b-3" class="level4">
+<h4 class="anchored" data-anchor-id="b-3">(b)</h4>
+<p>Three real-life applications in which <em>regression</em> is useful are: —</p>
+<p>1. <strong>Predicting response to dosage of BP medication</strong><br>
+i) Response: Blood Pressure (in mmHg)<br>
+ii) Predictors: Dose of a given medication, age, vital indicators etc.<br>
+iii) Goal of the application: Prediction</p>
+<p><br>
+2. <strong>Factors affecting Crop Yields</strong><br>
+i) Response: Crop Yield in units per area<br>
+ii) Predictors: Amount of fertilizer applied, Soil pH, Temperature, Machines used, etc.<br>
+iii) Goal of the application: Both inference (which inputs yield maximum benefits) and prediction (expected crop yield in a particular season)</p>
+<p><br>
+3. <strong>Increasing operational efficiency in a production line by identifying low-hanging fruits</strong><br>
+i) Response: Factory output of a good<br>
+ii) Predictors: Various raw materials, number of workers, capital investment, working hours, etc.<br>
+iii) Goal of the application: Inference (spending on which input / predictor) will cause maximum increase in output.</p>
+</section>
+<section id="c-2" class="level4">
+<h4 class="anchored" data-anchor-id="c-2">(c)</h4>
+<p>Three real-life applications in which <em>cluster analysis</em> is useful are: —<br>
+1. <strong>Social Network Clusters</strong>: Identifying like-minded twitter users based on their activity.<br>
+2. <strong>Finding Similar books</strong> for a book recommendation software based on past purchase data from users.<br>
+3. <strong>Gene mapping in evolutionary biology</strong> to find clusters of similar genes within a genome / evolutionary lineage.</p>
+</section>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<ol type="1">
+<li>A very flexible approach has following advantages and disadvantages :–<br>
+</li>
+</ol>
+<ul>
+<li>Advantages: Allows fitting to highly non-linear relationships. Better performance when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small.</li>
+<li>Disadvantages: Requires estimation of a large number of parameters. Low level of interpretability. Can lead to overfitting. Does not perform well when <span class="math inline">\(n\)</span> is very small or data is high-dimensional i.e.&nbsp;large <span class="math inline">\(p\)</span>.</li>
+</ul>
+<ol start="2" type="1">
+<li><p>A more flexible approach may be considered when we have a large data (high <span class="math inline">\(n\)</span>), low dimensionality (low <span class="math inline">\(p\)</span>), or when we are mainly interested in prediction in a non-linear relationship.</p></li>
+<li><p>A less flexible approach is preferred when out objective is inference and interpretability of the results. (Or when data is high dimensional or low <span class="math inline">\(n\)</span>.)</p></li>
+</ol>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>A parametric statistical learning approach assumes a <span class="math inline">\(f(x)\)</span> i.e.&nbsp;it pre-supposes a functional form for relationship between predictors and response. On the other hand, a non-parametric approach does not assume any functional form for <span class="math inline">\(f\)</span> at all. It just tries to best fit the available data. Thus, it requires a very large amount of data.</p>
+<p><br>
+<strong>Parametric approach advantages:</strong></p>
+<p>1) Easier to compute and evaluate</p>
+<p>2) Interpretation is simpler</p>
+<p>3) Better for inference tasks.</p>
+<p>4) Can be used with a low number of observations.<br>
+</p>
+<p><strong>Parametric approach disadvantages:</strong></p>
+<p>1) If the underlying relationship is far off from assumed functional form, the method will lead to high error rate.</p>
+<p>2) If too flexible a model fitted, it will lead to overfitting.</p>
+<p>3) Real-life relations are rarely simple functional forms.</p>
+</section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<section id="a-4" class="level4">
+<h4 class="anchored" data-anchor-id="a-4">(a)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-1_9f8f34ec6ee62b86cd83ba7c5f57727a">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"docs/ISLRCh2Ex2-4Q7.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">as.factor</span>(y)) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist_000 =</span> <span class="fu">sqrt</span>(x1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> x2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> x3<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">kbl</span>() <span class="sc">|&gt;</span> <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">x1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">x3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">y</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">dist_000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">3.000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">2.000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">3.162278</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: right;">2.236068</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">green</td>
+<td style="text-align: right;">1.414214</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">red</td>
+<td style="text-align: right;">1.732051</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>The distance between each test point and the test point (0,0,0) is displayed above, and for the six points is</p>
+<pre><code>3.00 2.00 3.16 2.24 1.41 1.73</code></pre>
+</section>
+<section id="b-4" class="level4">
+<h4 class="anchored" data-anchor-id="b-4">(b)</h4>
+<p>With <span class="math inline">\(K=1\)</span>, our prediction for <span class="math inline">\(y\)</span> is “green”, as the nearest neighbor is “green”.</p>
+</section>
+<section id="c-3" class="level4">
+<h4 class="anchored" data-anchor-id="c-3">(c)</h4>
+<p>With <span class="math inline">\(K=3\)</span>, our prediction for <span class="math inline">\(y\)</span> is “red”, as the nearest neighbors are 1 “green” and 2 “red”.</p>
+</section>
+<section id="d-1" class="level4">
+<h4 class="anchored" data-anchor-id="d-1">(d)</h4>
+<p>If the Bayes Decision Boundary is highly non-linear, then we would expect the <em>best</em> value of <span class="math inline">\(K\)</span> to be small, because a smaller <span class="math inline">\(K\)</span> allows us more flexibility in the estimated decision boundary.<br>
+</p>
+</section>
+</section>
+</section>
+<section id="applied" class="level2">
+<h2 class="anchored" data-anchor-id="applied">Applied</h2>
+<section id="question-8" class="level3">
+<h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<section id="a-5" class="level4">
+<h4 class="anchored" data-anchor-id="a-5">(a)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-2_8913678fe44cf2d6c418bc8032ffc3d9">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(College)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>college <span class="ot">&lt;-</span> College</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(College)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-5" class="level4">
+<h4 class="anchored" data-anchor-id="b-5">(b)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-3_02612778b6ed1b2b4aaa4f626d9fbf4e">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(college) <span class="ot">&lt;-</span> college[,<span class="dv">1</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fix</span>(college)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c-4" class="level4">
+<h4 class="anchored" data-anchor-id="c-4">(c)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-4_34b9fd1e0b605cf4c0cde53d03c978a0">
+<div class="cell-output cell-output-stdout">
+<pre><code> Private        Apps           Accept          Enroll       Top10perc    
+ No :212   Min.   :   81   Min.   :   72   Min.   :  35   Min.   : 1.00  
+ Yes:565   1st Qu.:  776   1st Qu.:  604   1st Qu.: 242   1st Qu.:15.00  
+           Median : 1558   Median : 1110   Median : 434   Median :23.00  
+           Mean   : 3002   Mean   : 2019   Mean   : 780   Mean   :27.56  
+           3rd Qu.: 3624   3rd Qu.: 2424   3rd Qu.: 902   3rd Qu.:35.00  
+           Max.   :48094   Max.   :26330   Max.   :6392   Max.   :96.00  
+   Top25perc      F.Undergrad     P.Undergrad         Outstate    
+ Min.   :  9.0   Min.   :  139   Min.   :    1.0   Min.   : 2340  
+ 1st Qu.: 41.0   1st Qu.:  992   1st Qu.:   95.0   1st Qu.: 7320  
+ Median : 54.0   Median : 1707   Median :  353.0   Median : 9990  
+ Mean   : 55.8   Mean   : 3700   Mean   :  855.3   Mean   :10441  
+ 3rd Qu.: 69.0   3rd Qu.: 4005   3rd Qu.:  967.0   3rd Qu.:12925  
+ Max.   :100.0   Max.   :31643   Max.   :21836.0   Max.   :21700  
+   Room.Board       Books           Personal         PhD        
+ Min.   :1780   Min.   :  96.0   Min.   : 250   Min.   :  8.00  
+ 1st Qu.:3597   1st Qu.: 470.0   1st Qu.: 850   1st Qu.: 62.00  
+ Median :4200   Median : 500.0   Median :1200   Median : 75.00  
+ Mean   :4358   Mean   : 549.4   Mean   :1341   Mean   : 72.66  
+ 3rd Qu.:5050   3rd Qu.: 600.0   3rd Qu.:1700   3rd Qu.: 85.00  
+ Max.   :8124   Max.   :2340.0   Max.   :6800   Max.   :103.00  
+    Terminal       S.F.Ratio      perc.alumni        Expend     
+ Min.   : 24.0   Min.   : 2.50   Min.   : 0.00   Min.   : 3186  
+ 1st Qu.: 71.0   1st Qu.:11.50   1st Qu.:13.00   1st Qu.: 6751  
+ Median : 82.0   Median :13.60   Median :21.00   Median : 8377  
+ Mean   : 79.7   Mean   :14.09   Mean   :22.74   Mean   : 9660  
+ 3rd Qu.: 92.0   3rd Qu.:16.50   3rd Qu.:31.00   3rd Qu.:10830  
+ Max.   :100.0   Max.   :39.80   Max.   :64.00   Max.   :56233  
+   Grad.Rate     
+ Min.   : 10.00  
+ 1st Qu.: 53.00  
+ Median : 65.00  
+ Mean   : 65.46  
+ 3rd Qu.: 78.00  
+ Max.   :118.00  </code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-iv" class="level4">
+<h4 class="anchored" data-anchor-id="c-iv">8 (c) (iv)</h4>
+<p>As per the <code>summary()</code> function, there are 78 elite universities. The box-plot of <code>Outstate</code> vs.&nbsp;<code>Elite</code> is as below :—<br>
+</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-5_62be531cf8779d6f33102519d3d1e7fb">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(college, <span class="fu">plot</span>(<span class="at">x=</span>Elite, <span class="at">y=</span>Outstate, <span class="at">ylab =</span> <span class="st">"Out-of-State Tuition"</span>, <span class="at">xlab =</span> <span class="st">"Whether Elite College?"</span>, <span class="at">main =</span> <span class="st">"Question 8(c)(iv)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-v" class="level4">
+<h4 class="anchored" data-anchor-id="c-v">8 (c) (v)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-6_6c4da1ba017cb2afaa72eb95faed4f3a">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(college<span class="sc">$</span>Room.Board, <span class="at">main =</span> <span class="st">""</span>, <span class="at">sub =</span> <span class="st">"Room Boarding Charges"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(college<span class="sc">$</span>Room.Board, <span class="at">breaks =</span> <span class="dv">100</span>, <span class="at">main=</span><span class="st">""</span>, <span class="at">sub =</span> <span class="st">"Room Boarding Charges(100 bins)"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(college<span class="sc">$</span>Books, <span class="at">main =</span> <span class="st">""</span>, <span class="at">sub =</span> <span class="st">"Expenses on Books"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(college<span class="sc">$</span>Books, <span class="at">breaks =</span> <span class="dv">100</span>, <span class="at">main=</span><span class="st">""</span>, <span class="at">sub =</span> <span class="st">"Expenses on Books"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="question-9" class="level3">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<section id="a-6" class="level4">
+<h4 class="anchored" data-anchor-id="a-6">(a)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-7_038643e03ddd45845312f8b5946082cf">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Auto)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Auto <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The predictors <code>Origin</code> and <code>Name</code> in the <code>Auto</code> data set are qualitative, while all the other variables are quantitative, i.e.&nbsp;mpg, cylinders, displacement, horsepower, weight, acceleration, year.</p>
+</section>
+<section id="b-c" class="level4">
+<h4 class="anchored" data-anchor-id="b-c">(b) (c)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-8_85e07ad513c61a36948ba25217ffccaa">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Min <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Max <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>StDev <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Mean <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Name <span class="ot">&lt;-</span> <span class="fu">colnames</span>(Auto)[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">9</span>)]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  Min[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(Auto[, i])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  Max[i] <span class="ot">&lt;-</span> <span class="fu">max</span>(Auto[, i])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  Mean[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(Auto[, i]), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  StDev[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sd</span>(Auto[, i]), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>rangetab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Name, Min, Max))</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>msdtab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Name, Mean, StDev))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>rangetab <span class="sc">|&gt;</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mpg</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">46.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cylinders</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">displacement</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">455</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">horsepower</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: left;">230</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">1613</td>
+<td style="text-align: left;">5140</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acceleration</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">24.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">82</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>msdtab <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StDev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mpg</td>
+<td style="text-align: left;">23.45</td>
+<td style="text-align: left;">7.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cylinders</td>
+<td style="text-align: left;">5.47</td>
+<td style="text-align: left;">1.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">displacement</td>
+<td style="text-align: left;">194.41</td>
+<td style="text-align: left;">104.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">horsepower</td>
+<td style="text-align: left;">104.47</td>
+<td style="text-align: left;">38.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">2977.58</td>
+<td style="text-align: left;">849.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acceleration</td>
+<td style="text-align: left;">15.54</td>
+<td style="text-align: left;">2.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">75.98</td>
+<td style="text-align: left;">3.68</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="d-2" class="level4">
+<h4 class="anchored" data-anchor-id="d-2">(d)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-9_91a8d93cec7c01c35b71b535b86825a7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Auto1 <span class="ot">&lt;-</span> Auto[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">85</span>), ]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  Min[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(Auto1[, i])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  Max[i] <span class="ot">&lt;-</span> <span class="fu">max</span>(Auto1[, i])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  Mean[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">mean</span>(Auto1[, i]), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>) {</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  StDev[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sd</span>(Auto1[, i]), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>rangetab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Name, Min, Max))</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>msdtab <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(Name, Mean, StDev))</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>rangetab <span class="sc">|&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mpg</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">46.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cylinders</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">displacement</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">455</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">horsepower</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: left;">230</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">1649</td>
+<td style="text-align: left;">4997</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acceleration</td>
+<td style="text-align: left;">8.5</td>
+<td style="text-align: left;">24.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">82</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>msdtab <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StDev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mpg</td>
+<td style="text-align: left;">24.4</td>
+<td style="text-align: left;">7.87</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cylinders</td>
+<td style="text-align: left;">5.37</td>
+<td style="text-align: left;">1.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">displacement</td>
+<td style="text-align: left;">187.24</td>
+<td style="text-align: left;">99.68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">horsepower</td>
+<td style="text-align: left;">100.72</td>
+<td style="text-align: left;">35.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: left;">2935.97</td>
+<td style="text-align: left;">811.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acceleration</td>
+<td style="text-align: left;">15.73</td>
+<td style="text-align: left;">2.69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">77.15</td>
+<td style="text-align: left;">3.11</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="e-f" class="level4">
+<h4 class="anchored" data-anchor-id="e-f">(e) &amp; (f)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-10_15b40f1fdd36a566ede8c4a28bb44a00">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(Auto[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> . <span class="sc">-</span> name, <span class="at">data =</span> Auto)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(model<span class="sc">$</span>coefficients[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cor) <span class="ot">&lt;-</span> <span class="st">"Coefficient of Regression"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>cor <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coefficient of Regression</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cylinders</td>
+<td style="text-align: right;">-0.4933763</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">displacement</td>
+<td style="text-align: right;">0.0198956</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">horsepower</td>
+<td style="text-align: right;">-0.0169511</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">weight</td>
+<td style="text-align: right;">-0.0064740</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acceleration</td>
+<td style="text-align: right;">0.0805758</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">0.7507727</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">origin</td>
+<td style="text-align: right;">1.4261405</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>The above table shows regression coefficients of other variables with <code>mpg</code>.</p>
+</section>
+</section>
+<section id="question-10" class="level3">
+<h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<section id="a-7" class="level4">
+<h4 class="anchored" data-anchor-id="a-7">(a)</h4>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-11_58a2e0aec6f87363a9f7e4ba7d976149">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Boston)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># VarDescrip &lt;- read.csv("BostonVarDescrip.csv")</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 506</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(Boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14</code></pre>
+</div>
+</div>
+<p>There are total <code>506</code> rows in the data-set and <code>14</code> columns. The rows represent the 506 neighborhoods and each column represents the following :—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-12_f756a1ba2ab6563ee34c0fe1ef33badd">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VarDescrip |&gt; kbl() |&gt; kable_classic_2()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-6" class="level4">
+<h4 class="anchored" data-anchor-id="b-6">(b)</h4>
+<p>The pairwise plots of some important variables is as below : —</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-13_beefdfb04f1dcb3c82c1088501bc91b4">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Boston1 <span class="ot">&lt;-</span> Boston <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(crim, nox, dis, tax, lstat)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(Boston1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-5" class="level4">
+<h4 class="anchored" data-anchor-id="c-5">(c)</h4>
+<p>The linear regression shows us the following result :—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-14_b5123230a7de6c0862ff3af5d8810509">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(crim <span class="sc">~</span> ., <span class="at">data =</span> Boston)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = crim ~ ., data = Boston)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-9.924 -2.120 -0.353  1.019 75.051 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  17.033228   7.234903   2.354 0.018949 *  
+zn            0.044855   0.018734   2.394 0.017025 *  
+indus        -0.063855   0.083407  -0.766 0.444294    
+chas         -0.749134   1.180147  -0.635 0.525867    
+nox         -10.313535   5.275536  -1.955 0.051152 .  
+rm            0.430131   0.612830   0.702 0.483089    
+age           0.001452   0.017925   0.081 0.935488    
+dis          -0.987176   0.281817  -3.503 0.000502 ***
+rad           0.588209   0.088049   6.680 6.46e-11 ***
+tax          -0.003780   0.005156  -0.733 0.463793    
+ptratio      -0.271081   0.186450  -1.454 0.146611    
+black        -0.007538   0.003673  -2.052 0.040702 *  
+lstat         0.126211   0.075725   1.667 0.096208 .  
+medv         -0.198887   0.060516  -3.287 0.001087 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.439 on 492 degrees of freedom
+Multiple R-squared:  0.454, Adjusted R-squared:  0.4396 
+F-statistic: 31.47 on 13 and 492 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Thus, per capital crime rate is significantly related with the variables <code>zn</code>, <code>dis</code>, <code>rad</code>, <code>black</code> and <code>medv</code>.</p>
+</section>
+<section id="d-3" class="level4">
+<h4 class="anchored" data-anchor-id="d-3">(d)</h4>
+<p>Yes, there are some suburbs with abnormally high per-capita crime rate. But no such trend is visible in Tax-Rates or Pupil-Teacher Ratio. The plots of these three variables are shown below:—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-15_53c0b504e49eb10bfc537b8d97c82e80">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(Boston)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(crim)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tax)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ptratio)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(crim)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(tax)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ptratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter2e_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="e" class="level4">
+<h4 class="anchored" data-anchor-id="e">(e)</h4>
+<p>35 suburbs in this data set bound the Charles river. This is found using the code:—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-16_382bd4d12b9bf2e675db17c88d55a547">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">subset</span>(Boston, chas <span class="sc">==</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 35</code></pre>
+</div>
+</div>
+</section>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">(f)</h4>
+<p>The median pupil-teacher ratio is 19.05, found using the code:—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-17_f74f251d6ee96c8019a6c8043600b82c">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Boston<span class="sc">$</span>ptratio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="g" class="level4">
+<h4 class="anchored" data-anchor-id="g">(g)</h4>
+<p>The suburb of Boston with lowest median value of ownership occupied homes is 399. Its values for other variables are:—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-18_11f57189cb28b8de4afdefdbf56ab809">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(Boston[<span class="fu">which.min</span>(Boston<span class="sc">$</span>medv),]) <span class="sc">|&gt;</span> <span class="fu">kbl</span>() <span class="sc">|&gt;</span> <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">crim</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">zn</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">indus</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">chas</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">nox</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rm</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">age</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">dis</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rad</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">tax</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ptratio</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">black</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lstat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">medv</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">399</td>
+<td style="text-align: right;">38.3518</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.693</td>
+<td style="text-align: right;">5.453</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">1.4896</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">666</td>
+<td style="text-align: right;">20.2</td>
+<td style="text-align: right;">396.9</td>
+<td style="text-align: right;">30.59</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="h" class="level4">
+<h4 class="anchored" data-anchor-id="h">(h)</h4>
+<p>In this data set, 13 suburbs average more than 8 rooms per dwelling and 64 suburbs average more than 7 rooms per dwelling. The code to find these values is :—</p>
+<div class="cell" data-hash="Chapter2e_cache/html/unnamed-chunk-19_10e15e7eed1b29adad4b120a57942d56">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Boston <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(rm<span class="sc">&gt;</span><span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Boston <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(rm<span class="sc">&gt;</span><span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 64</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

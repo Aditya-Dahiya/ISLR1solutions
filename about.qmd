@@ -1,0 +1,41 @@
+---
+title: "About"
+about:
+  template: jolla
+  image: docs/aditya-dahiya.jpg
+  links:
+    - icon: twitter
+      text: Twitter
+      href: "https://twitter.com/AdityaDahiyaIAS"
+    - icon: github
+      text: Github
+      href: "https://github.com/Aditya-Dahiya"
+    - icon: LinkedIn
+      text: LinkedIn
+      href: "https://www.linkedin.com/in/dr-aditya-dahiya-ias/"
+sidebar: false
+---
+
+Welcome to my corner of the web! I'm Aditya Dahiya, an IAS *(Indian Administrative Service)* officer navigating the intricate labyrinth of the Indian Administrative Service in the Government of Haryana. While my day job might involve more paperwork than I care to admit, my true passion lies in the world of health data visualization.
+
+My journey began with a stethoscope around my neck and a medical degree from the AIIMS, New Delhi, earned from 2005 to 2010. But in 2011, I decided to swap the scrubs for a suit and tie and jumped headfirst into the world of civil service. Fast forward to 2021-22, and I found myself on the hallowed grounds of Harvard University, where I earned an MPH degree, because why not?
+
+Now, you might wonder how someone with a day job in bureaucracy and a penchant for health data visualization ended up creating solutions for the first edition of "An Introduction to Statistical Learning: With Applications in R." Well, my secret lies in seizing those precious moments of free time. And during one such moment, I embarked on a journey of statistical enlightenment by enrolling in Johns Hopkins University's 140.644.01 - Statistical Machine Learning course.
+
+The result? A treasure trove of solutions that I'm delighted to share with you. Whether you're a fellow learner, an aspiring statistician, or just a curious soul, this website is your go-to resource for unraveling the mysteries of statistical learning, sprinkled with a dash of wit and a pinch of my unique perspective.
+
+So, join me on this data-driven adventure at [LinkedIn](https://www.linkedin.com/in/dr-aditya-dahiya-ias/) or shoot me an [email](mailto:%20adityadahiyaaiims@proton.me). Even bureaucrats can have a little statistical swagger!
+
+## Education
+
+Harvard University \| Boston, MA MPH in Global Health \| Aug 2021 - May 2022
+
+All India Institute of Medical Sciences \| New Delhi, India MBBS in Medicine \| Aug 2005-Dec 2010
+
+Indira Gandhi National Open University \| New Delhi, India MA in Public Policy \| Jan 2012 - Dec 2013
+
+## Experience
+
+Indian Administrative Service \| Director \| Aug 2011 - present
+
+Neuro-Radiology, AIIMS New Delhi \| Junior Resident Doctor \| Jan 2011 - Aug 2011

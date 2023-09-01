@@ -1,0 +1,16 @@
+---
+title: "Solutions"
+author: "Aditya Dahiya"
+listing:
+  contents:
+      - "Chapter2e.qmd"
+      - "Chapter3e.qmd"
+  fields: [title, subtitle, date]
+  sort: 
+    - "title"
+  type: table
+  grid-item-border: false
+  table-hover: true
+  image-placeholder: "cover-image.jpg"
+  date-format: "medium"
+---

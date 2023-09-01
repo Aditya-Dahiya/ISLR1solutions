@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Dahiya">
+<meta name="dcterms.date" content="2021-02-01">
+
+<title>Solutions (ISLR 1e) - Chapter 3 (Exercises)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./cover-image.jpg" alt="Solutions: An Introduction to Statistical Learning: with Applications in R (1st Edition)" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Solutions (ISLR 1e)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./solutions.html" rel="" target="">
+ <span class="menu-text">Solutions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chapter3e.html">Chapter 3 (Exercises)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter2e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3e.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 3 (Exercises)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conceptual" id="toc-conceptual" class="nav-link active" data-scroll-target="#conceptual"><em>Conceptual</em></a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">(a)</a></li>
+  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">(b)</a></li>
+  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">(c)</a></li>
+  </ul></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
+  <ul class="collapse">
+  <li><a href="#a-1" id="toc-a-1" class="nav-link" data-scroll-target="#a-1">(a)</a></li>
+  <li><a href="#b-1" id="toc-b-1" class="nav-link" data-scroll-target="#b-1">(b)</a></li>
+  <li><a href="#c-1" id="toc-c-1" class="nav-link" data-scroll-target="#c-1">(c)</a></li>
+  <li><a href="#d" id="toc-d" class="nav-link" data-scroll-target="#d">(d)</a></li>
+  </ul></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  </ul></li>
+  <li><a href="#applied" id="toc-applied" class="nav-link" data-scroll-target="#applied">Applied</a>
+  <ul class="collapse">
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
+  <ul class="collapse">
+  <li><a href="#a-2" id="toc-a-2" class="nav-link" data-scroll-target="#a-2">(a)</a></li>
+  <li><a href="#b-2" id="toc-b-2" class="nav-link" data-scroll-target="#b-2">(b)</a></li>
+  <li><a href="#c-2" id="toc-c-2" class="nav-link" data-scroll-target="#c-2">(c)</a></li>
+  </ul></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
+  <ul class="collapse">
+  <li><a href="#a-3" id="toc-a-3" class="nav-link" data-scroll-target="#a-3">(a)</a></li>
+  <li><a href="#b-3" id="toc-b-3" class="nav-link" data-scroll-target="#b-3">(b)</a></li>
+  <li><a href="#c-3" id="toc-c-3" class="nav-link" data-scroll-target="#c-3">(c)</a></li>
+  <li><a href="#d-1" id="toc-d-1" class="nav-link" data-scroll-target="#d-1">(d)</a></li>
+  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e">(e)</a></li>
+  <li><a href="#f" id="toc-f" class="nav-link" data-scroll-target="#f">(f)</a></li>
+  </ul></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
+  <ul class="collapse">
+  <li><a href="#a-4" id="toc-a-4" class="nav-link" data-scroll-target="#a-4">(a)</a></li>
+  <li><a href="#b-4" id="toc-b-4" class="nav-link" data-scroll-target="#b-4">(b)</a></li>
+  <li><a href="#c-4" id="toc-c-4" class="nav-link" data-scroll-target="#c-4">(c)</a></li>
+  <li><a href="#d-2" id="toc-d-2" class="nav-link" data-scroll-target="#d-2">(d)</a></li>
+  <li><a href="#e-1" id="toc-e-1" class="nav-link" data-scroll-target="#e-1">(e)</a></li>
+  <li><a href="#f-1" id="toc-f-1" class="nav-link" data-scroll-target="#f-1">(f)</a></li>
+  <li><a href="#g" id="toc-g" class="nav-link" data-scroll-target="#g">(g)</a></li>
+  <li><a href="#h" id="toc-h" class="nav-link" data-scroll-target="#h">(h)</a></li>
+  </ul></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a>
+  <ul class="collapse">
+  <li><a href="#a-5" id="toc-a-5" class="nav-link" data-scroll-target="#a-5">(a)</a></li>
+  <li><a href="#b-5" id="toc-b-5" class="nav-link" data-scroll-target="#b-5">(b)</a></li>
+  <li><a href="#c-5" id="toc-c-5" class="nav-link" data-scroll-target="#c-5">(c)</a></li>
+  <li><a href="#d-3" id="toc-d-3" class="nav-link" data-scroll-target="#d-3">(d)</a></li>
+  <li><a href="#e-2" id="toc-e-2" class="nav-link" data-scroll-target="#e-2">(e)</a></li>
+  <li><a href="#f-2" id="toc-f-2" class="nav-link" data-scroll-target="#f-2">(f)</a></li>
+  </ul></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a>
+  <ul class="collapse">
+  <li><a href="#a-6" id="toc-a-6" class="nav-link" data-scroll-target="#a-6">(a)</a></li>
+  <li><a href="#b-6" id="toc-b-6" class="nav-link" data-scroll-target="#b-6">(b)</a></li>
+  <li><a href="#c-6" id="toc-c-6" class="nav-link" data-scroll-target="#c-6">(c)</a></li>
+  </ul></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a>
+  <ul class="collapse">
+  <li><a href="#a-b-c" id="toc-a-b-c" class="nav-link" data-scroll-target="#a-b-c">(a), (b) &amp; (c)</a></li>
+  <li><a href="#d-4" id="toc-d-4" class="nav-link" data-scroll-target="#d-4">(d)</a></li>
+  <li><a href="#e-3" id="toc-e-3" class="nav-link" data-scroll-target="#e-3">(e)</a></li>
+  <li><a href="#f-3" id="toc-f-3" class="nav-link" data-scroll-target="#f-3">(f)</a></li>
+  <li><a href="#g-1" id="toc-g-1" class="nav-link" data-scroll-target="#g-1">(g)</a></li>
+  <li><a href="#h-1" id="toc-h-1" class="nav-link" data-scroll-target="#h-1">(h)</a></li>
+  <li><a href="#i" id="toc-i" class="nav-link" data-scroll-target="#i">(i)</a></li>
+  <li><a href="#j" id="toc-j" class="nav-link" data-scroll-target="#j">(j)</a></li>
+  </ul></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a>
+  <ul class="collapse">
+  <li><a href="#a-7" id="toc-a-7" class="nav-link" data-scroll-target="#a-7">(a)</a></li>
+  <li><a href="#b-7" id="toc-b-7" class="nav-link" data-scroll-target="#b-7">(b)</a></li>
+  <li><a href="#c-7" id="toc-c-7" class="nav-link" data-scroll-target="#c-7">(c)</a></li>
+  <li><a href="#d-5" id="toc-d-5" class="nav-link" data-scroll-target="#d-5">(d)</a></li>
+  <li><a href="#e-4" id="toc-e-4" class="nav-link" data-scroll-target="#e-4">(e)</a></li>
+  <li><a href="#f-4" id="toc-f-4" class="nav-link" data-scroll-target="#f-4">(f)</a></li>
+  <li><a href="#g-2" id="toc-g-2" class="nav-link" data-scroll-target="#g-2">(g)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/edit/main/Chapter3e.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 3 (Exercises)</h1>
+<p class="subtitle lead">Linear Regression</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Dahiya </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 1, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="conceptual" class="level1">
+<h1><em>Conceptual</em></h1>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>The figure is as below:—</p>
+<p><img src="docs/ISLR-Ch-3-Ex-Q1.jpg" class="img-fluid" width="431"><br>
+<br>
+</p>
+<ul>
+<li><p>The p-values in this table refer to the null hypothesis <span class="math inline">\(H_o : \beta_i = 0\)</span>, where <span class="math inline">\(\beta_i\)</span> refers to the Coefficient relating to the concerned variable.</p></li>
+<li><p>Based on these p-values, I conclude that <code>TV</code> and <code>radio</code> are significant predictors of variation in <code>sales</code>, whereas <code>newspaper</code> is not a statistically significant predictor of variation in <code>sales</code>.<br>
+</p></li>
+</ul>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<ul>
+<li>KNN Classifier is a method used for modeling categorical or qualitative responses. Here, the classifier returns the category of response which is most likely, given the values of predictors in <span class="math inline">\(N_o\)</span> i.e.&nbsp;<strong><em>K</em></strong>-nearest neighbors. KNN classifier first identifies the K points in the training data that are closest to <span class="math inline">\(x_o\)</span>, represented by <span class="math inline">\(\mathcal{N}_o\)</span>. It then estimates the conditional probability for class <span class="math inline">\(j\)</span> as the fraction of points in <span class="math inline">\(\mathcal{N}_o\)</span> whose response values equal <span class="math inline">\(j\)</span><br>
+<span class="math display">\[Pr(Y = j |x=x_o) =  \frac{1}{K} \sum_{x_i \in N_o} I(y_i = j)\]</span></li>
+<li>Finally, KNN applies Bayes rule and classifies the test observation <span class="math inline">\(x_o\)</span> to the class with the largest probability. - KNN Regression is a method which models continuous outcomes or responses based on predictors. It calculates the predicted outcome as the average of responses for the <strong><em>K</em></strong>-nearest neighbors of the given <span class="math inline">\(x_o\)</span>, i.e. :—<br>
+<span class="math display">\[\hat{f}(x_o) = \frac{1}{K} \sum_{x_i \in N_o} y_i \]</span>&nbsp;</li>
+</ul>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<section id="a" class="level3">
+<h3 class="anchored" data-anchor-id="a">(a)</h3>
+<ol type="i">
+<li><p>This statement is incorrect because coefficient <span class="math inline">\(\hat{\beta}_3\)</span> is positive, meaning thereby that females <em>(coded as 1)</em> earn more than males _(coded as 0)<br>
+</p></li>
+<li><p>This statement is incorrect because coefficient <span class="math inline">\(\hat{\beta}_3 = 35\)</span> is positive, meaning thereby that females <em>(coded as 1)</em> earn more than males _(coded as 0), but only if the GPA is less than 3.5. This is because the coefficient of interaction term for <code>Gender</code> and <code>GPA</code> <span class="math inline">\(\hat{\beta}_5 = -10\)</span>. Thus above a certain value, males will have higher earnings.<br>
+</p></li>
+<li><p><strong>This statement is <em>correct</em></strong> because coefficient <span class="math inline">\(\hat{\beta}_3 = 35\)</span> is positive but the coefficient of interaction term for <code>Gender</code> and <code>GPA</code> <span class="math inline">\(\hat{\beta}_5 = -10\)</span>, meaning thereby that females <em>(coded as 1)</em> earn more than males <em>(coded as 0)</em> only up to a certain <code>GPA</code> level, above which the males earn more.<br>
+</p></li>
+<li><p>This statement is incorrect for reasons explained above in (iii).</p></li>
+</ol>
+</section>
+<section id="b" class="level3">
+<h3 class="anchored" data-anchor-id="b">(b)</h3>
+<p>The salary of a female with IQ of 110 and a GPA of 4.0 is <strong>137.1</strong>, as calculated below :–</p>
+<p><br>
+<span class="math inline">\(Salary = \beta_0 + (\beta_1*4) + (\beta_2 * 110) + (\beta_3*1) + (\beta_4*110*4) + (\beta_5*4*1)\)</span><br>
+</p>
+<p><span class="math inline">\(Salary = 50 + (20*4) + (0.07 * 110) + (35*1) + (0.01*110*4) + (-10*4*1)\)</span><br>
+</p>
+<p><span class="math inline">\(Salary = 137.1\)</span><br>
+</p>
+</section>
+<section id="c" class="level3">
+<h3 class="anchored" data-anchor-id="c">(c)</h3>
+<p><strong><em>False</em></strong>. The magnitude of a coefficient does not tell us anything about the significance of the interaction amongst GPA and IQ. This is because the magnitude / value of a coefficient depends on the units of predictor variables chosen. Rather, the standard error and <span class="math inline">\(p\)</span>-value associated with the coefficient will tell us whether there is any evidence of an interaction or not.<br>
+</p>
+</section>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<section id="a-1" class="level3">
+<h3 class="anchored" data-anchor-id="a-1">(a)</h3>
+<p>The Training Residual Sum of Squares (RSS) for the cubic regression will always be lower than the simple linear regression, even if the true population model is linear i.e.&nbsp;<span class="math inline">\(Y = \beta_o + \beta_1(X) + \epsilon\)</span>. This is because more terms in the cubic regression provide more flexibility and thus allows the model to fit each data point more closely. Thus, the RSS is reduced. This is not good thing for us though, as the cubic regression will lead to overfitting.<br>
+</p>
+</section>
+<section id="b-1" class="level3">
+<h3 class="anchored" data-anchor-id="b-1">(b)</h3>
+<p>For the Test Residual Sum of Squares, the simple linear regression will have a lower RSS than cubin regression. This happens because our true population model is linear, so cubic regression leads to overfitting. This causes Test RSS to rise, as compared to linear regression.<br>
+</p>
+</section>
+<section id="c-1" class="level3">
+<h3 class="anchored" data-anchor-id="c-1">(c)</h3>
+<p>Even if we do not know the form of true population relation between <span class="math inline">\(Y\)</span> and <span class="math inline">\(x\)</span>, the cubic regression will always have a lower Training RSS. This is because the cubic regression is a more flexible model, and thus always fits the training data more closely leading to a lower Training RSS.<br>
+</p>
+</section>
+<section id="d" class="level3">
+<h3 class="anchored" data-anchor-id="d">(d)</h3>
+<p>For the Test RSS, when the form true relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(x\)</span> is unknown, we cannot predict whether the linear regression or cubic regression will perform better. This will be an empirical question. Which of the two models has a lower Test RSS will depend on the exact relation between <span class="math inline">\(Y\)</span> and <span class="math inline">\(x\)</span>, and how closely it is modeled by the linear or cubic regression.</p>
+</section>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>In this question, we are considering the fitted values from a linear regression without an intercept, where<br>
+<span class="math display">\[ \hat{y_i} = x_i \hat{\beta_i} \]</span><br>
+</p>
+<p>and,</p>
+<p><br>
+<span class="math display">\[\hat{\beta}_{i} = \frac{\sum_{i=1}^{n}x_{i} y_{i}}{\sum_{i'=1}^{n} x_{i'}^{2}}\]</span><br>
+</p>
+<p>Thus, we can easily replace the value of <span class="math inline">\(\hat{\beta_i}\)</span> in the equation of <span class="math inline">\(y_i\)</span> and solve for <span class="math inline">\(a_i\)</span> as follows —<br>
+<span class="math display">\[ \hat{y_i} = x_i \times \hat{\beta_i} \]</span> <span class="math display">\[ \hat{y}_{i} = x_{i} \times \frac{\sum_{i'=1}^{n} x_{i'} y_{i'}}{\sum_{j=1}^{n} x_{j}^{2}} \]</span> <span class="math display">\[ \hat{y}_{i} = \sum_{i'=1}^{n} \frac{ x_{i'} y_{i'} \times x_{i}}{\sum_{j=1}^{n} x_{j}^{2}} \]</span> <span class="math display">\[ \hat{y}_{i} = \sum_{i'=1}^{n} \left ( \frac{ x_{i} x_{i'} } { \sum_{j=1}^{n} x_{j}^{2} } \times y_{i'} \right ) \]</span><br>
+Thus, we can easily re-write the expression as<br>
+<span class="math display">\[ \hat{y_i} = \sum_{i'=1}^{n} a_{i'}y_i  \]</span><br>
+As a result, the value of <span class="math inline">\(a_i\)</span> is —<br>
+<span class="math display">\[ a_{i'} = \frac{ x_{i} x_{i'} } { \sum_{j=1}^{n} x_{j}^{2} } \]</span><br>
+Also, this means that we can interpret this result by saying that the fitted values (<span class="math inline">\(\hat{y_i}\)</span>) from a linear regression are linear combination of the response values (<span class="math inline">\(y_{i'}\)</span>).</p>
+</section>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>The least squares regression line is<br>
+<span class="math display">\[ y_i = \hat{\beta_o} + \hat{\beta_1}x_i \]</span><br>
+where, <span class="math inline">\(beta_o\)</span> and <span class="math inline">\(beta_1\)</span> are defined as —<br>
+<span class="math display">\[\hat{\beta_o} = \overline{y} - \hat{\beta_1} \overline{x}\]</span> <span class="math display">\[\hat{\beta}_{1} = \frac{\sum_{i=1}^{n}(x_{i} - \overline{x}) (y_{i}-\overline{y})}{\sum_{i=1}^{n} (x_{i}-\overline{x})^{2}}\]</span><br>
+Now, we need to prove that when <span class="math inline">\(x_i = \overline{x}\)</span>, then <span class="math inline">\(\hat{y_i} = \overline{y}\)</span>. For this, we substitute the value of <span class="math inline">\(\beta_o\)</span> with <span class="math inline">\(\overline{y} - \hat{\beta_1} \overline{x}\)</span> and set the value of <span class="math inline">\(x_i\)</span> as <span class="math inline">\(\overline{x}\)</span>,<br>
+<span class="math display">\[ \hat{y_i} = \hat{\beta_o} + \hat{\beta_1}\overline{x} \]</span><br>
+<span class="math display">\[ \hat{y_i} = \overline{y} - \hat{\beta_1} \overline{x} + \hat{\beta_1}\overline{x} \]</span><br>
+<span class="math display">\[ \hat{y_i} = \overline {y}\]</span><br>
+Thus, the point (<span class="math inline">\(\overline{x},\overline{y}\)</span>) will always lie on the least squares regression line.<br>
+</p>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>Keeping the values of <span class="math inline">\(\overline{x}\)</span> and <span class="math inline">\(\overline{y}\)</span> as 0, the terms <span class="math inline">\(R^2\)</span> and <span class="math inline">\(Cor(X,Y)\)</span> are defined as follows <span class="math display">\[ R^2 = 1 - \frac{RSS}{TSS} = 1 - \frac{\sum(y_i - \hat{y_i})^2}{\sum(y_j-\overline{y})^2} = 1 - \frac{\sum(y_i - \hat{y_i})^2}{\sum{y_j}^2}\]</span><br>
+<span class="math display">\[ Cor(X,Y) = \frac{\sum_{n}(x_i-\overline{x})(y_i-\overline{y})}{\sum{x_j} \sum{y_j}} = \frac{\sum_{n}x_iy_i}{\sum{x_j} \sum{y_j}}\]</span><br>
+Now, keeping <span class="math inline">\(\overline{y}\)</span> and <span class="math inline">\(\overline{x}\)</span> as zero, we can substitute the value of <span class="math inline">\(\hat{y_i}\)</span> in <span class="math inline">\(R^2\)</span> as:—<br>
+<span class="math display">\[ y_i = \hat{\beta_o} + \hat{\beta_1}x_i = 0+ \frac{\sum(x_{i} - 0) (y_{i}-0)}{\sum(x_{i}-0)^{2}} = \frac{\sum{x_iy_i}}{\sum{x_i}^2}\]</span><br>
+Thus, we have the following expression for <span class="math inline">\(R^2\)</span>, <span class="math display">\[R^2 = 1 - \frac{\sum_i(y_i - \sum_jx_jy_j/\sum_jx_j^2 x_i)^2}{\sum_jy_j^2}\]</span> <span class="math display">\[R^2 = \frac{\sum_jy_j^2 - (\sum_iy_i^2 - 2\sum_iy_i(\sum_jx_jy_j/\sum_jx_j^2)x_i + \sum_i(\sum_jx_jy_j/\sum_jx_j^2)^2x_i^2)}{\sum_jy_j^2}\]</span> <span class="math display">\[R^2 = \frac{2(\sum_ix_iy_i)^2/\sum_jx_j^2 - (\sum_ix_iy_i)^2/\sum_jx_j^2}{\sum_jy_j^2}\]</span> <span class="math display">\[ R^2 = \frac{(\sum_ix_iy_i)^2}{\sum_jx_j^2\sum_jy_j^2} = Cor(X, Y)^2.\]</span><br>
+</p>
+</section>
+</section>
+<section id="applied" class="level1">
+<h1>Applied</h1>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<section id="a-2" class="level3">
+<h3 class="anchored" data-anchor-id="a-2">(a)</h3>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-1_00c0d69db02e7ffb14d56ac03e49418f">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Auto)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> horsepower, <span class="at">data =</span> Auto)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ horsepower, data = Auto)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.5710  -3.2592  -0.3435   2.7630  16.9240 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 39.935861   0.717499   55.66   &lt;2e-16 ***
+horsepower  -0.157845   0.006446  -24.49   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.906 on 390 degrees of freedom
+Multiple R-squared:  0.6059,    Adjusted R-squared:  0.6049 
+F-statistic: 599.7 on 1 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol type="i">
+<li>There is a relationship between response and predictor, as the overall F-statistic and t-value for the predictor <code>horsepower</code> are statistically significant. The p-value is very close to zero.<br>
+</li>
+<li>The strength of the relationship between the response <code>mpg</code> and predictor <code>horsepower</code> is given by the coefficient of regression i.e.&nbsp;<strong><code>-0.16</code></strong>, with a 95% confidence interval of <strong><code>[-0.17, -0.15]</code></strong>.<br>
+</li>
+<li>The relation between the response and predictor is negative, as the coefficient for <code>horsepower</code> is negative, i.e.&nbsp;<strong><code>-0.16</code></strong>.<br>
+</li>
+<li>The predicted <code>mpg</code> for a <code>horsepower</code> value of 98, with the confidence and prediction intervals is as follows:<br>
+</li>
+</ol>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-2_468c007ab54edbc50701c595c0a93b40">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(fit1, <span class="fu">data.frame</span>(<span class="at">horsepower =</span> <span class="fu">c</span>(<span class="dv">98</span>)), <span class="at">interval =</span> <span class="st">"confidence"</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     fit    lwr    upr
+1 24.467 23.973 24.961</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">predict</span>(fit1, <span class="fu">data.frame</span>(<span class="at">horsepower =</span> <span class="fu">c</span>(<span class="dv">98</span>)), <span class="at">interval =</span> <span class="st">"prediction"</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     fit    lwr    upr
+1 24.467 14.809 34.125</code></pre>
+</div>
+</div>
+</section>
+<section id="b-2" class="level3">
+<h3 class="anchored" data-anchor-id="b-2">(b)</h3>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-3_6da9d17be007052c5ed46221d8c60274">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> Auto<span class="sc">$</span>horsepower, <span class="at">y =</span> Auto<span class="sc">$</span>mpg)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit1, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-2" class="level3">
+<h3 class="anchored" data-anchor-id="c-2">(c)</h3>
+<p>The diagnostic plots, along with the required code to produce them, are displayed below. The <strong>Residuals vs Fitted plot</strong> shows that the residuals are not evenly distributed, and thus there is a non-linear relation between the response and predictor. The <strong>Normal Q-Q plot</strong> also shows evidence on whether the residuals are normal distributed. The current evidence shows that the distribution is somewhat normal. The <strong>Spread-Location plot</strong> of <span class="math inline">\(\sqrt{standardized \ residuals}\)</span> vs.&nbsp;fitted values shows the spread of residuals along the range of predictor values, allowing us to test homoskedasticity. Here, the model <code>fit1</code> suffers from heteroskedasticity. The last plot of <strong>Residuals vs. Leverage</strong> shows us whether any observations are high-leverage. Here, none of the observations appear outside the dashed lines and thus there is no influential observation which is altering the results of the regression model.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-4_f14b7bec742bdc95fd4e7b2f67c5b1bb">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<section id="a-3" class="level3">
+<h3 class="anchored" data-anchor-id="a-3">(a)</h3>
+<p>A scatter-plot matrix of all the variables in <code>Auto</code> data set is produced using the function <code>pairs()</code> as follows :—<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-5_19e81c8cbd59f97206730cf2fcad5a4e">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Auto)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(Auto)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="b-3" class="level3">
+<h3 class="anchored" data-anchor-id="b-3">(b)</h3>
+<p>The correlation matrix between variables of <code>Auto</code> is shown below, after excluding the variable <code>name</code>. We can use the base <code>R</code> command <code>cor</code>. However, a more beautiful tabular display is shown below using the package <code>corrplot</code>.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-6_661634d88b21ecf4cbe2c7fc6a541101">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Auto[, <span class="sc">-</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    mpg  cylinders displacement horsepower     weight
+mpg           1.0000000 -0.7776175   -0.8051269 -0.7784268 -0.8322442
+cylinders    -0.7776175  1.0000000    0.9508233  0.8429834  0.8975273
+displacement -0.8051269  0.9508233    1.0000000  0.8972570  0.9329944
+horsepower   -0.7784268  0.8429834    0.8972570  1.0000000  0.8645377
+weight       -0.8322442  0.8975273    0.9329944  0.8645377  1.0000000
+acceleration  0.4233285 -0.5046834   -0.5438005 -0.6891955 -0.4168392
+year          0.5805410 -0.3456474   -0.3698552 -0.4163615 -0.3091199
+origin        0.5652088 -0.5689316   -0.6145351 -0.4551715 -0.5850054
+             acceleration       year     origin
+mpg             0.4233285  0.5805410  0.5652088
+cylinders      -0.5046834 -0.3456474 -0.5689316
+displacement   -0.5438005 -0.3698552 -0.6145351
+horsepower     -0.6891955 -0.4163615 -0.4551715
+weight         -0.4168392 -0.3091199 -0.5850054
+acceleration    1.0000000  0.2903161  0.2127458
+year            0.2903161  1.0000000  0.1815277
+origin          0.2127458  0.1815277  1.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(Auto[, <span class="sc">-</span><span class="dv">9</span>]), <span class="at">method =</span> <span class="st">"number"</span>, <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-3" class="level3">
+<h3 class="anchored" data-anchor-id="c-3">(c)</h3>
+<p>The multiple linear regression of <code>mpg</code> on all other variables, except <code>name</code> is displayed below:<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-7_6bb8755ec4d0905ded973b4a8ff408c6">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> . <span class="sc">-</span> name, <span class="at">data =</span> Auto)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ . - name, data = Auto)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.5903 -2.1565 -0.1169  1.8690 13.0604 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -17.218435   4.644294  -3.707  0.00024 ***
+cylinders     -0.493376   0.323282  -1.526  0.12780    
+displacement   0.019896   0.007515   2.647  0.00844 ** 
+horsepower    -0.016951   0.013787  -1.230  0.21963    
+weight        -0.006474   0.000652  -9.929  &lt; 2e-16 ***
+acceleration   0.080576   0.098845   0.815  0.41548    
+year           0.750773   0.050973  14.729  &lt; 2e-16 ***
+origin         1.426141   0.278136   5.127 4.67e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.328 on 384 degrees of freedom
+Multiple R-squared:  0.8215,    Adjusted R-squared:  0.8182 
+F-statistic: 252.4 on 7 and 384 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol type="i">
+<li>The output shows that there is a relationship between response and predictors. The F-statistic of <strong>252.43</strong> (generated by <code>summary(fit2)$fstatistic[1]</code>) has a p-value of nearly zero.<br>
+</li>
+<li>The predictors which appear to have a statistically significant relationship to the response are <code>displacement</code>, <code>weight</code>, <code>year</code> and <code>origin</code>.<br>
+</li>
+<li>The coefficient for <code>year</code> is 0.751 (<code>round(fit2$coef[7],3)</code>). This suggests that with each year, the value of miles per gallon <code>mpg</code> increases by 0.75, provided all other variables remain constant. In other words, with each year, fuel efficiency increases by 0.75 [95% CI = 0.65, 0.85] mpg/year if other variables remain the same.<br>
+</li>
+</ol>
+</section>
+<section id="d-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-1">(d)</h3>
+<p>The diagnostic plots for this multiple linear regression are shown below.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-8_79da66362b12446ede44dbc4cae09feb">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><p>Residuals vs Fitted Plot shows whether the residuals from multiple linear regression have non-linear patterns. We find that the residuals are not evenly spread around the horizontal line. <strong>Perhaps there is some non-linear relationship between the response and predictors, which is not captured by the linear model we have fitted.</strong></p></li>
+<li><p>Normal Q-Q Plot shows us whether the residuals are normally distributed. Since, residuals follow the straight line when plotted with theoretical quantiles of a normal distribution, this plot suggests that the residuals are somewhat normally distributed, barring a few observations with high residual values.</p></li>
+<li><p>Scale-Location Plot checks the assumption of homoskedasticity. The plot suggests some amount of heteroskedasticity.</p></li>
+<li><p>Residuals vs Leverage Plot helps us to find influential cases with high leverage and outliers (high absolute standardized residual value). In this data set, <strong>around 5 observations like 323, 326, 327, 394 etc. are outliers</strong> and <em>observation 14 has a high leverage</em>. But, there is no observation outside of the dashed line, the Cook’s distance, thus there is no observation which is significantly affecting the regression results.<br>
+</p></li>
+</ul>
+</section>
+<section id="e" class="level3">
+<h3 class="anchored" data-anchor-id="e">(e)</h3>
+<p>To fit various interaction terms in the Multiple linear regression model, we use two strategies :—<br>
+</p>
+<ul>
+<li>First, we use three interactions to fit to the model, using the three variable pairs which carry the highest correlation from the correlation matrix shown in part (b) above: <span class="math inline">\(displacement \times cylinders\)</span> , <span class="math inline">\(displacement \times weight\)</span> and <span class="math inline">\(weight \times cylinders\)</span>.</li>
+<li>The results below suggest that only the interaction between <code>displacement</code> and <code>weight</code> is statistically significant. However, using predictor variables with high correlation means that our fitted model may suffer from <strong>multicollinearity</strong>.<br>
+</li>
+</ul>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-9_ace87290db8b21744d604dbeaf95d8ea">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> . <span class="sc">-</span> name <span class="sc">+</span> displacement<span class="sc">:</span>cylinders <span class="sc">+</span> displacement<span class="sc">:</span>weight <span class="sc">+</span> weight<span class="sc">:</span>cylinders, <span class="at">data =</span> Auto)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mpg ~ . - name + displacement:cylinders + displacement:weight + 
+    weight:cylinders, data = Auto)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.9771 -1.8142 -0.0589  1.6557 12.1181 
+
+Coefficients:
+                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            -6.830e+00  6.090e+00  -1.122 0.262778    
+cylinders               5.961e-01  1.536e+00   0.388 0.698109    
+displacement           -8.595e-02  3.140e-02  -2.738 0.006480 ** 
+horsepower             -3.552e-02  1.319e-02  -2.693 0.007404 ** 
+weight                 -9.252e-03  2.355e-03  -3.929 0.000101 ***
+acceleration            6.027e-02  8.905e-02   0.677 0.498978    
+year                    7.831e-01  4.574e-02  17.120  &lt; 2e-16 ***
+origin                  5.193e-01  2.706e-01   1.919 0.055685 .  
+cylinders:displacement  1.923e-03  3.094e-03   0.622 0.534615    
+displacement:weight     2.386e-05  6.162e-06   3.872 0.000127 ***
+cylinders:weight       -2.515e-04  5.047e-04  -0.498 0.618481    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.97 on 381 degrees of freedom
+Multiple R-squared:  0.8589,    Adjusted R-squared:  0.8552 
+F-statistic:   232 on 10 and 381 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ul>
+<li>Secondly, we can create a lot of permutations of variables to create various interaction terms and use <code>R</code> code to select the interaction terms with significant p-values (&lt;0.05). This is shown below:—<br>
+</li>
+</ul>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-10_0d2ec0a420d6df71b7af397b604946b8">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> cylinders <span class="sc">*</span> displacement <span class="sc">+</span> cylinders <span class="sc">*</span> horsepower <span class="sc">+</span> cylinders <span class="sc">*</span> weight <span class="sc">+</span> cylinders <span class="sc">*</span> acceleration <span class="sc">+</span> cylinders <span class="sc">*</span> year <span class="sc">+</span> cylinders <span class="sc">*</span> origin <span class="sc">+</span> displacement <span class="sc">*</span> horsepower <span class="sc">+</span> displacement <span class="sc">*</span> weight <span class="sc">+</span> displacement <span class="sc">*</span> acceleration <span class="sc">+</span> displacement <span class="sc">*</span> year <span class="sc">+</span> displacement <span class="sc">*</span> origin <span class="sc">+</span> horsepower <span class="sc">*</span> weight <span class="sc">+</span> horsepower <span class="sc">*</span> acceleration <span class="sc">+</span> horsepower <span class="sc">*</span> year <span class="sc">+</span> horsepower <span class="sc">*</span> origin <span class="sc">+</span> weight <span class="sc">*</span> acceleration <span class="sc">+</span> weight <span class="sc">*</span> year <span class="sc">+</span> weight <span class="sc">*</span> origin <span class="sc">+</span> acceleration <span class="sc">*</span> year <span class="sc">+</span> acceleration <span class="sc">*</span> origin <span class="sc">+</span> year <span class="sc">*</span> origin, <span class="at">data =</span> Auto)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">subset</span>(<span class="fu">summary</span>(fit4)<span class="sc">$</span>coef[, <span class="dv">4</span>], <span class="fu">summary</span>(fit4)<span class="sc">$</span>coef[, <span class="dv">4</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>), <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       displacement        acceleration              origin   displacement:year 
+             0.0119              0.0074              0.0034              0.0135 
+  acceleration:year acceleration:origin 
+             0.0303              0.0037 </code></pre>
+</div>
+</div>
+<ul>
+<li><p>Thus, as we see above, the interaction terms <span class="math inline">\(displacement \times year\)</span>, <span class="math inline">\(acceleration \times year\)</span> and <span class="math inline">\(acceleration \times origin\)</span> are statistically significant predictors of the response <code>mpg</code>.</p></li>
+<li><p>It is evident from above two approaches, that the exact model we use decides which interaction terms are statistically significant predictors of the outcome. Thus, interaction terms should be chosen on theoretical basis for interaction effects and then fitted into the model.<br>
+</p></li>
+</ul>
+</section>
+<section id="f" class="level3">
+<h3 class="anchored" data-anchor-id="f">(f)</h3>
+<p>Now, we fit different types of models using 3 transformations of the predictor and response variables. We use only one predictor variable <code>horsepower</code> for ease of demonstration. The response variable continues to be <code>mpg</code>. We compare the models using plots with the fitted regression line, along with value of <span class="math inline">\(R^2\)</span> in the top of the graph in red font. The plots how that the <code>log</code> transformation of the predictor variable leads to the best fit and highest <span class="math inline">\(R^2\)</span>.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-11_73b3a4183c7f41c77be0d93384293561">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fit5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> horsepower, <span class="at">data =</span> Auto)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fit6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> <span class="fu">I</span>(horsepower<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> Auto)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fit7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> <span class="fu">log</span>(horsepower), <span class="at">data =</span> Auto)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fit8 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> <span class="fu">sqrt</span>(horsepower), <span class="at">data =</span> Auto)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(Auto)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(horsepower, mpg)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit5, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">round</span>(<span class="fu">summary</span>(fit5)<span class="sc">$</span>r.squared, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(horsepower<span class="sc">^</span><span class="dv">2</span>, mpg)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit6, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">round</span>(<span class="fu">summary</span>(fit6)<span class="sc">$</span>r.squared, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(horsepower), mpg)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit7, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">round</span>(<span class="fu">summary</span>(fit7)<span class="sc">$</span>r.squared, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">sqrt</span>(horsepower), mpg)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit8, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="fu">round</span>(<span class="fu">summary</span>(fit8)<span class="sc">$</span>r.squared, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="question-10" class="level2">
+<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<section id="a-4" class="level3">
+<h3 class="anchored" data-anchor-id="a-4">(a)</h3>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-12_bbc1478916e65c9e14f9823ef77799e0">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>fit9 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> Urban <span class="sc">+</span> US, <span class="at">data =</span> Carseats)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">summary</span>(fit9)<span class="sc">$</span>coef, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Estimate Std. Error  t value Pr(&gt;|t|)
+(Intercept)  13.0435     0.6510  20.0357   0.0000
+Price        -0.0545     0.0052 -10.3892   0.0000
+UrbanYes     -0.0219     0.2717  -0.0807   0.9357
+USYes         1.2006     0.2590   4.6347   0.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="b-4" class="level3">
+<h3 class="anchored" data-anchor-id="b-4">(b)</h3>
+<p>The interpretation of each coefficient in the regression model is given below. The response variable is <code>Sales</code>, i.e.&nbsp;sales of car seats in thousands.</p>
+<ul>
+<li><p>For each unit increase in price of <code>carseats</code>, the sales decrease by 54.4 units.</p></li>
+<li><p>On average, stores located in Urban areas in US sell 21.9 less car seats than stores located in rural areas.</p></li>
+<li><p>On average, stores located in US sell 1200.5 car seats more than stores located in other countries.<br>
+</p></li>
+</ul>
+</section>
+<section id="c-4" class="level3">
+<h3 class="anchored" data-anchor-id="c-4">(c)</h3>
+<p>This model can be written in equation form as<br>
+<span class="math display">\[ Sales(in \; thousands) = 13.043 -0.054\times Price - 0.022 \times Urban + 1.201 \times US + \epsilon \]</span></p>
+</section>
+<section id="d-2" class="level3">
+<h3 class="anchored" data-anchor-id="d-2">(d)</h3>
+<p>For the predictors <code>Price</code> and <code>US</code>, we can reject the null hypothesis <span class="math inline">\(H_o: \beta_j = 0\)</span> because their associated p-value is less than 0.05.<br>
+</p>
+</section>
+<section id="e-1" class="level3">
+<h3 class="anchored" data-anchor-id="e-1">(e)</h3>
+<p>A smaller model is fit as shown below.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-13_425db46a7dd796c49122e5a37fd13bb5">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fit10 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> US, <span class="at">data =</span> Carseats)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">summary</span>(fit10)<span class="sc">$</span>coef, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Estimate Std. Error  t value Pr(&gt;|t|)
+(Intercept)  13.0308     0.6310  20.6518        0
+Price        -0.0545     0.0052 -10.4161        0
+USYes         1.1996     0.2585   4.6415        0</code></pre>
+</div>
+</div>
+</section>
+<section id="f-1" class="level3">
+<h3 class="anchored" data-anchor-id="f-1">(f)</h3>
+<p>If we compare the two models in (a) and (e), we find that an Analysis of Variance tells that the two models are not significantly different from each other. How well each model fits the data is revealed by the adjusted <span class="math inline">\(R^2\)</span>, which is <strong>0.23</strong> <code>round(summary(fit9)$adj.r.squared,4)</code>for model in (a) and <strong>0.24</strong> <code>round(summary(fit10)$adj.r.squared,4)</code> for model in (e).<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-14_d7a767753f0e67ea950c75c7c7879692">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit9, fit10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: Sales ~ Price + Urban + US
+Model 2: Sales ~ Price + US
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1    396 2420.8                           
+2    397 2420.9 -1  -0.03979 0.0065 0.9357</code></pre>
+</div>
+</div>
+</section>
+<section id="g" class="level3">
+<h3 class="anchored" data-anchor-id="g">(g)</h3>
+<p>The 95% Confidence Intervals for the coefficients in model from (e) are shown below.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-15_69a806fb7e6570ec934a3b279d2e14c2">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">confint</span>(fit10), <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             2.5 % 97.5 %
+(Intercept) 11.790 14.271
+Price       -0.065 -0.044
+USYes        0.692  1.708</code></pre>
+</div>
+</div>
+</section>
+<section id="h" class="level3">
+<h3 class="anchored" data-anchor-id="h">(h)</h3>
+<p>The evidence for outliers and high leverage points in model from (e) can be seen using the diagnostic plots and <code>R</code> code given below. The plots reveal that there are <strong>23</strong> <strong>outliers</strong> (<code>sum(abs(rstudent(fit10))&gt;2)</code>) with absolute value of studentized residual greater than 2, but none of these has an absolute studentized residual more than 3. Similarly, there are <strong>20 high leverage observations</strong> (<code>sum(hatvalues(fit10) &gt; 2*mean(hatvalues(fit10)))</code>) where <span class="math inline">\(h_i &gt; 2\overline{h}\)</span>. Lastly, <code>sum(cooks.distance(fit10) &gt; 4/length(cooks.distance(fit10)))</code> <strong>19 observations</strong> are influential as they Cook’s Distance <span class="math inline">\(D_i &gt; 4/n\)</span>.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-16_05f2ba6bb4ac21281104d2f44fef2b41">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(<span class="fu">rstudent</span>(fit10)) <span class="sc">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">hatvalues</span>(fit10) <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(<span class="fu">hatvalues</span>(fit10)))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">cooks.distance</span>(fit10) <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">cooks.distance</span>(fit10)))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit10, <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="question-11" class="level2">
+<h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
+<section id="a-5" class="level3">
+<h3 class="anchored" data-anchor-id="a-5">(a)</h3>
+<p>The simple linear regression of <span class="math inline">\(y\)</span> onto <span class="math inline">\(x\)</span> is shown below. The coefficient <span class="math inline">\(\hat{\beta}\)</span> for <span class="math inline">\(x\)</span> is 1.9939. The standard error is 0.1065. The t-value is 18.73 and p-value is nearly 0. The interpretation is that <span class="math inline">\(x\)</span> is a statistically significant predictor of <span class="math inline">\(y\)</span>.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-17_9533b76fb60475bc58127e88bd7c5e97">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>fit11 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> <span class="dv">0</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit11)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x + 0)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9154 -0.6472 -0.1771  0.5056  2.3109 
+
+Coefficients:
+  Estimate Std. Error t value Pr(&gt;|t|)    
+x   1.9939     0.1065   18.73   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9586 on 99 degrees of freedom
+Multiple R-squared:  0.7798,    Adjusted R-squared:  0.7776 
+F-statistic: 350.7 on 1 and 99 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="b-5" class="level3">
+<h3 class="anchored" data-anchor-id="b-5">(b)</h3>
+<p>The simple linear regression of <span class="math inline">\(x\)</span> onto <span class="math inline">\(y\)</span> is shown below. The coefficient <span class="math inline">\(\hat{\beta}\)</span> for <span class="math inline">\(y\)</span> is 0.3911. The standard error is 0.021. The t-value is 18.73 and p-value is nearly 0. The interpretation is that <span class="math inline">\(y\)</span> is a statistically significant predictor of <span class="math inline">\(x\)</span>.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-18_fd34ce9525f003d722912889b073022b">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fit12 <span class="ot">&lt;-</span> <span class="fu">lm</span>(x <span class="sc">~</span> y <span class="sc">+</span> <span class="dv">0</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit12)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = x ~ y + 0)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.8699 -0.2368  0.1030  0.2858  0.8938 
+
+Coefficients:
+  Estimate Std. Error t value Pr(&gt;|t|)    
+y  0.39111    0.02089   18.73   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4246 on 99 degrees of freedom
+Multiple R-squared:  0.7798,    Adjusted R-squared:  0.7776 
+F-statistic: 350.7 on 1 and 99 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="c-5" class="level3">
+<h3 class="anchored" data-anchor-id="c-5">(c)</h3>
+<p>The results obtained in (a) and (b) above have the exact same t-statistic, p-value and <span class="math inline">\(R^2\)</span> (both adjusted <span class="math inline">\(R^2\)</span> and multiple <span class="math inline">\(R^2\)</span>). This is because both models fit the same correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.<br>
+</p>
+</section>
+<section id="d-3" class="level3">
+<h3 class="anchored" data-anchor-id="d-3">(d)</h3>
+<p>In this question, when regression is performed without an intercept, the value of <span class="math inline">\(\hat{\beta}\)</span> and <span class="math inline">\(SE(\hat{\beta})\)</span> is given by:<br>
+<span class="math display">\[ \hat{\beta} = \frac{\sum_{i=1}^{n} x_iy_i}{\sum_{i'=1}^{n}x_{i'}^2} = \sum_i{x_i}{y_i}/\sum_j{x_j^2}\]</span> <span class="math display">\[SE(\hat{\beta}) = \sqrt{\frac{\sum_{i=1}^n(y_i - x_i\hat{\beta})^2}{(n - 1)\sum_{i'=1}^nx_{i'}^2}} = \sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}\]</span> Thus, we can show that:—<br>
+<span class="math display">\[ t = \frac{\hat{\beta}}{SE(\hat{\beta})}\]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i/\sum_jx_j^2}{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{\sum_jx_j^2{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/\sum_jx_j^2}}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span><br>
+We now replace the value of <span class="math inline">\(\hat{\beta}\)</span> into this equation and solve:—<br>
+<span class="math display">\[t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{\sum_jx_j^2\sum_i(y_i - x_i\sum_ix_iy_i/\sum_jx_j^2)^2}}\]</span> <span class="math display">\[t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{(\sum_jx_j^2)(\sum_jy_j^2) - (\sum_jx_jy_j)^2}}\]</span><br>
+Further, this result can be confirmed in <code>R Code</code> given below which shows that the calculated <code>t-value</code> using this formula is the same <code>t-value</code> as shown in models <code>fit11</code> and <code>fit12</code> :—</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-19_bab0f3026fea9123635bda4beb278fed">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (x <span class="sc">%*%</span> y) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">sum</span>(y<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> (x <span class="sc">%*%</span> y)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">round</span>(t, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18.73</code></pre>
+</div>
+</div>
+</section>
+<section id="e-2" class="level3">
+<h3 class="anchored" data-anchor-id="e-2">(e)</h3>
+<p>From the results in (d) above, it is clear that <span class="math inline">\(t-statistic\)</span> will be the same even if <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are interchanged. The equation for <span class="math inline">\(t-statistic\)</span> is associative in <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+</section>
+<section id="f-2" class="level3">
+<h3 class="anchored" data-anchor-id="f-2">(f)</h3>
+<p>Now, we perform the regressions with an intercept. The t-values of both regressions are displayed using the code below. It is clear that both the t-values are equal.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-20_9ef474ebcfae36075927e239ff554f37">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fit13 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fit14 <span class="ot">&lt;-</span> <span class="fu">lm</span>(x <span class="sc">~</span> y)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit13)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18.5556</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit14)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18.5556</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="question-12" class="level2">
+<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
+<section id="a-6" class="level3">
+<h3 class="anchored" data-anchor-id="a-6">(a)</h3>
+<p>The coefficient for regression of <span class="math inline">\(Y\)</span> onto <span class="math inline">\(X\)</span> is given by:<br>
+<span class="math display">\[\hat{\beta} = \frac{\sum_ix_iy_i}{\sum_jx_j^2}\]</span><br>
+and, the coefficient for regression of <span class="math inline">\(X\)</span> onto <span class="math inline">\(Y\)</span> is given by:<br>
+<span class="math display">\[\hat{\beta'} = \frac{\sum_ix_iy_i}{\sum_jy_j^2}\]</span><br>
+Thus, <span class="math inline">\(\hat{\beta} = \hat{\beta'}\)</span> in a special condition when,<br>
+<span class="math display">\[{\sum_jx_j^2} = {\sum_jy_j^2}\]</span> .</p>
+</section>
+<section id="b-6" class="level3">
+<h3 class="anchored" data-anchor-id="b-6">(b)</h3>
+<p>The following R code generates the example:</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-21_43c02060b648628ab0180cad75783c1d">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>fit15 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>fit16 <span class="ot">&lt;-</span> <span class="fu">lm</span>(x <span class="sc">~</span> y)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_x_sq =</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_y_sq =</span> <span class="fu">sum</span>(y<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef_y_x =</span> <span class="fu">coef</span>(fit15)[<span class="dv">2</span>],</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef_x_y =</span> <span class="fu">coef</span>(fit16)[<span class="dv">2</span>]</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sum_x_sq</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sum_y_sq</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coef_y_x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coef_x_y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">81.05509</td>
+<td style="text-align: right;">413.2135</td>
+<td style="text-align: right;">1.99894</td>
+<td style="text-align: right;">0.3894245</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="c-6" class="level3">
+<h3 class="anchored" data-anchor-id="c-6">(c)</h3>
+<p>The following R code generates an example with <span class="math inline">\({\sum_jx_j^2} = {\sum_jy_j^2}\)</span>:-</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-22_7a41a5a6edca99e3e5ff0288fcd949f6">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> (<span class="dv">100</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>fit17 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>fit18 <span class="ot">&lt;-</span> <span class="fu">lm</span>(x <span class="sc">~</span> y)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_x_sq =</span> <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_y_sq =</span> <span class="fu">sum</span>(y<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef_y_x =</span> <span class="fu">coef</span>(fit17)[<span class="dv">2</span>],</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coef_x_y =</span> <span class="fu">coef</span>(fit18)[<span class="dv">2</span>]</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sum_x_sq</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">sum_y_sq</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coef_y_x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coef_x_y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">x</td>
+<td style="text-align: right;">338350</td>
+<td style="text-align: right;">338350</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+<section id="question-13" class="level2">
+<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<section id="a-b-c" class="level3">
+<h3 class="anchored" data-anchor-id="a-b-c">(a), (b) &amp; (c)</h3>
+<p>The R code is given below:</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-23_43272c6f62b33a8d22caaaa3a515fdb1">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="fl">0.25</span>))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> x <span class="sc">+</span> eps</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<p>The length of vector <code>y</code> is 100 (<code>length(y)</code>). The coefficient <span class="math inline">\(\beta_o\)</span> is -1, and the coefficient <span class="math inline">\(\beta_1\)</span> is 0.5.<br>
+</p>
+</section>
+<section id="d-4" class="level3">
+<h3 class="anchored" data-anchor-id="d-4">(d)</h3>
+<p>The scatter-plot between <code>x</code> and <code>y</code> is shown below. We see that there is a linear relationship between <code>x</code> and <code>y</code>, although some random variability is introduced by the <code>eps</code> noise.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-24_5ec6969f28a693f3fcd54a30080a44b7">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="e-3" class="level3">
+<h3 class="anchored" data-anchor-id="e-3">(e)</h3>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-25_41054402fd894567f564c1002bac8165">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>fit19 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(fit19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+ -1.0188463   0.4994698 </code></pre>
+</div>
+</div>
+<p>The coefficient <span class="math inline">\(\hat{\beta_o}\)</span> is -1.02 <code>round(coef(fit19)[1],2)</code>, and the coefficient <span class="math inline">\(\hat{\beta_1}\)</span> is 0.5 <code>round(coef(fit19)[2],2)</code>. Both these estimates are quite close to the true model coefficients.</p>
+</section>
+<section id="f-3" class="level3">
+<h3 class="anchored" data-anchor-id="f-3">(f)</h3>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-26_9746ef6cbbb2f7f0abc6e08541acffa7">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit19, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">b =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="fl">0.5</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Fitted Least Squares Line"</span>, <span class="st">"True Regression Model"</span>),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.8</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="g-1" class="level3">
+<h3 class="anchored" data-anchor-id="g-1">(g)</h3>
+<p>After fitting a quadratic term, we observe that there is no significant improvement in the model fit because the ANOVA comparison shows a p-value &gt; 0.05.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-27_8657c6f2b1d88eddad25c42f3e9b1cc8">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fit20 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit19, fit20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: y ~ x
+Model 2: y ~ x + I(x^2)
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1     98 22.709                           
+2     97 22.257  1   0.45163 1.9682 0.1638</code></pre>
+</div>
+</div>
+</section>
+<section id="h-1" class="level3">
+<h3 class="anchored" data-anchor-id="h-1">(h)</h3>
+<p>Now, we re-create steps in questions (a) to (f), but with a <strong>lower variance</strong> in the error terms, say <span class="math inline">\(var(\epsilon) = 0.05\)</span>. The results how that now the estimated coefficients are much closer to the true model parameters. And, the fitted least squares line is much closer to the true regression model line. However, the confidence intervals for the estimated coefficients are much narrower.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-28_ee55ce01c05c1f8051d7442731394da3">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="fl">0.05</span>))</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> x <span class="sc">+</span> eps</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>fit21 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit19, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">b =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="fl">0.0</span>,</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Fitted Least Squares Line"</span>, <span class="st">"True Regression Model"</span>),</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.8</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="i" class="level3">
+<h3 class="anchored" data-anchor-id="i">(i)</h3>
+<p>Now, we re-create steps in questions (a) to (f), but with <strong>higher variance</strong> in the error terms, say <span class="math inline">\(var(\epsilon) = 5.0\)</span>. The results how that now the estimated coefficients are further away from the true model parameters. And, the fitted least squares line is still somewhat close to the true regression model line because we have a large number of observations. However, the confidence intervals for the estimated coefficients are very wide.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-29_20a13a63cd9999c7a6f33829f97b8bdf">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> x <span class="sc">+</span> eps</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>fit22 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(fit19, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">b =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Fitted Least Squares Line"</span>, <span class="st">"True Regression Model"</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">lty =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="j" class="level3">
+<h3 class="anchored" data-anchor-id="j">(j)</h3>
+<p>The confidence intervals for the coefficients <span class="math inline">\(\hat{\beta_o}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> are tabulated below. The results show that the confidence intervals for the coefficient estimates are much wider when the variance in error terms <span class="math inline">\(\epsilon\)</span> is higher.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-30_165095483a9d612fc20a55f5f9f74d07">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>beta_o <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rbind</span>(<span class="fu">confint</span>(fit19)[<span class="dv">1</span>, ], <span class="fu">confint</span>(fit21)[<span class="dv">1</span>, ], <span class="fu">confint</span>(fit22)[<span class="dv">1</span>, ]), <span class="dv">3</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rbind</span>(<span class="fu">confint</span>(fit19)[<span class="dv">2</span>, ], <span class="fu">confint</span>(fit21)[<span class="dv">2</span>, ], <span class="fu">confint</span>(fit22)[<span class="dv">2</span>, ]), <span class="dv">3</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>coefs <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(beta_o, beta_1))</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"LowerCI_beta_o"</span>, <span class="st">"UpperCI_beta_o"</span>, <span class="st">"LowerCI_beta_1"</span>, <span class="st">"UpperCI_beta_o"</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"First Model Var(0.25)"</span>, <span class="st">"Narrow Model Var(0.05)"</span>, <span class="st">"Wider Model Var(5.0)"</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>coefs <span class="sc">%&gt;%</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_classic_2</span>(<span class="at">full_width =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LowerCI_beta_o</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">UpperCI_beta_o</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LowerCI_beta_1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">UpperCI_beta_o</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">First Model Var(0.25)</td>
+<td style="text-align: right;">-1.115</td>
+<td style="text-align: right;">-0.923</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.606</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Narrow Model Var(0.05)</td>
+<td style="text-align: right;">-1.051</td>
+<td style="text-align: right;">-0.965</td>
+<td style="text-align: right;">0.452</td>
+<td style="text-align: right;">0.548</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Wider Model Var(5.0)</td>
+<td style="text-align: right;">-1.515</td>
+<td style="text-align: right;">-0.654</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">0.976</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+<section id="question-14" class="level2">
+<h2 class="anchored" data-anchor-id="question-14">Question 14</h2>
+<section id="a-7" class="level3">
+<h3 class="anchored" data-anchor-id="a-7">(a)</h3>
+<p>In the R-code given by the question, and reproduced below, the linear model is: <span class="math display">\[ y = 2 + 2x_1 \ + \ 0.3x_2 \ + \ \epsilon \]</span> where, <span class="math inline">\(\epsilon \sim \mathcal{N}(0,1)\)</span> is a random error term. The regression coefficients are <span class="math inline">\(\beta_o = 2\)</span>, <span class="math inline">\(\beta_1 = 2\)</span> and <span class="math inline">\(\beta_2 = 0.3\)</span>.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-31_0a182c4b06bb13ddefc476ed3197ac49">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">*</span> x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">/</span> <span class="dv">10</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> x1 <span class="sc">+</span> <span class="fl">0.3</span> <span class="sc">*</span> x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-7" class="level3">
+<h3 class="anchored" data-anchor-id="b-7">(b)</h3>
+<p>Based on the <code>R</code> code given, <code>x1</code> and <code>x2</code> seems positively correlated. The correlation coefficient between <code>x1</code> and <code>x2</code> calculated using code in <code>R</code> is <strong>0.84</strong> (<code>round(cor(x1, x2),2)</code>). The scatter plot matrix is given below:<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-32_3173c811728e54dd41c5dc4672a2ce5e">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x1, x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8351212</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x1, x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-7" class="level3">
+<h3 class="anchored" data-anchor-id="c-7">(c)</h3>
+<p>The regression of <code>y</code> onto <code>x1</code> and <code>x2</code> is fitted below. The results show that around 23% variability in <code>y</code> is explained by this model, and the model is significantly better than a NULL model, i.e. <span class="math inline">\(\hat{y} = \overline{y}\)</span>. Further, <code>x1</code> is a statistically significant predictor of <code>y</code>, whereas <code>x2</code> is not. We can safely reject the two null hypotheses <span class="math inline">\(H_o \ : \ \beta_o = 0\)</span> and <span class="math inline">\(H_o \ : \ \beta_1 = 0\)</span>. However, we cannot reject the null hypothesis <span class="math inline">\(H_o \ : \ \beta_2 = 0\)</span>. The estimated coefficients of regression are: <span class="math inline">\(\hat{\beta_o} = 2.01\)</span>, <span class="math inline">\(\hat{\beta_1} = 2.3\)</span> and <span class="math inline">\(\hat{\beta_2} = -0.24\)</span>. The estimated coefficient for intercept is reasonably close to the true parameter, however the estimated coefficients for <code>x1</code> and <code>x2</code> is totally off target.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-33_ff794b0eec1f1d93df5c1e5fe36f4b76">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>fit23 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit23)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.8311 -0.7273 -0.0537  0.6338  2.3359 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   2.1305     0.2319   9.188 7.61e-15 ***
+x1            1.4396     0.7212   1.996   0.0487 *  
+x2            1.0097     1.1337   0.891   0.3754    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.056 on 97 degrees of freedom
+Multiple R-squared:  0.2088,    Adjusted R-squared:  0.1925 
+F-statistic:  12.8 on 2 and 97 DF,  p-value: 1.164e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="d-5" class="level3">
+<h3 class="anchored" data-anchor-id="d-5">(d)</h3>
+<p>Now, we fit linear least squares regression using only <code>x1</code> as a predictor for the response <code>y</code>. The resulting model is statistically significantly better than the null model due to a very low p-value on the F-statistic. Further, it explains 24% of the variability in <code>y</code>. We can safely reject the two null hypotheses <span class="math inline">\(H_o \ : \ \beta_o = 0\)</span> and <span class="math inline">\(H_o \ : \ \beta_{x1} = 0\)</span>. The estimated coefficients of regression are: <span class="math inline">\(\hat{\beta_o} = 2.01\)</span>, <span class="math inline">\(\hat{\beta_{x1}} = 2.2\)</span>. They are reasonably close to the true parameters.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-34_f5b33a01349fe994f988ee369074d055">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>fit24 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit24)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.89495 -0.66874 -0.07785  0.59221  2.45560 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   2.1124     0.2307   9.155 8.27e-15 ***
+x1            1.9759     0.3963   4.986 2.66e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.055 on 98 degrees of freedom
+Multiple R-squared:  0.2024,    Adjusted R-squared:  0.1942 
+F-statistic: 24.86 on 1 and 98 DF,  p-value: 2.661e-06</code></pre>
+</div>
+</div>
+</section>
+<section id="e-4" class="level3">
+<h3 class="anchored" data-anchor-id="e-4">(e)</h3>
+<p>Now, we fit linear least squares regression using only <code>x2</code> as a predictor for the response <code>y</code>. The resulting model is statistically significantly better than the null model due to a very low p-value on the F-statistic. Further, it explains only 14.8% of the variability in <code>y</code>. Based on this model, we can safely reject the two null hypotheses <span class="math inline">\(H_o \ : \ \beta_o = 0\)</span> and <span class="math inline">\(H_o \ : \ \beta_{x2} = 0\)</span>. The estimated coefficients of regression are: <span class="math inline">\(\hat{\beta_o} = 2.42\)</span>, <span class="math inline">\(\hat{\beta_{x2}} = 2.8\)</span>. Surprisingly, the coefficient estimates are widely off target for both the intercept and the predictor. Despite being statistically significant, the estimates do not incorporate the true parameter values even in their 95 % confidence interval.<br>
+</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-35_ea7386cccac413a5c18e94f95d4355e5">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>fit25 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x2)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.62687 -0.75156 -0.03598  0.72383  2.44890 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   2.3899     0.1949   12.26  &lt; 2e-16 ***
+x2            2.8996     0.6330    4.58 1.37e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.072 on 98 degrees of freedom
+Multiple R-squared:  0.1763,    Adjusted R-squared:  0.1679 
+F-statistic: 20.98 on 1 and 98 DF,  p-value: 1.366e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="f-4" class="level3">
+<h3 class="anchored" data-anchor-id="f-4">(f)</h3>
+<p>At the first sight, the results from (c), (d) and (e) do seem to contradict each other. Firstly, the coefficient for <code>x2</code> is non-significant and negative in the multiple regression, but turns positive and highly significant in simple regression. Further, there is very high error in estimate of <span class="math inline">\(\hat{\beta_2}\)</span> in the multiple regression (because x2 is correlated with x1, and this collinearity widens the confidence interval). Secondly, the simple regression using only <code>x2</code> as a predictor displays a large positive coefficient estimate, much more than the true parameter. This is perhaps because <code>x2</code> is acting as a surrogate for <code>x1</code> in the simple regression of <code>y</code> onto <code>x2</code>.<br>
+The situation in questions (c) to (e) present a text book example of collinearity. When two predictors (x1 and x2) are highly correlated, the parameter estimates in multiple linear regression tend to have large standard errors of estimation. This leads to imprecise estimates with wide confidence intervals. Thus, they null hypothesis cannot be rejected in the multiple linear regression. However, simple regression performed after dropping one of the correlated predictors can solve the problem of imprecise estimates. Here, the simple linear regression of either predictor shows them to be highly significant predictors of <code>y</code>. But, we must be wary that simple regression involving such predictors can lead to misleading estimates of the true underlying relationship.<br>
+</p>
+</section>
+<section id="g-2" class="level3">
+<h3 class="anchored" data-anchor-id="g-2">(g)</h3>
+<p>Now, we add a new observation as provided in the question and fit the three models again. The new models are checked for leverage and standardized residual (outlier status) of the new observation. The results are compactly produced in the table produced at the end. We compare the models and find the following results: - In the multiple linear regression model, adding the new observation totally throws off the estimated coefficients for x1 and x2. Adding this observation has a major impact on the re-fitted model. The new observation is an outlier, having an absolute standardized residual &gt; 2 (though it is &lt; 3). The new observation has high leverage, and thus a high influence on the re-fitted model. This is shown in the diagnostic plots as well. Lastly, this means that a fitted model with high collinearity is not robust, it is very vulnerable to misread observations. - In the simple linear regression model with <code>x1</code> as predictor, adding the new observation has very low impact on the coefficients. The new observation is an extreme outlier, with an absolute standardized residual greater than 3. However, the new observation has a very low leverage, and thus, it is not influential on the re-fitted model at all. - In the simple linear regression model with <code>x2</code> as predictor, adding the new observation has a moderate to low impact on the coefficients. The new observation is not an outlier, and thus even though it has somewhat high leverage, it has no major influence on the fitted model.</p>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-36_e11a9edac7ea891e71a057854b32feb3">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, <span class="fl">0.1</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(x2, <span class="fl">0.8</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="dv">6</span>)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>fit23new <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>fit24new <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>fit25new <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x2)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>Result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y~x1+x2"</span>, <span class="st">"y~x1+x2 new"</span>, <span class="st">"y~x1"</span>,</span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y~x1 new"</span>, <span class="st">"y~x2"</span>, <span class="st">"y~x2 new"</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Intercept =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">6</span>), <span class="at">Beta_x1 =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">6</span>),</span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Beta_x2 =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">6</span>), <span class="at">Leverage =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">6</span>),</span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Standardized_Residual =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">6</span>)</span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">1</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> fit23<span class="sc">$</span>coefficients</span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">2</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="ot">&lt;-</span> fit23new<span class="sc">$</span>coefficients</span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">3</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> fit24<span class="sc">$</span>coefficients</span>
+<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">4</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> fit24new<span class="sc">$</span>coefficients</span>
+<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">5</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> fit25<span class="sc">$</span>coefficients</span>
+<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">6</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] <span class="ot">&lt;-</span> fit25new<span class="sc">$</span>coefficients</span>
+<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to find Leverage of the new observation</span></span>
+<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">hatvalues</span>(fit23new) <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(<span class="fu">hatvalues</span>(fit23new)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">hatvalues</span>(fit23new))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>101 
+101 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">2</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(fit23new)[<span class="dv">101</span>]</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">rstudent</span>(fit23new)) <span class="sc">&gt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 16  21  55  82 101 
+ 16  21  55  82 101 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">2</span>, <span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(fit23new)[<span class="dv">101</span>]</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">hatvalues</span>(fit24new) <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(<span class="fu">hatvalues</span>(fit24new)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">hatvalues</span>(fit24new))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>27 
+27 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">4</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(fit24new)[<span class="dv">101</span>]</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">rstudent</span>(fit24new)) <span class="sc">&gt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 21  55  56  82 101 
+ 21  55  56  82 101 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">4</span>, <span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(fit24new)[<span class="dv">101</span>]</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">hatvalues</span>(fit25new) <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(<span class="fu">hatvalues</span>(fit25new)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">hatvalues</span>(fit25new))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>101 
+101 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">6</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">hatvalues</span>(fit25new)[<span class="dv">101</span>]</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">abs</span>(<span class="fu">rstudent</span>(fit25new)) <span class="sc">&gt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 5 21 55 82 
+ 5 21 55 82 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>Result[<span class="dv">6</span>, <span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">rstudent</span>(fit25new)[<span class="dv">101</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-37_b0f4629d43b6083295400aa9ffae22c1">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Result, <span class="at">digits =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Intercept</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Beta_x1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Beta_x2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Leverage</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Standardized_Residual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">y~x1+x2</td>
+<td style="text-align: right;">2.130</td>
+<td style="text-align: right;">1.440</td>
+<td style="text-align: right;">1.010</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">y~x1+x2 new</td>
+<td style="text-align: right;">2.227</td>
+<td style="text-align: right;">0.539</td>
+<td style="text-align: right;">2.515</td>
+<td style="text-align: right;">0.415</td>
+<td style="text-align: right;">2.113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y~x1</td>
+<td style="text-align: right;">2.112</td>
+<td style="text-align: right;">1.976</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">y~x1 new</td>
+<td style="text-align: right;">2.257</td>
+<td style="text-align: right;">1.766</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">3.438</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">y~x2</td>
+<td style="text-align: right;">2.390</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">2.900</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">y~x2 new</td>
+<td style="text-align: right;">2.345</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3.119</td>
+<td style="text-align: right;">0.101</td>
+<td style="text-align: right;">1.141</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit23new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit24new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-37-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit25new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter3e_files/figure-html/unnamed-chunk-37-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

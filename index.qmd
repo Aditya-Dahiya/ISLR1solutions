@@ -1,0 +1,15 @@
+---
+title: "Solutions: ISLR 1e"
+website:
+  search: 
+    location: navbar
+    type: textbox
+---
+
+## An Introduction to Statistical Learning: with Applications in R (1st edition)
+
+Author: Aditya Dahiya
+
+This website displays the solutions for the exercises in the book [An Introduction to Statistical Learning: with Applications in R (1st Edition)](https://www.statlearning.com/resources-first-edition "An Introduction to Statistical Learning: with Applications in R (1st Edition)").
+
+![](docs/cover-image.jpg){width="260"}
