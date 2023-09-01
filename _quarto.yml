@@ -30,6 +30,7 @@ website:
     contents:
       - Chapter2e.qmd
       - Chapter3e.qmd
+      - Chapter3l.qmd
 format:
   html:
     theme: journal

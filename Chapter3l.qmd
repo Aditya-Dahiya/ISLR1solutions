@@ -1,0 +1,205 @@
+---
+title: "Chapter 3 (R Lab)"
+author: "Aditya Dahiya"
+date: 2021-02-01
+subtitle: "Linear Regression (Lab)"
+execute: 
+  warning: false
+  error: false
+  cache: true
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## 3.6.1 Libraries
+
+```{r}
+library(MASS)
+library(ISLR)
+library(car)
+```
+
+## *3.6.2 Simple Linear Regression*
+
+```{r}
+data(Boston)
+names(Boston)
+lm.fit <- lm(medv ~ lstat, data = Boston)
+attach(Boston)
+```
+
+Displaying the results of simple linear regression of `medv` on `lstat`.
+
+```{r}
+lm.fit
+summary(lm.fit)
+```
+
+The contents of `lm.fit` can be displayed as :---
+
+```{r}
+names(lm.fit)
+coef(lm.fit)
+confint(lm.fit)
+```
+
+Using the predict function for predicting the values of `medv` for a given value(s) of `lstat` :---
+
+```{r}
+predict(lm.fit, data.frame(lstat=c(5,10,15)), interval = "confidence")
+predict(lm.fit, data.frame(lstat=c(5,10,15)), interval = "prediction")
+```
+
+The plot of `medv` with `lstat` along with least squares regression line is as follows:-
+
+```{r}
+par(mfrow=c(2,2))
+plot(x=lstat, y=medv)
+abline(lm.fit, col="red")
+plot(x=lstat, y=medv, pch=20)
+plot(x=lstat, y=medv, pch="+")
+abline(lm.fit, col="red", lwd=3)
+plot(1:20, 1:20, pch=1:20)
+```
+
+Plotting the 4 diagnostic plots of `lm.fit`:---
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm.fit)
+```
+
+Alternatively, we can plot the residuals vs. fitted values; and studentized residuals vs. fitted values as follows: ---
+
+```{r}
+par(mfrow=c(1,2))
+plot(x=predict(lm.fit), y=residuals(lm.fit))
+plot(x=predict(lm.fit), y=rstudent(lm.fit))
+```
+
+\
+Now, we calculate the leverage statistics using `hatvalues` function. The largest leverage is for the observation number **375** (`which.max(hatvalues(lm.fit))`). Also, I plot the studentized residuals vs. leverage statistic, just like Fig.3.13(right) in the book :--\
+
+```{r}
+par(mfrow=c(1,2))
+plot(hatvalues(lm.fit))
+plot(x=hatvalues(lm.fit), y=rstudent(lm.fit),
+     xlab = "Leverage", ylab="Studentized Residuals")
+which.max(hatvalues(lm.fit))
+```
+
+## 3.6.3 Multiple Linear Regression
+
+Fitting a multiple linear regression as follows:-
+
+```{r}
+lm.fit <- lm(medv ~ lstat + age, data = Boston)
+summary(lm.fit)
+```
+
+Performing regression of `medv` on all other variables :---
+
+```{r}
+lm.fit <- lm(medv ~ ., data=Boston)
+summary(lm.fit)
+```
+
+The components of `summary(lm.fit)` are :--
+
+```{r}
+names(summary(lm.fit))
+summary(lm.fit)$r.squared ; summary(lm.fit)$sigma
+```
+
+Calculating V.I.F from `car::vif()` from the `car` package :---
+
+```{r}
+car::vif(lm.fit)
+```
+
+Excluding one variable (`age`, which has high p-value) from multiple regression :---
+
+```{r}
+lm.fit1 <- lm(medv ~ . - age, data=Boston)
+summary(lm.fit1)
+```
+
+## 3.6.4 Interaction Terms
+
+Including interaction terms as follows :-
+
+```{r}
+summary(lm(medv ~ lstat*age, data=Boston))
+```
+
+## 3.6.5 Non-Linear Transformations of Predictors
+
+```{r}
+lm.fit2 <- lm(medv ~ lstat + I(lstat^2), data=Boston)
+summary(lm.fit2)
+```
+
+We use `anova()` function to quantify how much the quadratic fit is better than linear fit. This is shown as below:
+
+```{r}
+lm.fit <- lm(medv~lstat, data=Boston)
+lm.fit2 <- lm(medv ~ lstat + I(lstat^2), data=Boston)
+anova(lm.fit, lm.fit2)
+```
+
+Hence, the model containing $lstat^2$ is far superior to the simple linear regression model. This is also shown in the the diagnostic plots as below:\
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm.fit2)
+```
+
+Now, we use the `poly()` function with the `lm()` call to include polynomials of a variable up to any degree.\
+
+```{r}
+lm.fit5 <- lm(medv ~ poly(lstat,5), data=Boston)
+summary(lm.fit5)
+```
+
+Lastly, a log transformation of the predictor variable.\
+
+```{r}
+summary(lm(medv ~ log(lstat), data=Boston))
+```
+
+## 3.6.6 Qualitative Predictor
+
+Loading the `Carseats` data set.
+
+```{r}
+data("Carseats")
+head(Carseats)
+attach(Carseats)
+```
+
+Now, we create a multiple linear regression with some interaction terms:-\
+
+```{r}
+lm.fit <- lm(Sales ~ . + Income*Advertising + Price*Age, data=Carseats)
+summary(lm.fit)
+```
+
+We use the `contrasts()` function to display the dummy coding that `R` uses for qualitative variables such as `ShelveLoc`. We can use `contrasts()` to change the dummy values for different factor levels.\
+
+```{r}
+contrasts(ShelveLoc)
+```
+
+## 3.6.7 Writing Functions
+
+We now write the function to load both libraries `ISLR` and `MASS`.
+
+```{r}
+LoadLibraries <- function(){
+  library(MASS)
+  library(ISLR)
+  print("Libraries MASS and ISLR have been loaded!")
+}
+LoadLibraries()
+```

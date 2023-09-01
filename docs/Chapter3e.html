@@ -893,8 +893,12 @@ F-statistic: 350.7 on 1 and 99 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="d-3">(d)</h3>
 <p>In this question, when regression is performed without an intercept, the value of <span class="math inline">\(\hat{\beta}\)</span> and <span class="math inline">\(SE(\hat{\beta})\)</span> is given by:<br>
 <span class="math display">\[ \hat{\beta} = \frac{\sum_{i=1}^{n} x_iy_i}{\sum_{i'=1}^{n}x_{i'}^2} = \sum_i{x_i}{y_i}/\sum_j{x_j^2}\]</span> <span class="math display">\[SE(\hat{\beta}) = \sqrt{\frac{\sum_{i=1}^n(y_i - x_i\hat{\beta})^2}{(n - 1)\sum_{i'=1}^nx_{i'}^2}} = \sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}\]</span> Thus, we can show that:—<br>
-<span class="math display">\[ t = \frac{\hat{\beta}}{SE(\hat{\beta})}\]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i/\sum_jx_j^2}{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{\sum_jx_j^2{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/\sum_jx_j^2}}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span><br>
-We now replace the value of <span class="math inline">\(\hat{\beta}\)</span> into this equation and solve:—<br>
+<span class="math display">\[ t = \frac{\hat{\beta}}{SE(\hat{\beta})}\]</span> <span class="math display">\[t = \frac{\sum_ix_iy_i/\sum_jx_j^2}{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}} \]</span></p>
+<p><span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{\sum_jx_j^2{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/\sum_jx_j^2}}} \]</span></p>
+<p><span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span></p>
+<p><span class="math display">\[t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} \]</span><br>
+</p>
+<p>We now replace the value of <span class="math inline">\(\hat{\beta}\)</span> into this equation and solve:—<br>
 <span class="math display">\[t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{\sum_jx_j^2\sum_i(y_i - x_i\sum_ix_iy_i/\sum_jx_j^2)^2}}\]</span> <span class="math display">\[t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{(\sum_jx_j^2)(\sum_jy_j^2) - (\sum_jx_jy_j)^2}}\]</span><br>
 Further, this result can be confirmed in <code>R Code</code> given below which shows that the calculated <code>t-value</code> using this formula is the same <code>t-value</code> as shown in models <code>fit11</code> and <code>fit12</code> :—</p>
 <div class="cell" data-hash="Chapter3e_cache/html/unnamed-chunk-19_bab0f3026fea9123635bda4beb278fed">

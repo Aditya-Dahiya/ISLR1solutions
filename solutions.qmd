@@ -3,8 +3,9 @@ title: "Solutions"
 author: "Aditya Dahiya"
 listing:
   contents:
-      - "Chapter2e.qmd"
-      - "Chapter3e.qmd"
+      - Chapter2e.qmd
+      - Chapter3e.qmd
+      - Chapter3l.qmd
   fields: [title, subtitle, date]
   sort: 
     - "title"
