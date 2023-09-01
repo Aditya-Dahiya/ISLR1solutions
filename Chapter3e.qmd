@@ -539,9 +539,13 @@ $$SE(\hat{\beta}) = \sqrt{\frac{\sum_{i=1}^n(y_i - x_i\hat{\beta})^2}{(n - 1)\su
 Thus, we can show that:---\
 $$ t = \frac{\hat{\beta}}{SE(\hat{\beta})}$$
 $$t = \frac{\sum_ix_iy_i/\sum_jx_j^2}{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/(n - 1)\sum_jx_j^2}} $$
+
 $$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{\sum_jx_j^2{\sqrt{\sum_i(y_i - x_i\hat{\beta})^2/\sum_jx_j^2}}} $$
+
 $$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} $$
+
 $$t = \frac{\sum_ix_iy_i \sqrt{n - 1}}{{\sqrt{\sum_j{x_j}^2 \sum_i(y_i - x_i\hat{\beta})^2}}} $$\
+
 We now replace the value of $\hat{\beta}$ into this equation and
 solve:---\
 $$t = \frac{\sqrt{n - 1}\sum_ix_iy_i}{\sqrt{\sum_jx_j^2\sum_i(y_i - x_i\sum_ix_iy_i/\sum_jx_j^2)^2}}$$
