@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Dahiya">
+<meta name="dcterms.date" content="2021-02-07">
+
+<title>Solutions (ISLR 1e) - Chapter 4 (Exercises)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./cover-image.jpg" alt="Solutions: An Introduction to Statistical Learning: with Applications in R (1st Edition)" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Solutions (ISLR 1e)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./solutions.html" rel="" target="">
+ <span class="menu-text">Solutions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Chapter4e.html">Chapter 4 (Exercises)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter2e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3l.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 (R Lab)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter4e.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chapter 4 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter4l.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 (Lab)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conceptual" id="toc-conceptual" class="nav-link active" data-scroll-target="#conceptual">Conceptual</a>
+  <ul class="collapse">
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  </ul></li>
+  <li><a href="#applied" id="toc-applied" class="nav-link" data-scroll-target="#applied">Applied</a>
+  <ul class="collapse">
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/edit/main/Chapter4e.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 4 (Exercises)</h1>
+<p class="subtitle lead">Classification</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Dahiya </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 7, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-1_d92d918519e7c831942da3a119968846">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="conceptual" class="level1">
+<h1>Conceptual</h1>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>The proof is as follows: <span class="math display">\[ p_k(x) = \frac {\pi_k \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}}{\sum_{l = 1}^K\pi_l \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}} \qquad \qquad (4.12)\]</span> <span class="math display">\[ p_k(x) = \frac {\pi_k  \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}}{\sum_{l = 1}^K\pi_l  \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}} . \frac{\frac{1}{\sqrt{2\pi}\sigma}}{\frac{1}{\sqrt{2\pi}\sigma}} \qquad \qquad equation \ 2\]</span> <span class="math display">\[ p_k(x) = \frac {\pi_k  \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}}{\sum_{l = 1}^K\pi_l  \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}} \]</span><br>
+The denominator is does not depend on the value of <span class="math inline">\(k\)</span>, thus the value of <span class="math inline">\(k\)</span> for which <span class="math inline">\(p_k(x)\)</span> will be maximized will be the same as the value for which numerator of <span class="math inline">\(equation 2\)</span> is maximized, i.e. <span class="math display">\[ \pi_k  \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})} \qquad \qquad expression \ 1\]</span> Now, <span class="math inline">\(log\)</span> is a monotonous function, this means the value of <span class="math inline">\(expression \ 1\)</span> will be maximized its <span class="math inline">\(log\)</span> is maximized. Thus, taking its log and calling it <span class="math inline">\(\delta_k(x)\)</span>, <span class="math display">\[ \delta_k(x) = log(\pi_k) -\frac{(x-\mu_k)^2}{2\sigma^2}\]</span> <span class="math display">\[ \delta_k(x) = log(\pi_k) -\frac{x^2 + \mu_k^2 -2x\mu_k}{2\sigma^2}\]</span> <span class="math display">\[ \delta_k(x) = log(\pi_k) -\frac{x^2}{2\sigma^2} - \frac{\mu_k^2}{{2\sigma^2}} +\frac{x\mu_k}{\sigma^2}\]</span> Further, the expression <span class="math inline">\(\frac{x^2}{2\sigma^2}\)</span> does not vary with the class <span class="math inline">\(k\)</span>, thus can be ignored, giving us the final expression: <span class="math display">\[ \delta_k(x) = x.\frac{\mu_k}{\sigma^2} - \frac{\mu_k^2}{{2\sigma^2}} \ + \ log(\pi_k)  \qquad \qquad (4.13)\]</span><br>
+</p>
+</section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>For this question, since we are assuming that in <span class="math inline">\(1 \ to \ k\)</span> classes, <span class="math inline">\(\sigma_1^2 \not= \sigma_2^2 \not= \ ...\ \not= \sigma_k^2\)</span>, thus we replace <span class="math inline">\(\sigma^2\)</span> in equations above with <span class="math inline">\(\sigma_k^2\)</span> and repeat the same steps to get — <span class="math display">\[ \delta_k(x) = log(\pi_k) -\frac{x^2}{2\sigma_k^2} - \frac{\mu_k^2}{{2\sigma_k^2}} +\frac{x\mu_k}{\sigma_k^2}\]</span> None of these terms can now be ignored, as all will vary with <span class="math inline">\(k\)</span>, thus the final expression becomes quadratic in <span class="math inline">\(x\)</span> as follows: <span class="math display">\[ \delta_k(x) = -x^2 . \frac{1}{2\sigma_k^2} +x.\frac{\mu_k}{\sigma_k^2} - \frac{\mu_k^2}{{2\sigma_k^2}} + log(\pi_k)\]</span></p>
+<p><br>
+</p>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>The question is aimed at demonstration of the <em>Curse of Dimensionality</em>, which refers to the fact that then <span class="math inline">\(p\)</span> is large, non-parametric approaches like <span class="math inline">\(KNN\)</span>, which depend of finding the training values nearest to a given test value of the predictors, will perform poorly.</p>
+<section id="a" class="level4">
+<h4 class="anchored" data-anchor-id="a">(a)</h4>
+<p>The question refers to a situation in which <span class="math inline">\(p=1\)</span> and predictor X has a uniform distribution between 0 and 1, i.e.&nbsp;<span class="math inline">\(x = U(0,1)\)</span>. Thus, for any interval the proportion of observations within the interval $ [x - 0.05, x + 0.05]$ will be equal to ratio of length of interval to range of distribution. Now, the question tells us that the interval is 10% of the range of distribution. Thus, on average 0.1 (10%) of the observations will lie in the interval and will be used to make the prediction.<br>
+<span class="math display">\[ Fraction \ of\ observations \ in \ KNN = \frac{range\ of\ interval}{range \ of\ distribution} = \frac {0.1}{1} = 0.1\]</span> If we are willing to consider a more nuanced approach, we realize that within the interval <span class="math inline">\([0.05, 0.95]\)</span> the same principal holds, but for the intervals <span class="math inline">\([0, 0.05] \ , [0.95, 1]\)</span>, slight difference will occur. + For <span class="math inline">\(x &lt; 0.05\)</span>, the observations considered will be <span class="math inline">\((100x + 5)\)</span>% of the total observations. + For <span class="math inline">\(x &gt; 0.95\)</span>, the observations considered will be <span class="math inline">\(105 - 100x\)</span>% of the total observations. Hence, we can compute the percentage of observations in the interval on average as: <span class="math display">\[\int_{0.05}^{0.95}10 dx + \int_0^{0.05}(100x + 5)dx + \int_{0.95}^1(105 - 100x)dx = 9 + 0.375 + 0.375 = 9.75 %\]</span> However, we stick to the figure of 0.1 fo simplicity in further sections.<br>
+</p>
+</section>
+<section id="b" class="level4">
+<h4 class="anchored" data-anchor-id="b">(b)</h4>
+<p>Now, the two variables are both <span class="math inline">\(U(0,1)\)</span> distributed, and thus the distribution can be considered as evenly spread over square with both sides equal to 1. The probability distribution function is uniform, and thus evenly spread over the entire area. Hence, the fraction of observations in any given interval area will be <span class="math inline">\(area \ of \ interval / area \ of \ the \ range\ of\ distribution\)</span>. For the interval of 10% of range of each variable, on average <span class="math inline">\(\frac{0.1 \times 0.1}{1} = \frac{0.1^2}{1} = 0.01\)</span> observations will be used to make the prediction.<br>
+</p>
+</section>
+<section id="c" class="level4">
+<h4 class="anchored" data-anchor-id="c">(c)</h4>
+<p>Continuing on with the previous trend, if <span class="math inline">\(p=100\)</span>, and the interval used for prediction is 10% of the range of each variable, a total of <span class="math inline">\(\frac{0.1^{100}}{1} = 10^{-100} \approx 0\)</span> fraction of the observations will be used to make a prediction.<br>
+</p>
+</section>
+<section id="d" class="level4">
+<h4 class="anchored" data-anchor-id="d">(d)</h4>
+<p>The answers to (a) to (c) above clearly show that a negligible fraction of observations will remain within the interval to be considered for prediction as the value of <span class="math inline">\(p\)</span> increases.<br>
+</p>
+</section>
+<section id="e" class="level4">
+<h4 class="anchored" data-anchor-id="e">(e)</h4>
+<p>Let us suppose <span class="math inline">\(a\)</span> is the side of the hyper-cube. We need 10% (or, 0.1) of the observations. + For <span class="math inline">\(p=1\)</span>, to use 10% of the observations, we need <span class="math inline">\(a^1 = 0.1\)</span>. Thus, <span class="math inline">\(a = 0.1\)</span>. + For <span class="math inline">\(p=2\)</span>, to use 10% of the observations, we need <span class="math inline">\(a^2 = 0.1\)</span>. Thus, <span class="math inline">\(a = \sqrt{0.1} = 0.316\)</span>. + For <span class="math inline">\(p=10\)</span>, to use 10% of the observations, we need <span class="math inline">\(a^{10} = 0.1\)</span>. Thus, <span class="math inline">\(a = \sqrt[10]{0.1} = 0.79\)</span>. + For <span class="math inline">\(p=100\)</span>, to use 10% of the observations, we need <span class="math inline">\(a^{100} = 0.1\)</span>. Thus, <span class="math inline">\(a = \sqrt[100]{0.1} = 0.977\)</span>. The answers show that with increasing <span class="math inline">\(k\)</span>, we end up using the entire range of each variable to make a prediction interval large enough to contain 10% of observations.</p>
+</section>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<section id="a-1" class="level4">
+<h4 class="anchored" data-anchor-id="a-1">(a)</h4>
+<p>If the Bayes Decision boundary is linear, we expect: + On the training set, QDA will nearly always perform better because it can better fit the variations in individual points. + On the test set, LDA is expected to perform better, because QDA will tend to over-fit to the noise. The Bayes Boundary will be better approximated by the LDA, and thus LDA will have lower test error rate.<br>
+</p>
+</section>
+<section id="b-1" class="level4">
+<h4 class="anchored" data-anchor-id="b-1">(b)</h4>
+<p>If the Bayes Decision boundary is linear, we expect: + On the training set, QDA will nearly always perform better because it can better fit the variations in individual points. + On the test set, QDA is expected to perform better, because LDA will suffer from higher bias. The non-linear Bayes Boundary will be better approximated by the QDA, and thus QDA will have lower test error rate.<br>
+</p>
+</section>
+<section id="c-1" class="level4">
+<h4 class="anchored" data-anchor-id="c-1">(c)</h4>
+<p>In general, as the sample size <span class="math inline">\(n\)</span> increases, we are less concerned with the variance of the fitted model since we have a large number of observations to train the model on. Rather, we will be more concerned with the bias of the model which does not go away even after <span class="math inline">\(n\)</span> is increased. Thus, we expect the test prediction accuracy of QDA relative to LDA to improve as <span class="math inline">\(n\)</span> increases.<br>
+</p>
+</section>
+<section id="d-1" class="level4">
+<h4 class="anchored" data-anchor-id="d-1">(d)</h4>
+<p>The statement is <strong>FALSE</strong>. If the Bayes Decision Boundary for a given problem is linear, then on the test set, a more flexible model will end up overfitting and fit to the noise in the training data, over and above the true trends. This will reduce its accuracy when it is used on test data. Thus, QDA is not always guaranteed to achieve loer test error rates, especially if the Bayes decision boundary is linear.</p>
+</section>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>The estimated logistic regression model can be written in equation form as: <span class="math display">\[ log(odds \ of \ receiving \ an \ A) = -6 \ + \ 0.05 \times(hours \ studied) \ + \ 1 \times(undergrad \ GPA)  \]</span><br>
+</p>
+<section id="a-2" class="level4">
+<h4 class="anchored" data-anchor-id="a-2">(a)</h4>
+<p>The estimated log(odds) for this student are <strong>-0.5</strong> (<code>-6+(0.05*40)+3.5</code>) and <strong>0.38</strong> ( <code>exp(-0.5)/(1+exp(-0.5))</code> ). <span class="math display">\[ log(odds \ of \ receiving \ an \ A) = -6 \ + \ 0.05 \times(40) \ + \ 1 \times(3.5) = -0.5 \]</span> <span class="math display">\[ odds \ of \ receiving \ an \ A = e^{-0.5} = 0.607 \]</span> <span class="math display">\[ Probability \ of \ receiving \ A = \frac{odds}{1+odds} = \frac{0.607}{1.607} = 0.38\]</span></p>
+<p><br>
+</p>
+</section>
+<section id="b-2" class="level4">
+<h4 class="anchored" data-anchor-id="b-2">(b)</h4>
+<p>For getting 50% probability, the odds will have to be $ = = 1$. Thus, log(odds) will be <span class="math inline">\(log(1) = 0\)</span>. So, suppose the student studies for <span class="math inline">\(x\)</span> hours, the equation may be re-written as: <span class="math display">\[ 0 = -6 \ + \ 0.05 \times(x) \ + \ 1 \times(3.5) \]</span> <span class="math display">\[ 0.05 \times(x) = 6 - 3.5 = 2.5 \]</span> <span class="math display">\[ x = \frac {2.5}{0.05} = 50  \]</span><br>
+Thus, the student needs to study for 50 hours.</p>
+</section>
+</section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>The question assumes normal distribution for <span class="math inline">\(X\)</span>. The given values by the question are: <span class="math display">\[ \mu_{yes} = 10 \ \ ; \ \mu_{no} = 0 \ \ ; \ \ \hat{\sigma}^2 = 36 \ \ ; \ \ \pi_{yes} = 0.8 \ \ ; \ \ \pi_{no} = 0.2  \]</span> We now plug in these values into the formula obtained in <span class="math inline">\((4.12)\)</span> after applying Bayes’ Theorem. <span class="math display">\[ p_k(x) = \frac {\pi_k \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}}{\sum_{l = 1}^K\pi_l \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(x-\mu_k)^2})}} \qquad \qquad (4.12)\]</span> <span class="math display">\[ p_{yes}(4) = \frac {\pi_{yes} \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(4 -\mu_{yes})^2})}}{\pi_{no} \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(4 -\mu_{no})^2})} + \pi_{yes} \frac{1}{\sqrt{2\pi}\sigma} \ exp{(-\frac{1}{2\sigma^2}{(4 -\mu_{yes})^2}}} \]</span> <span class="math display">\[ p_{yes}(4) = \frac{0.8 \times exp(-\frac {(4-10)^2}{2 \times 36})}
+{0.2 \times exp(-\frac {(4-0)^2}{2 \times 36}) + 0.8 \times exp(-\frac {(4-10)^2}{2 \times 36}) }  .
+\frac{\frac{1}{\sqrt{2\pi}\sigma}}{\frac{1}{\sqrt{2\pi}\sigma}} \]</span></p>
+<p><span class="math display">\[ p_{yes}(4) = \frac{0.8 \times exp({-1/2})}
+{0.2 \times exp(-16/72) + 0.8 \times exp(-1/2) } \]</span> <span class="math display">\[ p_{yes}(4) = 0. 752\]</span><br>
+</p>
+</section>
+<section id="question-9" class="level3">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<section id="a-3" class="level4">
+<h4 class="anchored" data-anchor-id="a-3">(a)</h4>
+<p>Let the fraction of people who default = <span class="math inline">\(p\)</span>. Fraction of people who do not default is <span class="math inline">\(1-p\)</span>. Then, odds of defaulting is <span class="math inline">\(\frac{p}{1-p}\)</span>. So, we calculate p = 0.27 as shown below. <span class="math display">\[ \frac{p}{1-p} = 0.37\]</span> <span class="math display">\[ \frac{1-p}{p} = \frac{1}{0.37}\]</span> <span class="math display">\[ \frac{1}{p} -1 = \frac{1}{0.37}\]</span> <span class="math display">\[ \frac{1}{p} = \frac{1}{0.37} + 1 = \frac{1 + 0.37}{0.37} \]</span> <span class="math display">\[ p = \frac{0.37}{1.37} = 0.27 \]</span><br>
+</p>
+</section>
+<section id="b-3" class="level4">
+<h4 class="anchored" data-anchor-id="b-3">(b)</h4>
+<p>The Odds of an event is the ratio of probability of event happening to the probability of event not happening. The probability <span class="math inline">\(p\)</span> is 16% or 0.16 in this case. Thus the odds are 0.1904762<br>
+<span class="math display">\[ Odds = \frac{p}{1-p} = \frac{0.16}{1-0.16} = \frac{0.16}{0.84} = 0.19\]</span></p>
+</section>
+</section>
+</section>
+<section id="applied" class="level1">
+<h1>Applied</h1>
+<section id="question-12" class="level3">
+<h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
+<section id="a-4" class="level4">
+<h4 class="anchored" data-anchor-id="a-4">(a)</h4>
+<p>We now write the function <code>Power</code> as below:</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-2_99ebc51bc46247f3d9ea29361ed33114">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Power <span class="ot">&lt;-</span> <span class="cf">function</span>(){<span class="fu">print</span>(<span class="dv">2</span><span class="sc">^</span><span class="dv">3</span>)}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Power</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+</section>
+<section id="b-4" class="level4">
+<h4 class="anchored" data-anchor-id="b-4">(b)</h4>
+<p>The new function <code>Power2</code> is written as follows:</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-3_d27811052b356eb2ab18eceffb00c4c7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Power2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,a){<span class="fu">print</span>(x<span class="sc">^</span>a)}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Power2</span>(<span class="dv">3</span>,<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6561</code></pre>
+</div>
+</div>
+</section>
+<section id="c-2" class="level4">
+<h4 class="anchored" data-anchor-id="c-2">(c)</h4>
+<p>The code to generate the results is given below:</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-4_026d1732ea8c770078689da8a5c3898e">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Power2</span>(<span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1000</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Power2</span>(<span class="dv">8</span>,<span class="dv">17</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2.2518e+15</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">Power2</span>(<span class="dv">131</span>,<span class="dv">3</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2248091</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-2" class="level4">
+<h4 class="anchored" data-anchor-id="d-2">(d)</h4>
+<p>The amended code to use <code>return()</code> within our newly defined function <code>Power3</code> is shown below:</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-5_3e63628f864ee4ff2fd9398e7f01214b">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Power3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,a){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x<span class="sc">^</span>a</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="e-1" class="level4">
+<h4 class="anchored" data-anchor-id="e-1">(e)</h4>
+<p>The plot is created using the code shown below:<br>
+</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-6_dbe6c3eaeff8ff0ac51326a68519c276">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">Power3</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>), <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">main =</span> <span class="st">"Plot of f(x)=x^2 for first 10 integers"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"x^2"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">log</span>(<span class="fu">Power3</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>)), <span class="at">x =</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">main =</span> <span class="st">"Plot of f(x)=x^2 on log scale"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"x^2"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">log</span>(<span class="fu">Power3</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>)), <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">main =</span> <span class="st">"Plot of f(x)=x^2 on log scale for Y-Axis"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"log(x^2)"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">Power3</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>), <span class="at">x =</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">main =</span> <span class="st">"Plot of f(x)=x^2 on log scale for X-Axis"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"log(x)"</span>, <span class="at">ylab =</span> <span class="st">"x^2"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter4e_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">(f)</h4>
+<p>The function <code>PlotPower()</code> is created as shown below. Further, sample outputs are also displayed.<br>
+</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-7_cbef8e88a1d12e9382e1766ea3db4452">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>PlotPower <span class="ot">&lt;-</span> <span class="cf">function</span>(x, a){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> x<span class="sc">^</span>a</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">plot</span>(x, y))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotPower</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">3</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotPower</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">4</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotPower</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fl">0.33</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">PlotPower</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter4e_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="question-13" class="level3">
+<h3 class="anchored" data-anchor-id="question-13">Question 13</h3>
+<p>We now use the <code>Boston</code> data set to fit classification models to predict whether a given suburb has a crime rate above or below the median, using Logistic Regression, LDA, QDA, KNN (with varying values of K). The steps are also listed within the code.<br>
+</p>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-8_c83741b5846af56b4cdeb74f96ac3afa">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data set &amp; libraries, set seed for reproducability</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Boston"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(Boston)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new binary variable for crime rate above median (1) or below median (0)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Boston<span class="sc">$</span>crim01 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Boston<span class="sc">$</span>crim <span class="sc">&gt;=</span> <span class="fu">median</span>(Boston<span class="sc">$</span>crim), <span class="at">yes =</span> <span class="dv">1</span>, <span class="at">no =</span> <span class="dv">0</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding which variables are correlated with crim01 response</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>crim01_cor <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Predictor =</span> <span class="fu">names</span>(Boston)[<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>],</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Beta.Coeff.Estimate =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">p.Value =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>) {</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(crim01 <span class="sc">~</span> Boston[, i], <span class="at">data =</span> Boston, <span class="at">family =</span> binomial)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  crim01_cor[i, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(Boston)[i]</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  crim01_cor[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="st">"Estimate"</span>]</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  crim01_cor[i, <span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="st">"Pr(&gt;|z|)"</span>]</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(crim01_cor, <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_classic_2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-classic-2 table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Predictor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Beta.Coeff.Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">crim</td>
+<td style="text-align: right;">3501.14</td>
+<td style="text-align: right;">0.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zn</td>
+<td style="text-align: right;">-0.10</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">indus</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chas</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nox</td>
+<td style="text-align: right;">29.37</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rm</td>
+<td style="text-align: right;">-0.46</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">age</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dis</td>
+<td style="text-align: right;">-1.05</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rad</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tax</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ptratio</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">black</td>
+<td style="text-align: right;">-0.03</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lstat</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">medv</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-9_e9544c2aa0e51a6183be55c64c8c796b">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparative Box-Plots to show distribution of crim01 against </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># standardized other variables can be plotted as well.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Std.Boston <span class="ot">&lt;-</span> <span class="fu">scale</span>(Boston[,<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>])</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>BostonLong <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(Std.Boston, Boston<span class="sc">$</span>crim01) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">crim01 =</span> <span class="st">`</span><span class="at">...15</span><span class="st">`</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>BostonLong <span class="ot">&lt;-</span> BostonLong <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">crim01 =</span> <span class="fu">as_factor</span>(crim01)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"key"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>crim01)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> BostonLong) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> key, <span class="at">y =</span> value, <span class="at">col =</span> crim01)) <span class="sc">+</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter4e_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell" data-hash="Chapter4e_cache/html/unnamed-chunk-10_da8d0e1c3b180831a39eaad7d5f25d03">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a training and test subset: Every fifth observation taken as test subset</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(Boston)) <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a table of error rates for various models using different predictors</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Final.Result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Predictors =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Logit =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">LDA =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">QDA =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">KNN.1 =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">KNN.5 =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">KNN.10 =</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">3</span>))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictor Set 1 : all statistically significant predictors in Simple Regression</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new data.frame Boston1 having only response and predictors.</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">which</span>(crim01_cor<span class="sc">$</span>p.Value <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>Boston1 <span class="ot">&lt;-</span> Boston[, <span class="fu">c</span>(<span class="dv">15</span>, predictors)]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>Test.Y <span class="ot">&lt;-</span> Boston1<span class="sc">$</span>crim01[test]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>Train.Y <span class="ot">&lt;-</span> Boston1<span class="sc">$</span>crim01[<span class="sc">!</span>test]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>Test.Set <span class="ot">&lt;-</span> Boston1[test,]</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Naming the set of predictors to be used</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">colnames</span>(Boston1)[<span class="sc">-</span><span class="dv">1</span>], <span class="at">collapse =</span> <span class="st">"+"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston1, <span class="at">family=</span>binomial, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm, <span class="at">newdata =</span> Test.Set, <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="dv">1</span>, <span class="at">no =</span> <span class="dv">0</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA and QDA</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>fit.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston1, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>pred.lda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.lda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>fit.qda <span class="ot">&lt;-</span> <span class="fu">qda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston1, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>pred.qda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.qda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.qda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN with K=1, K=5, K=10</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>Train.X <span class="ot">&lt;-</span> Boston1[<span class="sc">!</span>test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>Test.X <span class="ot">&lt;-</span> Boston1[test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">1</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.1</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.5</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.10</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">10</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">1</span>,<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.10</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictor Set 2 : all statistically significant predictors in Multiple Regression</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>fitp2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(crim01 <span class="sc">~</span> . <span class="sc">-</span> crim, <span class="at">data=</span>Boston, <span class="at">family=</span>binomial)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>predictors2 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">summary</span>(fitp2)<span class="sc">$</span>coef[, <span class="st">"Pr(&gt;|z|)"</span>] <span class="sc">&lt;</span> <span class="fl">0.05</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating dataset Boston2 with all new predictors and crim01</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>Boston2 <span class="ot">&lt;-</span> Boston[, <span class="fu">c</span>(<span class="dv">15</span>, predictors2)]</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>Test.Y <span class="ot">&lt;-</span> Boston2<span class="sc">$</span>crim01[test]</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>Train.Y <span class="ot">&lt;-</span> Boston2<span class="sc">$</span>crim01[<span class="sc">!</span>test]</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>Test.Set <span class="ot">&lt;-</span> Boston2[test,]</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Naming the set of predictors to be used</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">colnames</span>(Boston2)[<span class="sc">-</span><span class="dv">1</span>], <span class="at">collapse =</span> <span class="st">"+"</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston2, <span class="at">family=</span>binomial, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm, <span class="at">newdata =</span> Test.Set, <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="dv">1</span>, <span class="at">no =</span> <span class="dv">0</span>)</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA and QDA</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>fit.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston2, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>pred.lda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.lda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>fit.qda <span class="ot">&lt;-</span> <span class="fu">qda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston2, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>pred.qda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.qda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.qda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN with K=1, K=5, K=10</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>Train.X <span class="ot">&lt;-</span> Boston2[<span class="sc">!</span>test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>Test.X <span class="ot">&lt;-</span> Boston2[test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">1</span>)</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.1</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.5</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.10</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">10</span>)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">2</span>,<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.10</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictor Set 3 : high statistically significant predictors in Multiple Regression</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>predictors3 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">summary</span>(fitp2)<span class="sc">$</span>coef[, <span class="st">"Pr(&gt;|z|)"</span>] <span class="sc">&lt;</span> <span class="fl">0.01</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating dataset Boston3 with all new predictors and crim01</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>Boston3 <span class="ot">&lt;-</span> Boston[, <span class="fu">c</span>(<span class="dv">15</span>, predictors3)]</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>Test.Y <span class="ot">&lt;-</span> Boston3<span class="sc">$</span>crim01[test]</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>Train.Y <span class="ot">&lt;-</span> Boston3<span class="sc">$</span>crim01[<span class="sc">!</span>test]</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>Test.Set <span class="ot">&lt;-</span> Boston3[test,]</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Naming the set of predictors to be used</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">colnames</span>(Boston3)[<span class="sc">-</span><span class="dv">1</span>], <span class="at">collapse =</span> <span class="st">"+"</span>)</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston3, <span class="at">family=</span>binomial, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm, <span class="at">newdata =</span> Test.Set, <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="dv">1</span>, <span class="at">no =</span> <span class="dv">0</span>)</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a><span class="co"># LDA and QDA</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>fit.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston3, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>pred.lda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.lda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.lda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>fit.qda <span class="ot">&lt;-</span> <span class="fu">qda</span>(crim01<span class="sc">~</span>., <span class="at">data=</span>Boston3, <span class="at">subset=</span><span class="sc">!</span>test)</span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>pred.qda <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.qda, <span class="at">newdata =</span> Test.Set)<span class="sc">$</span>class</span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.qda <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN with K=1, K=5, K=10</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>Train.X <span class="ot">&lt;-</span> Boston3[<span class="sc">!</span>test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>Test.X <span class="ot">&lt;-</span> Boston3[test, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">1</span>)</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.1</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.5</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>pred.knn<span class="fl">.10</span> <span class="ot">&lt;-</span> <span class="fu">knn</span>(Train.X, Test.X, Train.Y, <span class="at">k=</span><span class="dv">10</span>)</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>Final.Result[<span class="dv">3</span>,<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.knn<span class="fl">.10</span> <span class="sc">!=</span> Test.Y)</span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(Final.Result, <span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_paper</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-paper table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Predictors</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Logit</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">LDA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">QDA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">KNN.1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">KNN.5</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">KNN.10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">zn+indus+nox+rm+age+dis+rad+tax+ptratio+black+lstat+medv</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">zn+nox+dis+rad+tax+ptratio+black+medv</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nox+dis+rad+ptratio</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

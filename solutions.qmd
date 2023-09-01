@@ -6,6 +6,8 @@ listing:
       - Chapter2e.qmd
       - Chapter3e.qmd
       - Chapter3l.qmd
+      - Chapter4e.qmd
+      - Chapter4l.qmd
   fields: [title, subtitle, date]
   sort: 
     - "title"

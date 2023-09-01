@@ -1,0 +1,272 @@
+---
+title: "Chapter 4 (Lab)"
+author: "Aditya Dahiya"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  error: false
+  cache: true
+subtitle: "Classification"
+date: 2021-02-06
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(ISLR)
+library(corrplot)
+library(tidyverse)
+```
+
+## 4.6.1 The Stock Market Data
+
+```{r}
+data("Smarket")
+names(Smarket)
+dim(Smarket)
+summary(Smarket)
+pairs(Smarket)
+round(cor(Smarket[,-9]),3)
+corrplot(cor(Smarket[,-9]), method = "pie", tl.col = "black")
+attach(Smarket)
+plot(Volume)
+```
+
+## 4.6.2 Logidtic Regression
+
+Fitting a logistic regression model using `glm` with `family=binomial` argument.\
+
+```{r}
+fit.glm <- glm(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5+Volume, family = binomial, data=Smarket)
+summary(fit.glm)
+```
+
+The coefficients for each predictor and the respective p-values are displayed as follows:\
+
+```{r}
+coef(fit.glm)
+summary(fit.glm)$coef
+data.frame(Coefficient = coef(fit.glm), pValue = summary(fit.glm)$coef[,"Pr(>|z|)"])
+```
+
+Now we use `predict()` function to create predicted values for `Direction` using the training data itself.\
+
+```{r}
+prob.glm <- predict(fit.glm, type="response")
+prob.glm[1:10]
+contrasts(Direction)
+```
+
+Now, we convert the probabilities of `Up` movement in the vector of predicted response `probsglm` into categorical class labels `Up` or `Down`.\
+
+```{r}
+pred.glm <- rep("Down", nrow(Smarket))
+pred.glm[prob.glm > 0.5] <- "Up"
+table(pred.glm, Direction)
+mean(pred.glm == Direction)
+mean(pred.glm != Direction)
+```
+
+Thus, the training error rate is **47.84%** ( `mean(pred.glm != Direction)*100` ).
+
+Now, we create a training subset and a testing subset of the `Smarket` data by using a *Boolean Vector* called `train` which is `TRUE` for values of `Year<2005`. Thus, our training data set becomes `Smarket[train,]`, while the testing data set is `Smarket[!train]`. Further, we create a training data set `Smarket2005` and a new vector `Direction2005` so that we can use them later to compute test error rate.\
+
+```{r}
+train <- Year < 2005
+table(train)
+Smarket2005 <- Smarket[!train,]
+Direction2005 <- Direction[!train]
+```
+
+Now we fit the logistic regression model on training data set, create a vector of predicted probabilities, then create a prediction vector of class labels and finally use the test data set to calculate test error rate.\
+
+```{r}
+fit.glm <- glm(Direction ~ Lag1+Lag2+Lag3+Lag4+Lag5+Volume, data=Smarket,
+               family = binomial, subset = train)
+prob.glm <- predict(fit.glm, newdata = Smarket2005, type="response")
+pred.glm <- rep("Down", nrow(Smarket2005))
+pred.glm[prob.glm > 0.5] <- "Up"
+table(pred.glm, Direction2005)
+mean(pred.glm != Direction2005)
+```
+
+Thus, the test error rate is nearly 52%, ( `round(mean(pred.glm != Direction2005),2)*100` ), which is even worse than random guessing.\
+
+Now, we redo all the steps using only some predictors (`Lag1` and `Lag2`) which seem somewhat related to the response `Direction` and hope to have a model with lower test error rate.\
+
+```{r}
+fit.glm <- glm(Direction ~ Lag1 + Lag2, data=Smarket, 
+               family = binomial, subset=train)
+prob.glm <- predict(fit.glm, newdata = Smarket2005, type="response")
+pred.glm <- rep("Down", nrow(Smarket2005))
+pred.glm[prob.glm > 0.5] <- "Up"
+table(pred.glm, Direction2005)
+# The test accuracy of the fitted model is
+round(mean(pred.glm == Direction2005),2)
+# Test error rate is
+mean(pred.glm != Direction2005)
+```
+
+Thus, with fewer but relevant predictors, the test error rate is reduced to 44.04% ( `mean(pred.glm != Direction2005)*100` % ). This is because the irrelevant predictors lead to increased uncertainty in the estimates of coefficients and lead to overall poor prediction.\
+Lastly, we predict the probability of market Direction `Up` when the values of `Lag1` and `Lag2` are specified:---\
+
+```{r}
+predict(fit.glm, type="response",
+        newdata = data.frame(Lag1 = c(1.2, 1.5), Lag2 = c(1.1, -0.8)))
+```
+
+## 4.6.3 Linear Discriminant Analysis
+
+For linear discriminant analysis, we use `lda` function from the `MASS` library. We fit the model for observations from 2001 to 2004, and use 2005 as testing data set.\
+
+```{r, message=FALSE}
+library(MASS)
+```
+
+```{r}
+fit.lda <- lda(Direction ~ Lag1+Lag2, data=Smarket, subset=train)
+fit.lda
+plot(fit.lda)
+pred.lda <- predict(fit.lda, newdata = Smarket2005)
+names(pred.lda)
+```
+
+Thus, the `predict` function creates a list of objects:\
+- `class` : this contains the predicted category of the response by the LDA. - `posterior` : a matrix containing posterior probabilities of response being in each category (columns) for all observations (rows). The `colnames(pred.lda$posterior)` shows us the categories for the response i.e. `Down` and `Up`. - `x` : a matrix containing the linear discriminants.\
+Further, the following commands shows what the model predicts for the year 2005:\
+
+```{r}
+table(pred.lda$class)
+```
+
+We can compare the predicted results with the actual market movement in 2005 as follows:\
+
+```{r}
+pred.class <- pred.lda$class
+table(pred.class, Direction2005)
+```
+
+The success rate and error rate on the test data set is calculated as follows:\
+
+```{r}
+# Test data set success rate
+round(mean(pred.class == Direction2005),2)
+# Failure rate
+round(mean(pred.class != Direction2005),2)
+```
+
+Now, we compare the results using thresholds of posterior probability as 50% and 90%.\
+
+```{r}
+# Since the column 1 i.e. [,1] of `pred.lda$posterior` matrix represents category `Down`
+sum(pred.lda$posterior[,1] >= 0.5)
+sum(pred.lda$posterior[,1] <= 0.5)
+# This is same as 
+table(pred.lda$class)
+# Now using 90% proability of `Down` as cut-off
+sum(pred.lda$posterior[,1] >= 0.9)
+```
+
+Thus, there is no day in 2005 when the probability of market falling is 90% or more. Lastly, some random code to re-verify that column 1 of `pred.lda$posterior` matrix is for category `Down`:\
+
+```{r, eval=FALSE}
+pred.lda$posterior[1:20,1]
+pred.class[1:20]
+```
+
+## 4.6.4 Quadratic Discriminant Analysis
+
+Here, we use the `qda` function in the `MASS` library to fit a Quadratic Discriminant Analysis model to the `Smarket` data in an attempt to predict `Direction` from `Lag1` and `Lag2`. Once again, we split the data set into a training data and a testing data. Then we calculate the error rate and success rate of the QDA model.\
+
+```{r}
+fit.qda <- qda(Direction~Lag1+Lag2, data=Smarket, subset=train)
+fit.qda
+pred.class <- predict(fit.qda, newdata = Smarket2005)$class
+table(pred.class, Direction2005)
+# Success Rate of QDA model
+round(mean(pred.class == Direction2005),3)
+# Test Error rate in QDA
+round(mean(pred.class != Direction2005),3)
+```
+
+Thus, it is evident that the QDA model captures the true relationship more accurately than the linear models, namely LDA and Logistic Regression.\
+
+## 4.6.5 K-Nearest Neighbors
+
+We now use the K-Nearest Neighbors approach with $K=1$ and $K=3$ to predict market movement `Direction` in 2005 test data set after training the `knn` classifier on 2001-2004 training data set. Additionally we need to create training and test matrices of predictors, and training response vector. The function used is `knn` from the `class` library.\
+
+```{r}
+library(class)
+set.seed(1)
+train.X <- cbind(Smarket$Lag1, Smarket$Lag2)[train,]
+test.X <- cbind(Smarket$Lag1, Smarket$Lag2)[!train,]
+train.Direction <- Direction[train]
+pred.knn <- knn(train = train.X, test = test.X, cl = train.Direction, k = 1)
+table(pred.knn, Direction2005)
+# Success rate in KNN wit k = 1
+mean(pred.knn == Direction2005)
+
+# Using k=3 in KNN
+pred.knn <- knn(train = train.X, test = test.X, cl = train.Direction, k = 3)
+table(pred.knn, Direction2005)
+# Success rate in KNN wit k = 1
+mean(pred.knn == Direction2005)
+```
+
+Lastly, as a fun exercise, we create a graph depicting success rate as a function of $k$, when $k$ varies from 1 to 10.\
+
+```{r}
+result <- data.frame(k = 1:10, SuccessRate = rep(NA, 10)) 
+for (i in 1:10){
+  pred.knn <- knn(train = train.X, test = test.X, cl = train.Direction, k = i)
+  result$SuccessRate[i] <- mean(pred.knn == Direction2005)
+}
+ggplot(result)+
+  geom_line(aes(x=k, y=SuccessRate)) + 
+  geom_point(aes(x=k, y=SuccessRate), col="black", size=4)+
+  theme_classic() +
+  scale_x_continuous(breaks = 1:10)
+```
+
+## 4.6.6 An application to `Caravan` Insurance Data
+
+Now, we use the `Caravan` data set to predict the `Purchase` variable, i.e. whether a person purchases an insurance for his/her Caravan based on 85 other demographic predictors. We are not interested in overall test error rate, but rather in success rate of purchasing insurance amongst predicted persons. That is, what percentage of persons predicted by the model to purchase Insurance actually did purchase insurance. This will allow a company to cut costs in selling policies. We use five different approaches : 1) KNN with $k=1$, 2) KNN with $k=3$, 3) KNN with $k=5$, 4) Logistic regression with cut off probability of 0.5 for predicting Purchase and 5) Logistic regression with cut off probability of 0.25 for predicting Purchase.\
+
+```{r, message=FALSE}
+data("Caravan")
+attach(Caravan)
+test <- 1:1000
+# Calculating the fraction of Insurance Purchases in general
+round(summary(Purchase)[2]/(length(Purchase)),4)
+# Standardizing the data set to implement KNN properly
+standardized.X <- scale(Caravan[,-86])
+train.X <- standardized.X[-test,]
+test.X <- standardized.X[test,]
+train.y <- Caravan$Purchase[-test]
+test.y <- Caravan$Purchase[test]
+set.seed(1)
+pred.knn.1 <- knn(train.X, test.X, train.y, k = 1) 
+ConMatrix <- table(pred.knn.1, test.y)
+s1 <- ConMatrix[2,2] / (ConMatrix[2,1] + ConMatrix[2,2])
+pred.knn.3 <- knn(train.X, test.X, train.y, k = 3) 
+ConMatrix <- table(pred.knn.3, test.y)
+s2 <- ConMatrix[2,2] / (ConMatrix[2,1] + ConMatrix[2,2])
+pred.knn.5 <- knn(train.X, test.X, train.y, k = 5) 
+ConMatrix <- table(pred.knn.5, test.y)
+s3 <- ConMatrix[2,2] / (ConMatrix[2,1] + ConMatrix[2,2])
+fit.glm.1 <- glm(Purchase ~ ., data=Caravan, family = binomial, subset = -test)
+prob.glm.1 <- predict(fit.glm.1, newdata = Caravan[test,], type="response")
+pred.glm.1 <- rep("No", length(test))
+pred.glm.1[prob.glm.1 > 0.5] <- "Yes"
+ConMatrix <- table(pred.glm.1, test.y)
+s4 <- ConMatrix[2,2] / (ConMatrix[2,1] + ConMatrix[2,2])
+pred.glm.2 <- rep("No", length(test))
+pred.glm.2[prob.glm.1 > 0.25] <- "Yes"
+ConMatrix <- table(pred.glm.2, test.y)
+s5 <- ConMatrix[2,2] / (ConMatrix[2,1] + ConMatrix[2,2])
+data.frame(Model = c("KNN (k=1)", "KNN (k=3)", "KNN (k=5)", "Logit.Reg.,p=0.5", "Logit.Reg.,p=0.25"),
+           SuccessRate = round(c(s1, s2, s3, s4, s5)*100,1)) |>
+  kableExtra::kbl() |> kableExtra::kable_paper()
+```
