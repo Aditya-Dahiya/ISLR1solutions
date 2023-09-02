@@ -11,12 +11,18 @@ listing:
       - Chapter5e.qmd
       - Chapter5l.qmd
       - Chapter6e.qmd
+      - Chapter6l.qmd
+      - Chapter7l.qmd
+      - Chapter8l.qmd
+      - Chapter9l.qmd
+      - Chapter10l.qmd
   fields: [title, subtitle, date]
   sort: 
-    - "title"
+    - "title asc"
+  table-striped: true
+  table-hover: true
   type: table
   grid-item-border: false
-  table-hover: true
   image-placeholder: "cover-image.jpg"
   date-format: "medium"
 ---

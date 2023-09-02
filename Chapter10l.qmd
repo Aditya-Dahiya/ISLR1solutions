@@ -1,0 +1,284 @@
+---
+title: "Chapter 10 (Lab)"
+author: "Aditya Dahiya"
+subtitle: "Unsupervised Learning"
+date: 2021-03-01
+execute: 
+  echo: true
+  error: false
+  warning: false
+  cache: true
+editor_options: 
+  chunk_output_type: console
+fig-width: 9
+---
+
+# Lab 1: Principal Components Analysis
+
+In this lab, we use the `USArrests` data set in base `R` and do a principal components analysis using `prcomp()` function of base `R`.
+
+```{r}
+# Loading data
+data("USArrests")
+options(digits = 2)
+
+# Examining data
+dim(USArrests)
+# Names of variables
+colnames(USArrests)
+# Names of States
+row.names(USArrests)
+
+# Computing means and variances of variables
+colMeans(USArrests)
+apply(X = USArrests, MARGIN = 2, FUN = var)
+
+# Performing Principal Components Analysis
+prUSA <- prcomp(USArrests, scale = TRUE)
+
+# Examining contents of output
+class(prUSA)
+names(prUSA)
+
+prUSA$center # means of original variables
+prUSA$scale # standard deviation of original variables
+prUSA$scale^2 # variance of original variables
+
+# The Principal Component Loading Vectors (columns of Rotation Matrix)
+prUSA$rotation
+
+# The Principal Component Score Vectors (columns of x matrix)
+head(prUSA$x, 2)
+
+# Standard Deviation of Principal Component Score Vectors
+prUSA$sdev
+# Computing Proportion of variance explained
+pr.var <- prUSA$sdev^2 / sum(prUSA$sdev^2)
+pr.var
+
+# Creating a Scree Plot and a Cumulative Variance Explained plot
+par(mfrow = c(1, 2))
+plot(pr.var,
+  type = "b", xlab = "Principal Component",
+  ylab = "Proportion of Variance Explained", ylim = c(0, 1)
+)
+plot(cumsum(pr.var),
+  type = "b", xlab = "Principal Component",
+  ylab = "Cumulative Prop. of Variance Explained", ylim = c(0, 1)
+)
+
+# Creating a biplot
+par(mfrow = c(1, 1))
+biplot(prUSA, scale = 0)
+```
+
+# Lab 2: Clustering
+
+In this part, we will use $K$-means clustering and Hierarchical Clustering.
+
+## 10.5.1 K-Means Clustering
+
+```{r}
+# Generate a simulated data set matrix (25 X 2) with two clusters
+set.seed(3)
+x <- matrix(rnorm(100), ncol = 2)
+x[1:25, 1] <- x[1:25, 1] + 3
+x[1:25, 2] <- x[1:25, 2] - 4
+
+# Perform K Means Clustering with K = 2
+km2 <- kmeans(x = x, centers = 2, nstart = 20)
+km2
+
+# Displaying identified clusters and plotting them
+km2$cluster
+plot(x,
+  col = (km2$cluster + 1), pch = 20, xlab = "", ylab = "", cex = 1.5,
+  main = "K-means clustering results with K = 2"
+)
+
+# Performing K-means clustering with K = 3
+km3 <- kmeans(x = x, centers = 3, nstart = 20)
+km3
+plot(x,
+  col = (km3$cluster + 1), pch = 20, xlab = "", ylab = "", cex = 1.5,
+  main = "K-means clustering results with K = 3"
+)
+
+# Demonstrating the use of nstart argument
+km3_1 <- kmeans(x = x, centers = 3, nstart = 1)
+km3$tot.withinss
+km3_1$tot.withinss
+```
+
+## 10.5.2 Hierarchical Clustering
+
+```{r}
+# Creating a distance matrix with dist()
+options(digits = 2)
+class(dist(x))
+
+# Using hclust() to do hierarchical clustering in R on same data set
+# Three different linkage methods
+hc.complete <- hclust(d = dist(x), method = "complete")
+hc.average <- hclust(d = dist(x), method = "average")
+hc.single <- hclust(d = dist(x), method = "single")
+
+# Plotting the dendrograms from each linkage method
+par(mfrow = c(1, 3))
+plot(hc.complete,
+  cex = 0.7, xlab = "", ylab = "", sub = "",
+  main = "Complete Linkage"
+)
+plot(hc.average,
+  cex = 0.7, xlab = "", ylab = "", sub = "",
+  main = "Average Linkage"
+)
+plot(hc.single,
+  cex = 0.7, xlab = "", ylab = "", sub = "",
+  main = "Single Linkage"
+)
+
+# Comparing clusters generated using cutree() function
+cutree(tree = hc.complete, k = 2)
+cutree(tree = hc.average, k = 2)
+cutree(tree = hc.single, k = 2)
+cutree(tree = hc.complete, k = 2) == cutree(tree = hc.average, k = 2)
+cutree(tree = hc.complete, k = 2) == cutree(tree = hc.single, k = 2)
+
+# Scaling variables before performing hierarchical clustering
+xsc <- scale(x)
+plot(hclust(d = dist(xsc), method = "complete"),
+  cex = 0.7, xlab = "",
+  ylab = "", sub = "", main = "Complete Linkage and Scaled Features"
+)
+# Using correlation based distance
+
+# Simulated data set of 3 dimensions (with three clusters)
+x <- matrix(rnorm(90), ncol = 3)
+x[1:10, ] <- x[1:10, ] - 2
+x[20:30, ] <- x[20:30, ] + 2
+
+# Euclidean distance based clustering (Partial success in both methods)
+kmeans(x = x, centers = 3, nstart = 20)$cluster
+cutree(hclust(d = dist(x), method = "complete"), k = 3)
+
+# Creating a matrix of correlation based distance
+dd <- as.dist(m = 1 - cor(t(x)))
+par(mfrow = c(1, 1))
+plot(hclust(dd, method = "complete"),
+  xlab = "", sub = "",
+  main = "Complete Linkage with Correlation Based Distance"
+)
+```
+
+# Lab 3: NCI60 Data Example
+
+## PCA on NCI60 data
+
+In this lab, we use th `NCI60` cancer cell line micro-array data from the `ISLR` package. We will perform K-Means Clustering and Hierarchical Clustering on the data set.
+
+```{r}
+# Loading data set and storing it locally
+library(ISLR)
+library(tidyverse)
+names(NCI60)
+
+nci.data <- NCI60$data
+nci.labs <- NCI60$labs
+
+dim(nci.data)
+length(nci.labs)
+
+nci.data[1:5, 1:5]
+n_distinct(nci.labs)
+
+# Performing PCA on the NCI60 data set
+prnci <- prcomp(x = nci.data, scale = TRUE)
+
+# Plotting the data on first two principal components
+# creating a customized function to color the observation spoints
+Cols <- function(vec) {
+  cols <- rainbow(length(unique(vec)))
+  return(cols[as.numeric(as.factor(vec))])
+}
+par(mfrow = c(1, 2))
+plot(prnci$x[, 1:2],
+  col = Cols(nci.labs),
+  pch = 19, xlab = "Z1", ylab = "Z2"
+)
+plot(prnci$x[, c(1, 3)],
+  col = Cols(nci.labs),
+  pch = 19, xlab = "Z1", ylab = "Z3"
+)
+
+# Plotting the Scree Plot and Proportion of Variance Explained
+par(mfrow = c(1, 3))
+plot(prnci, main = "Default plot : prcomp()")
+
+pve <- 100 * (prnci$sdev^2) / sum(prnci$sdev^2)
+plot(pve,
+  xlab = "Principal Component", ylab = "Proportion Variance Explained",
+  main = "Scree Plot", col = "blue", type = "o"
+)
+plot(cumsum(pve),
+  xlab = "Principal Component", ylab = "Cumulative Prop. Var. Explained",
+  main = "Cum. Prop. Var. Explained", col = "brown3", type = "o"
+)
+
+# Examining summary of a prcomp() object
+summary(prnci)$importance[1:3, 1:7]
+```
+
+## Clustering on observations of the NCI60 data
+
+```{r}
+# Scaling the data
+sd.data <- scale(nci.data)
+
+# Ploting hierarchical clustering on three different linkage methods
+data.dist <- dist(sd.data)
+
+par(mfrow = c(1, 3))
+plot(hclust(data.dist, method = "complete"),
+  labels = nci.labs,
+  main = "Complete Linkage", xlab = "", ylab = "", sub = "", cex = 0.6
+)
+plot(hclust(data.dist, method = "average"),
+  labels = nci.labs,
+  main = "Average Linkage", xlab = "", ylab = "", sub = "", cex = 0.6
+)
+plot(hclust(data.dist, method = "single"),
+  labels = nci.labs,
+  main = "Single Linkage", xlab = "", ylab = "", sub = "", cex = 0.6
+)
+
+# Plotting a complete linkage dendrogram cut at 4 clusters
+hcnci <- hclust(data.dist, method = "complete")
+par(mfrow = c(1, 1))
+plot(hcnci, labels = nci.labs, cex = 0.6)
+abline(h = 139, col = "red")
+
+# Comparing clusters by hclust() with actual ones
+hc.clusters <- cutree(hcnci, 4)
+table(hc.clusters, nci.labs)
+
+# Printing output of a hclust() object
+hcnci
+
+# Comparing hierarchical clustering with k-means clustering
+set.seed(3)
+km.clusters <- kmeans(sd.data, centers = 4, nstart = 20)$cluster
+table(km.clusters, hc.clusters)
+
+# Performing Hierarchical and K-Means clustering only on first 5 principal components
+hc.pr.nci <- hclust(dist(scale(prnci$x[, 1:5])))
+hc.pr.clusters <- cutree(hc.pr.nci, 4)
+km.pr.clusters <- kmeans(prnci$x[, 1:5], centers = 4, nstart = 20)$cluster
+table(km.pr.clusters, hc.pr.clusters)
+
+# Plotting dendrogram with 5-Principal Components Hierarchical Clustering
+plot(hc.pr.nci,
+  labels = nci.labs, cex = 0.6, xlab = "", ylab = "", sub = "",
+  main = "Hierarchical Clustering on first 5 PCs"
+)
+```

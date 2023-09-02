@@ -1,0 +1,242 @@
+---
+title: "Chapter 8 (Lab)"
+author: "Aditya Dahiya"
+date: 2021-03-11
+subtitle: "Tree-Based Methods"
+execute: 
+  echo: true
+  warning: false
+  error: false
+  cache: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 8.3 Lab: Decision Trees
+
+## 8.3.1 Fitting Classification Trees
+
+```{r}
+# Loading libraries and data set
+library(tree)
+library(ISLR)
+library(tidyverse)
+data("Carseats")
+options(digits = 2)
+# Creating a binary variable for Sales; removing Sales variable from data set
+Carseats <- Carseats %>%
+  mutate(SalesHigh = as.factor(ifelse(Sales > 8, yes = "Yes", no = "No"))) %>%
+  select(-Sales)
+
+# Fitting a classification tree model to the data set for predicting SalesHigh
+tree.carseats <- tree(SalesHigh ~ ., data = Carseats)
+
+# Displaying Summary fo Classification Tree
+summary(tree.carseats)
+
+# Plotting the Classification tree
+plot(tree.carseats, col = "brown", type = "proportional")
+text(tree.carseats, pretty = 0, cex = 0.5)
+
+# Examining the output from tree object print
+names(tree.carseats)
+names(tree.carseats$frame)
+
+# Creating a testing and training set in Carseats Data Set
+nrow(Carseats)
+set.seed(3)
+train <- sample(c(TRUE, FALSE), size = 200, replace = TRUE)
+Test.Carseats <- Carseats[!train, ]
+Truth <- Carseats[!train, "SalesHigh"]
+
+# Fitting a classification tree to the training data
+tree.carseats <- tree(SalesHigh ~ ., data = Carseats, subset = train)
+
+# Obtaining predicted values in test data
+pred <- predict(tree.carseats, newdata = Test.Carseats, type = "class")
+
+# Creating Confusion Matrix; calculating test error rate
+table(Predicted = pred, Truth)
+
+# Prediction Accuracy
+mean(pred == Truth)
+
+# Test error rate
+mean(pred != Truth)
+
+# Now, we prune the Classification Tree, finding the optimum pruning by C.V.
+cv.carseats <- cv.tree(tree.carseats, FUN = prune.misclass)
+
+# Examining the Cross Validation Pruning Tree Object
+names(cv.carseats)
+cv.carseats
+
+# Plotting the error rate as a fucntion of k (alpha) and size of tree (size)
+par(mfrow = c(1, 2))
+plot(
+  x = cv.carseats$size, y = cv.carseats$dev, type = "b",
+  ylab = "Error Rate", xlab = "Size of pruned tree"
+)
+points(
+  x = 7, y = min(cv.carseats$dev), col = "red",
+  pch = 20, cex = 1.5
+)
+abline(v = 7, col = "red", lty = 2)
+plot(
+  x = cv.carseats$k, y = cv.carseats$dev, type = "b",
+  ylab = "Error Rate", xlab = "alpha (k)"
+)
+points(
+  x = 2, y = min(cv.carseats$dev), col = "red",
+  pch = 20, cex = 1.5
+)
+abline(v = 2, col = "red", lty = 2)
+
+# Pruning the tree at the best number of variables (i.e. 7)
+prune.carseats <- prune.tree(tree.carseats, best = 7)
+
+# Plotting the best (as per C.V.) pruned classification tree
+plot(prune.carseats, col = "brown")
+text(prune.carseats, cex = 0.9, pretty = 0)
+
+# Calculating the test error rate for the best pruned classification tree
+pred <- predict(prune.carseats, newdata = Test.Carseats, type = "class")
+table(Predicted = pred, Truth)
+# Prediction Accuracy
+mean(pred == Truth)
+# Test error rate
+mean(pred != Truth)
+```
+
+## 8.3.2 Fitting Regression Trees
+
+```{r}
+# Loading libraries and data set
+library(MASS)
+library(tree)
+data(Boston)
+dim(Boston)
+
+# creating a training and test subset of the data
+set.seed(3)
+train <- sample(c(TRUE, FALSE), size = nrow(Boston) / 2, replace = TRUE)
+Truth <- Boston[!train, "medv"]
+
+# Fitting a regression tree on the training data set
+tree.boston <- tree(medv ~ ., data = Boston, subset = train)
+
+# Displaying the fitted regression tree
+summary(tree.boston)
+names(tree.boston)
+names(tree.boston$frame)
+
+# Plotting the regression tree
+plot(tree.boston, col = "brown")
+text(tree.boston, pretty = 0, cex = 0.8)
+
+# Finding the best pruned regression tree using cross validation
+cv.boston <- cv.tree(tree.boston, K = 10)
+cv.boston
+plot(
+  x = cv.boston$size, y = cv.boston$dev, xlab = "No. of variables",
+  ylab = "Cross-Validation Deviance", type = "b"
+)
+
+# Using the unpruned tree to make preductions on the test data set
+pred <- predict(tree.boston, newdata = Boston[!train, ])
+
+# Plotting Predicted vs. True values of medv
+plot(
+  x = Truth, y = pred, xlab = "True values of medv",
+  ylab = "Predicted values of medv"
+)
+abline(a = 0, b = 1, col = "red")
+
+# Calculating Test MSE
+options(digits = 4)
+mean((pred - Truth)^2)
+sqrt(mean((pred - Truth)^2))
+```
+
+## 8.3.3 Bagging and Random Forests
+
+```{r}
+# Loading libraries and Data Set
+library(MASS)
+library(randomForest)
+data(Boston)
+set.seed(3)
+
+# Fitting a bagging model with randomForest() with m = p
+length(names(Boston))
+bag.boston <- randomForest(medv ~ .,
+  data = Boston, subset = train,
+  mtry = 13, importance = TRUE
+)
+bag.boston
+
+# Calculating test set predictions and plotting them
+pred <- predict(bag.boston, newdata = Boston[!train, ])
+plot(
+  x = Truth, y = pred, xlab = "True response values (medv)",
+  ylab = "Predicted response values (medv)"
+)
+abline(a = 0, b = 1, col = "red")
+
+# Calculating the Test MSE
+mean((pred - Truth)^2)
+
+# Fitting a Random Forest Model with 6 variables mtry
+rf.boston <- randomForest(medv ~ .,
+  data = Boston, subset = train,
+  mtry = 6, importance = TRUE
+)
+rf.boston
+
+# Calculating test set predictions and plotting them
+pred <- predict(rf.boston, newdata = Boston[!train, ])
+plot(
+  x = Truth, y = pred, xlab = "True response values (medv)",
+  ylab = "Predicted response values (medv)"
+)
+abline(a = 0, b = 1, col = "red")
+
+# Calculating the Test MSE
+mean((pred - Truth)^2)
+
+# Showing the importance of variables as table and plot
+round(importance(rf.boston), 2)
+varImpPlot(rf.boston)
+```
+
+## 8.3.4 Boosting
+
+```{r}
+# Loading libraries
+library(gbm)
+set.seed(3)
+
+# Fitting a boosting model
+boost.boston <- gbm(medv ~ ., data = Boston[train, ], distribution = "gaussian",
+                    n.trees = 5000, interaction.depth = 4)
+boost.boston
+names(boost.boston)
+summary(boost.boston)
+
+# Plotting the marginal effects of selected variables on the response
+par(mfrow = c(1,2))
+plot(boost.boston, i = "rm")
+plot(boost.boston, i = "lstat")
+
+# Use boosted model to predict the medv on test data set
+pred <- predict(boost.boston, newdata = Boston[!train,])
+
+# Calculating the test MSE
+mean((pred - Truth)^2)
+
+# Using boosting model with differnt lambda value = 0.2 (instead of default 0.001)
+boost.boston <- gbm(medv ~ ., data = Boston[train, ], distribution = "gaussian",
+                    n.trees = 5000, interaction.depth = 4, shrinkage = 0.2)
+pred <- predict(boost.boston, newdata = Boston[!train,])
+mean((pred - Truth)^2)
+```

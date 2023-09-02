@@ -1,0 +1,255 @@
+---
+title: "Chapter 7 (Lab)"
+author: "Aditya Dahiya"
+date: 2021-02-24
+subtitle: "Moving Beyond Linearity"
+execute: 
+  echo: true
+  error: false
+  warning: false
+  cache: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Lab : Non-Linear Modeling
+
+We will analyse the `Wage` data set from the `ISLR` library. We also examine the data set and remove missing values.
+
+```{r}
+library(ISLR)
+data(Wage)
+sum(is.na(Wage))
+dim(Wage)
+attach(Wage)
+```
+
+## 7.8.1 Polynomial Regression and Step Functions
+
+We first fit the polynomial regression (up to 4th degree) of `wage` onto `age`. Then, we plot the Figure 7.1.
+
+```{r}
+attach(Wage)
+# Method 1: Using a matrix whose columns are the basis of orthogonal polynomials
+fit1 <- lm(wage ~ poly(age, 4), data = Wage)
+coef(summary(fit1))
+
+# Method 2: Using actual polynomials of `age` as predictors
+fit2 <- lm(wage ~ age + I(age^2) + I(age^3) + I(age^4), data = Wage)
+fit2 <- lm(wage ~ cbind(age, age^2, age^3, age^4), data = Wage)
+fit2 <- lm(wage ~ poly(age, 4, raw = TRUE), data = Wage)
+# All three produce the exact same model
+
+coef(summary(fit2))
+
+# Creating a grid of values of age for which to predict wage
+agelims <- range(age)
+age.grid <- seq(agelims[1], agelims[2], by = 1)
+
+# Predicting wage for each age, with standard errors
+pred.wage <- predict(fit1, newdata = data.frame(age = age.grid), se = TRUE)
+se.bands <- cbind(
+  pred.wage$fit - 2 * pred.wage$se.fit,
+  pred.wage$fit + 2 * pred.wage$se.fit
+)
+
+# Predicting I(Wage>250) based on up-to 4th polynomial of age
+# I(wage>250) creates a boolean vector which glm() coerces into 0 and 1
+table(I(wage > 250))
+
+# Fitting a logistic regression: Methods 1 and 2
+fit3 <- glm(I(wage > 250) ~ poly(age, 4), data = Wage, family = "binomial")
+fit4 <- glm(I(wage > 250) ~ poly(age, 4, raw = TRUE), data = Wage, family = "binomial")
+
+# Predicting values (not using type = "response", bcoz that can't create proper SE)
+pred.I.wage <- predict(fit3, newdata = data.frame(age = age.grid), se = TRUE)
+# Converting logit into probabilities
+fit.I.wage <- exp(pred.I.wage$fit) / (1 + exp(pred.I.wage$fit))
+se.I.wage <- cbind(
+  pred.I.wage$fit - 2 * pred.I.wage$se.fit,
+  pred.I.wage$fit + 2 * pred.I.wage$se.fit
+)
+se.I.wage <- exp(se.I.wage) / (1 + exp(se.I.wage))
+
+
+# Creating the left hand side plot of Fig 7.1
+par(
+  mfrow = c(1, 2),
+  mar = c(4.5, 4.5, 1, 1), oma = c(0, 0, 4, 0)
+)
+# Left Hand Side Plot
+plot(x = age, y = wage, xlim = agelims, cex = 0.5, col = "darkgrey")
+title("Degree 4 Polynomial", outer = TRUE)
+lines(age.grid, pred.wage$fit, col = "blue", lwd = 2)
+matlines(age.grid, se.bands, col = "blue", lty = 3, lwd = 1)
+
+# Right Hand Side Plot
+plot(x = age, y = I(wage > 250), type = "n", ylim = c(0, 0.2))
+points(
+  x = jitter(age), y = I(wage > 250) / 5, cex = 0.5, pch = "|",
+  col = "darkgrey"
+)
+lines(x = age.grid, y = fit.I.wage, col = "blue", lwd = 2)
+matlines(x = age.grid, se.I.wage, col = "blue", lty = 3)
+
+# Now, we examine similarity between method 1 and 2
+# Demonstrating that fitted values from both are the same
+pred.wage.2 <- predict(fit2, newdata = data.frame(age = age.grid), se = TRUE)
+max(pred.wage$fit - pred.wage.2$fit) # Showing max. difference between two
+
+pred.I.wage.2 <- predict(fit4, newdata = data.frame(age = age.grid), se = TRUE)
+max(pred.I.wage$fit - pred.I.wage.2$fit) # Showing max. difference between two
+
+# Lastly, we find which level of polynomials fit the data best
+# Method 1
+fit <- list()
+for (i in 1:5) {
+  model <- paste("M", i, sep = "")
+  fit[[model]] <- lm(wage ~ poly(age, i), data = Wage)
+}
+anova(fit$M1, fit$M2, fit$M3, fit$M4, fit$M5)
+
+# Since we are using orgonal polynomials, we could equally well use
+coef(summary(fit$M5))
+
+# Method 2 (where we have extra variables like education) [Same Results]
+fit <- list()
+for (i in 1:5) {
+  model <- paste("M", i, sep = "")
+  fit[[model]] <- lm(wage ~ poly(age, i, raw = TRUE), data = Wage)
+}
+anova(fit$M1, fit$M2, fit$M3, fit$M4, fit$M5)
+```
+
+## 7.8.2 Splines
+
+In this section, we use the `splines` library. We could also use the `locfit` library. We will fit (Part A) splines with basis function `bs()`, (Part B) natural splines using the `ns()` function, (Part C) smoothing splines using the `smooth.spline()` function and (Part D) local regression using the `loess()` function. We will try to predict `wage` from `age` in the `Wage` data set.
+
+```{r}
+library(splines)
+attach(Wage)
+# Understanding the functions bs(), ns()
+# We can use wither df (degrees of freedom) or specify "knots"
+dim(bs(age, knots = c(20,40,60)))
+dim(bs(age, df = 6))
+attr(x = bs(age, df = 6), which = "knots")
+
+# We can use option degree to specify the level of polynomial (eg. x^5)
+dim(bs(age, degree = 5, knots = c(20,40,60)))
+dim(bs(age, df = 6, degree = 5))
+attr(x = bs(age, df = 6, degree = 5), which = "knots")
+
+# Part A: REGRESSION SPLINES (CUBIC)
+fits = lm(wage ~ bs(age, knots = c(25,40,60)), data = Wage)
+
+# Calculate predicted values
+preds = predict(fits, newdata = data.frame(age = age.grid), se = TRUE)
+se.preds = cbind(preds$fit - 2*preds$se.fit,
+                preds$fit + 2*preds$se.fit)
+
+# Plotting the results - Blue lines for Cubic Splines
+plot(x = age, y = wage, col = "darkgrey", cex = 0.5)
+lines(x = age.grid, y = preds$fit, col = "blue", lwd = 1.5)
+matlines(x = age.grid, se.preds, col = "blue", lty = 3, lwd = 0.8)
+
+# Part B: NATURAL SPLINES
+fit.ns = lm(wage ~ ns(age, df = 4), data = Wage)
+pred.ns = predict(fit.ns, newdata = data.frame(age = age.grid), se = TRUE)
+se.pred.ns = cbind(pred.ns$fit - 2*pred.ns$se.fit,
+                   pred.ns$fit + 2*pred.ns$se.fit)
+
+# Plotting the results (Blue - Cubic Spline) (Red - Natural Cubic Spline)
+plot(x = age, y = wage, col = "darkgrey", cex = 0.5)
+lines(x = age.grid, y = preds$fit, col = "blue", lwd = 1.5)
+matlines(x = age.grid, se.preds, col = "blue", lty = 3, lwd = 0.8)
+lines(x = age.grid, y = pred.ns$fit, col = "red", lwd = 1.5)
+matlines(x = age.grid, se.pred.ns, col = "red", lty = 3, lwd = 0.8)
+legend("topright", c("Cubic Spline", "Natural Spline"), lty = c(1,1),
+       col = c("blue", "red"), lwd = c(1.5, 1.5), cex = 0.8)
+
+
+# Part C: SMOOTHING SPLINES
+fit.ss1 = smooth.spline(age, wage, df = 16)
+fit.ss2 = smooth.spline(age, wage, cv = TRUE)
+fit.ss2$df # Viewing the CV-selected degrees of freedom
+
+# Plotting Smoothing Splines directly (no need to calculate predicted values)
+plot(x = age, y = wage, col = "darkgrey", cex = 0.5, main = "Smoothing Splines")
+lines(fit.ss1, col = "orange", lwd = 1)
+lines(fit.ss2, col = "brown", lwd = 1)
+legend("topright", c("SS with df = 16", "SS with df = 6.8"),
+       lty = c(1,1), lwd = c(1,1), col = c("orange", "brown"))
+
+# Part D: LOESS (Local Regression)
+fit.L1 = loess(wage ~ age, span = 0.2, data = Wage)
+fit.L2 = loess(wage ~ age, span = 0.5, data = Wage)
+
+# Plotting the Local Regression with two different spans
+plot(x = age, y = wage, col = "darkgrey", cex = 0.5, main = "Local Regression")
+lines(x = age.grid, y = predict(fit.L1, newdata = data.frame(age = age.grid)),
+      col = "red", lty = 1, lwd = 1.5)
+lines(x = age.grid, y = predict(fit.L2, newdata = data.frame(age = age.grid)),
+      col = "blue", lty = 1, lwd = 1.5)
+legend("topright", c("Span 0.2", "Span 0.5"), lty = c(1,1),
+       lwd = c(1,1), col = c("red", "blue"))
+```
+
+## 7.8.3 GAMs
+
+We now use Generalized Additive Models to predict `wage` from `age`, `year` and `education` from the `Wage` data set.
+
+```{r}
+# Using lm() for natural splines
+library(splines)
+library(gam)
+gam1 <- lm(wage ~ ns(year, 4) + ns(age, 5) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot.Gam(gam1, se = TRUE, col = "red")
+
+# Using gam() for more complicated stuff: Smoothing Splines
+library(gam)
+gam.m3 <- gam(wage ~ s(year, 4) + s(age, 5) + education, data = Wage)
+par(mfrow = c(1, 3))
+plot(gam.m3, se = TRUE, col = "blue")
+
+# Comparing the 3 models m1: no year included, m2 = linear in year,
+# m3 = smoothing spline in year with df = 4
+gam.m1 <- gam(wage ~ s(age, 5) + education, data = Wage)
+gam.m2 <- gam(wage ~ year + s(age, 5) + education, data = Wage)
+anova(gam.m1, gam.m2, gam.m3)
+
+# Thus gam.m2, with linear fitting for year is the best model
+summary(gam.m2)
+
+# Predicting values from gam()
+preds <- predict(gam.m2, newdata = Wage)
+
+# Using gam with Local Regression on only 1 variable
+gam.lo <- gam(wage ~ s(year, 4) + lo(age, span = 0.7) + education,
+  data = Wage
+)
+par(mfrow = c(1, 3))
+plot(gam.lo, se = TRUE, col = "green")
+
+# Using gam with local regression on interaction of age and year
+gam.lo.i <- gam(wage ~ lo(year, age, span = 0.5) + education, data = Wage)
+# Plotting this model in 3-D using akima
+library(akima)
+# install.packages("interp")
+library(interp)
+par(mfrow = c(1, 2))
+plot(gam.lo.i)
+
+# Using gam for logistic regression
+gam.lr <- gam(I(wage > 250) ~ year + s(age, 5) + education, data = Wage, family = "binomial")
+par(mfrow = c(1, 3))
+plot(gam.lr, se = TRUE, col = "green")
+
+# Removing <HS category in education to remove the surprising results
+gam.lr <- gam(I(wage > 250) ~ year + s(age, 5) + education,
+  data = Wage,
+  family = "binomial", subset = (education != "1. < HS Grad")
+)
+par(mfrow = c(1, 3))
+plot(gam.lr, se = TRUE, col = "green")
+```

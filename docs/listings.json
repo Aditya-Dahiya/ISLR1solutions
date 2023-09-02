@@ -2,6 +2,7 @@
   {
     "listing": "/solutions.html",
     "items": [
+      "/Chapter10l.html",
       "/Chapter2e.html",
       "/Chapter3e.html",
       "/Chapter3l.html",
@@ -9,7 +10,11 @@
       "/Chapter4l.html",
       "/Chapter5e.html",
       "/Chapter5l.html",
-      "/Chapter6e.html"
+      "/Chapter6e.html",
+      "/Chapter6l.html",
+      "/Chapter7l.html",
+      "/Chapter8l.html",
+      "/Chapter9l.html"
     ]
   }
 ]

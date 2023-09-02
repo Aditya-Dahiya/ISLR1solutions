@@ -36,6 +36,11 @@ website:
       - Chapter5e.qmd
       - Chapter5l.qmd
       - Chapter6e.qmd
+      - Chapter6l.qmd
+      - Chapter7l.qmd
+      - Chapter8l.qmd
+      - Chapter9l.qmd
+      - Chapter10l.qmd
 format:
   html:
     theme: journal
