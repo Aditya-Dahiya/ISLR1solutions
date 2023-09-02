@@ -33,6 +33,9 @@ website:
       - Chapter3l.qmd
       - Chapter4e.qmd
       - Chapter4l.qmd
+      - Chapter5e.qmd
+      - Chapter5l.qmd
+      - Chapter6e.qmd
 format:
   html:
     theme: journal

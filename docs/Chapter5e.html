@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aditya Dahiya">
+<meta name="dcterms.date" content="2021-02-14">
+
+<title>Solutions (ISLR 1e) - Chapter 5 (Exercises)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./cover-image.jpg" alt="Solutions: An Introduction to Statistical Learning: with Applications in R (1st Edition)" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Solutions (ISLR 1e)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./solutions.html" rel="" target="">
+ <span class="menu-text">Solutions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools ms-auto-item" href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chapter 5 (Exercises)</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter2e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 2 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter3l.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 (R Lab)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter4e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 (Exercises)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chapter4l.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 (Lab)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link active" data-scroll-target="#exercises">5.4 Exercises</a></li>
+  <li><a href="#conceptual" id="toc-conceptual" class="nav-link" data-scroll-target="#conceptual">Conceptual</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#a" id="toc-a" class="nav-link" data-scroll-target="#a">(a)</a></li>
+  <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">(b)</a></li>
+  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">(c)</a></li>
+  <li><a href="#d" id="toc-d" class="nav-link" data-scroll-target="#d">(d)</a></li>
+  <li><a href="#e" id="toc-e" class="nav-link" data-scroll-target="#e">(e)</a></li>
+  <li><a href="#f" id="toc-f" class="nav-link" data-scroll-target="#f">(f)</a></li>
+  <li><a href="#g" id="toc-g" class="nav-link" data-scroll-target="#g">(g)</a></li>
+  <li><a href="#h" id="toc-h" class="nav-link" data-scroll-target="#h">(h)</a></li>
+  </ul></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#a-1" id="toc-a-1" class="nav-link" data-scroll-target="#a-1">(a)</a></li>
+  <li><a href="#b-1" id="toc-b-1" class="nav-link" data-scroll-target="#b-1">(b)</a></li>
+  </ul></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  </ul></li>
+  <li><a href="#applied" id="toc-applied" class="nav-link" data-scroll-target="#applied">Applied</a>
+  <ul class="collapse">
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#a-2" id="toc-a-2" class="nav-link" data-scroll-target="#a-2">(a)</a></li>
+  <li><a href="#b-2" id="toc-b-2" class="nav-link" data-scroll-target="#b-2">(b)</a></li>
+  <li><a href="#c-1" id="toc-c-1" class="nav-link" data-scroll-target="#c-1">(c)</a></li>
+  <li><a href="#d-1" id="toc-d-1" class="nav-link" data-scroll-target="#d-1">(d)</a></li>
+  </ul></li>
+  <li><a href="#question-6-1" id="toc-question-6-1" class="nav-link" data-scroll-target="#question-6-1">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#a-3" id="toc-a-3" class="nav-link" data-scroll-target="#a-3">(a)</a></li>
+  <li><a href="#b-3" id="toc-b-3" class="nav-link" data-scroll-target="#b-3">(b)</a></li>
+  <li><a href="#c-2" id="toc-c-2" class="nav-link" data-scroll-target="#c-2">(c)</a></li>
+  <li><a href="#d-2" id="toc-d-2" class="nav-link" data-scroll-target="#d-2">(d)</a></li>
+  </ul></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
+  <ul class="collapse">
+  <li><a href="#a-4" id="toc-a-4" class="nav-link" data-scroll-target="#a-4">(a)</a></li>
+  <li><a href="#b-4" id="toc-b-4" class="nav-link" data-scroll-target="#b-4">(b)</a></li>
+  <li><a href="#c-3" id="toc-c-3" class="nav-link" data-scroll-target="#c-3">(c)</a></li>
+  <li><a href="#d-3" id="toc-d-3" class="nav-link" data-scroll-target="#d-3">(d)</a></li>
+  <li><a href="#e-1" id="toc-e-1" class="nav-link" data-scroll-target="#e-1">(e)</a></li>
+  </ul></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
+  <ul class="collapse">
+  <li><a href="#a-5" id="toc-a-5" class="nav-link" data-scroll-target="#a-5">(a)</a></li>
+  <li><a href="#b-5" id="toc-b-5" class="nav-link" data-scroll-target="#b-5">(b)</a></li>
+  <li><a href="#c-4" id="toc-c-4" class="nav-link" data-scroll-target="#c-4">(c)</a></li>
+  <li><a href="#d-4" id="toc-d-4" class="nav-link" data-scroll-target="#d-4">(d)</a></li>
+  <li><a href="#e-2" id="toc-e-2" class="nav-link" data-scroll-target="#e-2">(e)</a></li>
+  <li><a href="#f-1" id="toc-f-1" class="nav-link" data-scroll-target="#f-1">(f)</a></li>
+  </ul></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
+  <ul class="collapse">
+  <li><a href="#a-6" id="toc-a-6" class="nav-link" data-scroll-target="#a-6">(a)</a></li>
+  <li><a href="#b-6" id="toc-b-6" class="nav-link" data-scroll-target="#b-6">(b)</a></li>
+  <li><a href="#c-5" id="toc-c-5" class="nav-link" data-scroll-target="#c-5">(c)</a></li>
+  <li><a href="#d-5" id="toc-d-5" class="nav-link" data-scroll-target="#d-5">(d)</a></li>
+  <li><a href="#e-3" id="toc-e-3" class="nav-link" data-scroll-target="#e-3">(e)</a></li>
+  <li><a href="#f-2" id="toc-f-2" class="nav-link" data-scroll-target="#f-2">(f)</a></li>
+  <li><a href="#g-1" id="toc-g-1" class="nav-link" data-scroll-target="#g-1">(g)</a></li>
+  <li><a href="#h-1" id="toc-h-1" class="nav-link" data-scroll-target="#h-1">(h)</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/edit/main/Chapter5e.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Aditya-Dahiya/ISLR1solutions/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 5 (Exercises)</h1>
+<p class="subtitle lead">Resampling Methods</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aditya Dahiya </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 14, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="exercises" class="level1">
+<h1>5.4 Exercises</h1>
+</section>
+<section id="conceptual" class="level1">
+<h1>Conceptual</h1>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>For this question, we need to find the value of <span class="math inline">\(\alpha\)</span> which minimizes the expression:<br>
+<span class="math display">\[
+\begin{aligned}
+Total \ Variance &amp;= Var(\alpha X + (1-\alpha) Y) \\
+&amp;= Var(\alpha X) + Var((1-\alpha)Y) + 2.Cov(\alpha X, (1-\alpha)Y) \\
+&amp;= \alpha^2Var(X) + (1-\alpha)^2Var(Y) + 2Cov(X,Y)(\alpha(1-\alpha)) \\
+&amp;= \alpha^2 \sigma_X^2 + (1-\alpha)^2 \sigma_Y^2 + 2 \sigma_{XY}(\alpha(1-\alpha)) \\
+\end{aligned}
+\]</span></p>
+<p>Now, to find the value of <span class="math inline">\(\alpha\)</span> which minimizes this total variance, we take it’s first partial derivative with respect to <span class="math inline">\(\alpha\)</span> and set it equal to zero:–</p>
+<p><span class="math display">\[
+\begin{aligned}0 &amp;= \frac{\partial}{\partial \alpha} \Big( \alpha^2 \sigma_X^2 + (1-\alpha)^2 \sigma_Y^2 + 2 \sigma_{XY}(\alpha(1-\alpha)) \Big) \\0 &amp;= 2\alpha \sigma_X^2 + 2(1-\alpha) \frac{\partial (1-\alpha)}{\partial \alpha} \sigma_Y^2 + 2 \sigma_{XY} \Big( \frac{\partial (1-\alpha)}{\partial \alpha}\alpha + \frac{\partial (\alpha)}{\partial \alpha}(1-\alpha) \Big)\\0 &amp;= 2\alpha \sigma_X^2 - 2(1-\alpha) \sigma_Y^2 + 2 \sigma_{XY}  (-\alpha + 1 - \alpha) \\0 &amp;= 2\alpha \sigma_X^2 - 2\sigma_Y^2 + 2\alpha \sigma_Y^2 + 2\sigma_{XY}  - 4\alpha \sigma_{XY} \\2 \Big(\sigma_Y^2 - \sigma_{XY} \Big) &amp;= 2 \Big(\sigma_X^2 + \sigma_Y^2  -2 \sigma_{XY}\Big) \alpha \\\alpha &amp;= \frac{\sigma_Y^2 - \sigma_{XY}}{\sigma_X^2 + \sigma_Y^2  -2 \sigma_{XY}} \qquad (5.6)\end{aligned}
+\]</span></p>
+<p>Further, to verify that the first partial derivative is indeed the minimum value of Variance, we find the second partial derivative with respect to <span class="math inline">\(\alpha\)</span> and see whether it is zero or not.</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;= \frac{\partial^2}{\partial^2 \alpha} \Big( \alpha^2 \sigma_X^2 + (1-\alpha)^2 \sigma_Y^2 + 2 \sigma_{XY}(\alpha(1-\alpha)) \Big) \\
+&amp;= \frac{\partial}{\partial \alpha} \Big(2\alpha \sigma_X^2 - 2\sigma_Y^2 + 2\alpha \sigma_Y^2 + 2\sigma_{XY}  - 4\alpha \sigma_{XY} \Big) \\
+&amp;= 2 \sigma_X^2 -0 + 2 \sigma_Y^2 + 0  - 4 \sigma_{XY} \\
+&amp;= 2 \Big( \sigma_X^2 + 2 \sigma_Y^2 - 2 \sigma_{XY} \Big) \\
+&amp;= 2 \Big( Var(X-Y) \Big)
+\end{aligned}
+\]</span></p>
+<p>Now, the variance of any variable is always positive. Hence, the expression <span class="math inline">\(2Var(X-Y)\)</span> will always be positive. Thus, we can confirm that the minimum value is at the first partial derivative. Equation 5.6 is thus proved.</p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p><strong>We will now derive the probability that a given observation is part of a bootstrap sample. Suppose that we obtain a bootstrap sample from a set of n observations.</strong></p>
+<section id="a" class="level3">
+<h3 class="anchored" data-anchor-id="a">(a)</h3>
+<p><strong>What is the probability that the first bootstrap observation is not the jth observation from the original sample? Justify your answer.</strong></p>
+<p>The bootstrap method samples each bootstrap observation from the original sample randomly with replacement. Thus, for each bootstrap observation, every value in the original sample has an equal probability of being selected. This probability is simply <span class="math inline">\(^1/_n\)</span>. So, the probability that first bootstrap observation is the <span class="math inline">\(j^{th}\)</span> observation from the original sample is <span class="math inline">\(^1/_n\)</span>. Finally, the probability that first bootstrap observation is not the <span class="math inline">\(j^{th}\)</span> observation from original sample is <span class="math inline">\(1 - (^1/_n)\)</span>.</p>
+</section>
+<section id="b" class="level3">
+<h3 class="anchored" data-anchor-id="b">(b)</h3>
+<p><strong>What is the probability that the second bootstrap observation is not the jth observation from the original sample?</strong></p>
+<p>As answered earlier, the bootstrap method samples each bootstrap observation from the original sample randomly with replacement. Thus, for each and every bootstrap observation, every value in the original sample has an equal probability of being selected. This probability is simply <span class="math inline">\(^1/_n\)</span>.<br>
+So, the probability that second (or, in fact any <span class="math inline">\(k^{th}\)</span>) bootstrap observation is the <span class="math inline">\(j^{th}\)</span> observation from the original sample is <span class="math inline">\(^1/_n\)</span>. Finally, the probability that the second bootstrap observation is not the <span class="math inline">\(j^{th}\)</span> observation from original sample is <span class="math inline">\(1 - (^1/_n)\)</span>.</p>
+</section>
+<section id="c" class="level3">
+<h3 class="anchored" data-anchor-id="c">(c)</h3>
+<p><strong>Argue that the probability that the jth observation is not in the bootstrap sample is</strong> <span class="math inline">\((1 − 1/n)^n\)</span>.</p>
+<p>Since the bootstrap method samples each observation as a random sample (with replacement) from the original sample, it can be said that each bootstrap sample is an independent random variable. Now, the probability of joint occurrence of independent events (in this case, not selecting the <span class="math inline">\(j^{th}\)</span> observation of original sample) <span class="math inline">\(n\)</span> different times is: <span class="math display">\[
+\begin{aligned}
+Probability &amp;= Pr_1 \times Pr_2 \times Pr_3 \times \ ... \times \ Pr_n \\
+&amp;= (1 - \ ^1/_n) \ \times \ (1 - \ ^1/_n) \ \times \  (1 - \ ^1/_n) \ \times \ ... \ (1 - \ ^1/_n) \\
+&amp;= (1 - \ ^1/_n)^n
+\end{aligned}
+\]</span></p>
+</section>
+<section id="d" class="level3">
+<h3 class="anchored" data-anchor-id="d">(d)</h3>
+<p><strong>When n = 5, what is the probability that the j<sup>th</sup> observation is in the bootstrap sample?</strong></p>
+<p>The probability of the <span class="math inline">\(j^{th}\)</span> observation being in the bootstrap sample is (1 - probability of <span class="math inline">\(j^{th}\)</span> observation being not in the boostrap sample). For <span class="math inline">\(n=5\)</span>, this is 0.672. <span class="math display">\[
+\begin{aligned}
+Probability &amp;= 1- (1 - \ ^1/_n)^n \\
+&amp;= 1 - (1-0.2)^5 \\
+&amp;= 1 - 0.8^5 \\
+&amp;= 0.672
+\end{aligned}
+\]</span></p>
+</section>
+<section id="e" class="level3">
+<h3 class="anchored" data-anchor-id="e">(e)</h3>
+<p><strong>When n = 100, what is the probability that the jth observation is in the bootstrap sample?</strong></p>
+<p>The probability of the <span class="math inline">\(j^{th}\)</span> observation being in the bootstrap sample is (1 - probability of <span class="math inline">\(j^{th}\)</span> observation being not in the bootstrap sample). For <span class="math inline">\(n=100\)</span>, this is 0.634. <span class="math display">\[
+\begin{aligned}
+Probability &amp;= 1- (1 - \ ^1/_n)^n \\
+&amp;= 1 - (1-0.01)^{100} \\
+&amp;= 1 - 0.99^{100} \\
+&amp;= 0.634
+\end{aligned}
+\]</span></p>
+</section>
+<section id="f" class="level3">
+<h3 class="anchored" data-anchor-id="f">(f)</h3>
+<p><strong>When n = 10, 000, what is the probability that the j<sup>th</sup> observation is in the bootstrap sample?</strong></p>
+<p>As calculated above, the probability of the <span class="math inline">\(j^{th}\)</span> observation being in the bootstrap sample is (1 - probability of <span class="math inline">\(j^{th}\)</span> observation being not in the bootstrap sample). For <span class="math inline">\(n=10000\)</span>, this is 0.632. <span class="math display">\[
+\begin{aligned}
+Probability &amp;= 1- (1 - \ ^1/_n)^n \\
+&amp;= 1 - (1-0.0001)^{10000} \\
+&amp;= 1 - 0.9999^{10000} \\
+&amp;= 0.632
+\end{aligned}
+\]</span></p>
+</section>
+<section id="g" class="level3">
+<h3 class="anchored" data-anchor-id="g">(g)</h3>
+<p><strong>Create a plot that displays, for each integer value of n from 1 to 100, 000, the probability that the j<sup>th</sup> observation is in the bootstrap sample. Comment on what you observe.</strong></p>
+<p>We can use the formula derived above to create such a plot in R. The code and output is shown below. We observe that as <span class="math inline">\(n \to \infty\)</span>, the value of this probability approaches an asymptote of approximately 0.632.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-1_4eca0121dac82b13006af9d0ef5dd709">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Pr <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="dv">1</span> <span class="sc">/</span> n)<span class="sc">^</span>n</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(n, Pr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter5e_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(n, Pr), <span class="at">shape =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Value of n"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability (jth observation in bootstrap sample)"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.632</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="dv">1</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter5e_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="h" class="level3">
+<h3 class="anchored" data-anchor-id="h">(h)</h3>
+<p><strong>We will now investigate numerically the probability that a bootstrap sample of size n = 100 contains the j<sup>th</sup> observation. Here j = 4. We repeatedly create bootstrap samples, and each time we record whether or not the fourth observation is contained in the bootstrap sample. Comment on the results obtained.</strong></p>
+<p>The R-code and results are displayed below. The Code contains an implementation of a bootstrap method, where we take 10,000 samples (each containing 100 numbers) from the list of first 100 positive integers 1,2,3,…,100 with replacement. We then check whether the sample contains the integer 4. We then find whether each sample contains digit 4, and store the result (TRUE or FALSE) in the <span class="math inline">\(i^{th}\)</span> value of <code>store</code> vector. The mean of <code>store</code> then gives the probability that a bootstrap of size n=100 contains the 4th observation.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-2_725e84839112f4de9b3fb8e0c7afeb3d">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>store <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10000</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  store[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(store)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.6311</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The results reconcile with out calculated probability. It is very close to 0.632. Further, a known formula from Calculus states that: <span class="math display">\[\lim_{n \rightarrow \infty}(1 + \ ^x/_n \ )^n = e^x\]</span> Here, <span class="math inline">\(x=-1\)</span>, and thus the expression is equivalent to <span class="math inline">\(e^{-1}\)</span>, which is 0.368. So, <span class="math inline">\(1 - e^{-1}\)</span> is 0.632 which is the calculated answer for previous two questions.</p>
+</section>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p><strong>We now review k-fold cross-validation.</strong></p>
+<section id="a-1" class="level3">
+<h3 class="anchored" data-anchor-id="a-1">(a)</h3>
+<p><strong>Explain how k-fold cross-validation is implemented.</strong></p>
+<p>In k-fold cross validation, we first split up the data into <span class="math inline">\(k\)</span> folds,<span class="math inline">\(X_1, X_2, ... , X_k\)</span>, each of length approximately <span class="math inline">\(n/k\)</span>.</p>
+<ul>
+<li><p>We then use the first fold <span class="math inline">\(X_1\)</span> of length <span class="math inline">\(n/k\)</span> as the test set, and the remaining <span class="math inline">\(k-1\)</span> folds combined, i.e.&nbsp;<span class="math inline">\(X_2 + X_3 +... + X_k\)</span> of length $ n - n/k$, are used as the training set. The error rate is calculated, say <span class="math inline">\(e_1\)</span>.</p></li>
+<li><p>Then, the second fold fold <span class="math inline">\(X_2\)</span> is used as as the test set, and the remaining <span class="math inline">\(k-1\)</span> folds combined, i.e.&nbsp;<span class="math inline">\(X_1 + X_3 +... + X_k\)</span>, are used as the training set. The error rate is calculated, say <span class="math inline">\(e_2\)</span></p></li>
+<li><p>This step is repeated for all <span class="math inline">\(k\)</span> folds.</p></li>
+<li><p>The average error rate is then used as the k-fold cross validation error rate: <span class="math display">\[ e = \frac{1}{k} \sum_{i=1}^{k} e_i \]</span></p></li>
+</ul>
+</section>
+<section id="b-1" class="level3">
+<h3 class="anchored" data-anchor-id="b-1">(b)</h3>
+<p><strong>What are the advantages and disadvantages of k-fold cross validation relative to:</strong></p>
+<section id="i.-compared-to-the-validation-set-approach" class="level4">
+<h4 class="anchored" data-anchor-id="i.-compared-to-the-validation-set-approach"><strong>i. compared to the validation set approach?</strong></h4>
+<p><strong>Advantages of k-fold cross validation</strong></p>
+<ul>
+<li><p>The error rate is less variable. In validation set approach, the error rate is highly variable and depends on the specific validation and testing set chosen.</p></li>
+<li><p>When <span class="math inline">\(k&gt;2\)</span>, the k-fold cross validation yields more accurate estimates of the test error rate. This is because the validation set approach breaks up the data set into a validation set and a testing set. Due to lower number of observations in the validation set, the model gets to be trained on fewer observations. So, it overestimates the true error rates. In contrast, k-fold cross validation uses a larger training set, and somewhat ameliorates this situation.<br>
+</p></li>
+</ul>
+<p><strong>Disadvantages of k-fold cross validation</strong></p>
+<p>It is computationally more intensive, as the model needs to be fitted <span class="math inline">\(k\)</span> times. But this is not a major concern in today’s computers.</p>
+</section>
+<section id="ii.-compared-to-loocv" class="level4">
+<h4 class="anchored" data-anchor-id="ii.-compared-to-loocv"><strong>ii. compared to LOOCV?</strong></h4>
+<p><strong>Advantages of k-fold cross validation</strong></p>
+<ul>
+<li><p>As compared to LOOCV, k-fold cross validation is computationally less expensive (when <span class="math inline">\(k &lt; n\)</span>) because the model needs to be fitted a fewer number of times. A sole exception is linear regression, where a shortcut formula exists for calculating the LOOCV error rate using leverage value <span class="math inline">\(h_i\)</span> of each observation.</p></li>
+<li><p>LOOCV averages the error rates over <span class="math inline">\(n\)</span> different models, each run on a training set consisting of <span class="math inline">\(n-1\)</span> observations. Since the training set of each LOOCV model is nearly identical, the error rates tend to be highly correlated. The average of highly correlated terms exhibits high variance. Thus, the LOOCV estimate suffers from high variance.</p></li>
+</ul>
+<p><strong>Disadvantages of k-fold cross validation</strong></p>
+<ul>
+<li><p>Each LOOCV model uses <span class="math inline">\(n-1\)</span> observations to fit the model, and thus uses a training set which is nearly identical to the original data set. Thus, LOOCV suffers from a very low bias. Hence, in terms of accuracy of the estimated error rate, LOOCV performs better when bias of the estimate is a major concern.</p></li>
+<li><p>Overall, empirical evidence suggests that k-fold cross validation with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> performs best considering this bias-variance trade off.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p><strong>Suppose that we use some statistical learning method to make a prediction for the response Y for a particular value of the predictor X. Carefully describe how we might estimate the standard deviation of our prediction.</strong></p>
+<p>To estimate the standard deviation of response <span class="math inline">\(Y\)</span> for a particular value of predictor (say <span class="math inline">\(X = x\)</span>), we can use the bootstrap method as follows:</p>
+<p>First, for some large number of repetitions <span class="math inline">\(B\)</span>, we repeatedly take a random sample with replacement from the observations of <span class="math inline">\(X\)</span>. Lets call these samples <span class="math inline">\(X^{*1}, X^{*2} ... X^{*B}\)</span>. - We use the random samples <span class="math inline">\(X^{*1}, X^{*2} ... X^{*B}\)</span> and their corresponding response values (<span class="math inline">\(Y\)</span>) to train the statistical learning method one after the other. - For each repetition we estimate the predicted value of response i.e. <span class="math inline">\(\hat{y^{*i}}\)</span> for the particular value of predictor <span class="math inline">\(X=x\)</span>. We term these predictions as <span class="math inline">\(\hat{Y} = \hat{y^{*1}}, \hat{y^{*2}} ... \hat{y^{*B}}\)</span>.</p>
+<p>Then we find the standard deviation of this estimated <span class="math inline">\(\hat{Y}\)</span>. This standard deviation is the bootstrap estimate for the true standard deviation of response <span class="math inline">\(Y\)</span>. <span class="math display">\[ SE_B(Y) = \sqrt {\frac{1}{B-1} \sum_{i=1}^{B} \big( \hat{y}^{*i} - \overline{\hat{y}}  \big)^2   }\]</span> where, <span class="math display">\[ \overline{\hat{y}} = \frac{1}{B} \sum_{i'=1}^{B} y^{*i'}\]</span>.<br>
+This formula can be re-written as equation 5.8 from the text book: <span class="math display">\[ SE_B(Y) = \sqrt {\frac{1}{B-1} \sum_{i=1}^{B} \Big( \hat{y}^{*i} - \frac{1}{B} \sum_{i'=1}^{B} y^{*i'}  \Big)^2   }\]</span></p>
+</section>
+</section>
+<section id="applied" class="level1">
+<h1>Applied</h1>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p><strong>In Chapter 4, we used logistic regression to predict the probability of default using income and balance on the Default data set. We will now estimate the test error of this logistic regression model using the validation set approach. Do not forget to set a random seed before beginning your analysis.</strong></p>
+<section id="a-2" class="level3">
+<h3 class="anchored" data-anchor-id="a-2">(a)</h3>
+<p><strong>Fit a logistic regression model that uses income and balance to predict default.</strong></p>
+<p>We fit the logistic regression model as shown below:</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-3_d8f5828212f8d7ecc80c196f18537485">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Default"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance, <span class="at">data =</span> Default, <span class="at">family =</span> binomial)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To print table</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.glm)<span class="sc">$</span>coef <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_material</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="lightable-material table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Std. Error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">z value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-11.54047</td>
+<td style="text-align: right;">0.43476</td>
+<td style="text-align: right;">-26.54468</td>
+<td style="text-align: right;">0e+00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">income</td>
+<td style="text-align: right;">0.00002</td>
+<td style="text-align: right;">0.00000</td>
+<td style="text-align: right;">4.17418</td>
+<td style="text-align: right;">3e-05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">balance</td>
+<td style="text-align: right;">0.00565</td>
+<td style="text-align: right;">0.00023</td>
+<td style="text-align: right;">24.83628</td>
+<td style="text-align: right;">0e+00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="b-2" class="level3">
+<h3 class="anchored" data-anchor-id="b-2">(b)</h3>
+<p><strong>Using the validation set approach, estimate the test error of this model. In order to do this, you must perform the following steps:</strong></p>
+<p>We use a random vector <code>train</code> to divide equal number of observations into the training set and validation set. We also <code>set seed</code> for replicability. The results show that the validation set error rate is 2.64 %.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-4_30c67f045a55b72ece4429fea05293f5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># i. Split the sample set into a training set and a validation set.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Default), <span class="at">size =</span> <span class="fu">nrow</span>(Default) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ii. Fit a multiple logistic regression model using only the training observations</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Default,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> binomial, <span class="at">subset =</span> train</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether 1 stands for Yes or No in default</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Default<span class="sc">$</span>default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Yes
+No    0
+Yes   1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iii. Obtain a prediction of default status for each individual</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> Default[<span class="sc">-</span>train, ],</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"response"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute predicted response and create Confusion Matrix</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="st">"Yes"</span>, <span class="at">no =</span> <span class="st">"No"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pred.glm, Default<span class="sc">$</span>default[<span class="sc">-</span>train])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+pred.glm   No  Yes
+     No  4822  109
+     Yes   23   46</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iv. Compute the validation set error rate</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Default<span class="sc">$</span>default[<span class="sc">-</span>train])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0264</code></pre>
+</div>
+</div>
+</section>
+<section id="c-1" class="level3">
+<h3 class="anchored" data-anchor-id="c-1">(c)</h3>
+<p><strong>Repeat the process in (b) three times, using three different splits of the observations into a training set and a validation set. Comment on the results obtained.</strong></p>
+<p>The 3 replications are done in the code below. The error rates obtained for the validation set are 2.8 %, 2.74 % and 2.4 % which shows a fair amount of variability in the results depending on which specific set of observations are used for training and validation set.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-5_ff5954d08b0146c0e775d2379d279067">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Error.Rates <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">3</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Default), <span class="at">size =</span> <span class="fu">nrow</span>(Default) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> Default,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> binomial, <span class="at">subset =</span> train</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">newdata =</span> Default[<span class="sc">-</span>train, ],</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"response"</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="st">"Yes"</span>, <span class="at">no =</span> <span class="st">"No"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  Error.Rates[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Default<span class="sc">$</span>default[<span class="sc">-</span>train])</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>Error.Rates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0264 0.0280 0.0274</code></pre>
+</div>
+</div>
+</section>
+<section id="d-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-1">(d)</h3>
+<p><strong>Now consider a logistic regression model that predicts the probability of “default” using “income”, “balance”, and a dummy variable for “student”. Estimate the test error for this model using the validation set approach. Comment on whether or not including a dummy variable for “student” leads to a reduction in the test error rate.</strong></p>
+<p>The new logistic regression model is fit as shown below, and the test error using validation set approach is computed. The validation set error rate is 2.5 %. This error rate is nearly same as before. Thus, adding <code>student</code> variable in the logistic regression model does not lead to any significant reduction in test error rate.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-6_fd88ae4a8d7a9f0b73cb2433d62f350a">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking which values represent student status in `student`</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Default<span class="sc">$</span>student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Yes
+No    0
+Yes   1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fitting multiple logistic regression model and computing predicted responses</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance <span class="sc">+</span> student,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Default,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> binomial, <span class="at">subset =</span> train</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> Default[<span class="sc">-</span>train, ],</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"response"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="st">"Yes"</span>, <span class="at">no =</span> <span class="st">"No"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display Confusion Matrix</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pred.glm, Default<span class="sc">$</span>default[<span class="sc">-</span>train])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+pred.glm   No  Yes
+     No  4816  123
+     Yes   18   43</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Computing validation set error rate</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred.glm <span class="sc">!=</span> Default<span class="sc">$</span>default[<span class="sc">-</span>train])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0282</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="question-6-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-6-1">Question 6</h2>
+<p><strong>We continue to consider the use of a logistic regression model to predict the probability of default using income and balance on the Default data set. In particular, we will now compute estimates for the standard errors of the income and balance logistic regression coefficients in two different ways: (1) using the bootstrap, and (2) using the standard formula for computing the standard errors in the <code>glm()</code> function. Do not forget to set a random seed before beginning your analysis.</strong></p>
+<section id="a-3" class="level3">
+<h3 class="anchored" data-anchor-id="a-3">(a)</h3>
+<p><strong>Using the <code>summary()</code> and <code>glm()</code> functions, determine the estimated standard errors for the coefficients associated with income and balance in a multiple logistic regression model that uses both predictors.</strong></p>
+<p>The coefficients and their associated standard errors for <code>income</code> and <code>balance</code> are shown below.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-7_1c870385e264611b58d7f642ae728a37">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Default, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">family =</span> binomial)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying coefficients and standard errors</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit.glm)<span class="sc">$</span>coef[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate   Std. Error</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="do">## income  2.080898e-05 4.985167e-06</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">## balance 5.647103e-03 2.273731e-04</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-3" class="level3">
+<h3 class="anchored" data-anchor-id="b-3">(b)</h3>
+<p><strong>Write a function, <code>boot.fn()</code>, that takes as input the Default data set as well as an index of the observations, and that outputs the coefficient estimates for income and balance in the multiple logistic regression model.</strong></p>
+<p>We write the function in <code>R</code> code as below:—</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-8_c934042a0ccd710f3c41cddac098f7ff">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>boot.fn <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index){</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> income <span class="sc">+</span> balance, <span class="at">data =</span> data, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">subset =</span> index)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>((fit)<span class="sc">$</span>coef)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># boot.fn(Default, 1:nrow(Default)) </span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Trial code to test the correctness of function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c-2" class="level3">
+<h3 class="anchored" data-anchor-id="c-2">(c)</h3>
+<p><strong>Use the <code>boot()</code> function together with your <code>boot.fn()</code> function to estimate the standard errors of the logistic regression coefficients for income and balance.</strong></p>
+<p>We use the <code>boot</code> function from <code>boot</code> library in <code>R</code>to compute the standard errors as follows:</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-9_4ae059635ef71cd7b1b59bbd8350dfdd">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">=</span> <span class="fu">boot</span>(<span class="at">data =</span> Default, <span class="at">statistic =</span> boot.fn, <span class="at">R =</span> <span class="dv">1000</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>b1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = Default, statistic = boot.fn, R = 1000)
+
+
+Bootstrap Statistics :
+         original        bias     std. error
+t1* -1.154047e+01 -4.168442e-02 4.382152e-01
+t2*  2.080898e-05  2.107314e-07 4.865876e-06
+t3*  5.647103e-03  1.981887e-05 2.311037e-04</code></pre>
+</div>
+</div>
+</section>
+<section id="d-2" class="level3">
+<h3 class="anchored" data-anchor-id="d-2">(d)</h3>
+<p><strong>Comment on the estimated standard errors obtained using the glm() function and using your bootstrap function.</strong></p>
+<p>The coefficient estimates from the bootstrap and <code>glm()</code> function are nearly identical. Similarly, the standard error for <code>income</code> coefficient is 4.98e-6 and 5.02e-6, which are nearly the same. Lastly, the standard error for <code>balance</code> coefficient is 2.27e-4 and 2.31e-4, which are nearly same. Thus, it can be concluded that <code>glm()</code> and bootstrap are in agreement. The logistic regression model fits the data quite well.</p>
+</section>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p><strong>In sections 5.3.2 and 5.3.3, we saw that the <code>cv.glm()</code> function can be used in order to compute the LOOCV test error estimate. Alternatively, one could compute those quantities using just the <code>glm()</code> and <code>predict.glm()</code> functions, and a for loop. You will now take this approach in order to compute the LOOCV error for a simple logistic regression model on the “Weekly” data set. Recall that in the context of classification problems, the LOOCV error is given in (5.4).</strong></p>
+<section id="a-4" class="level3">
+<h3 class="anchored" data-anchor-id="a-4">(a)</h3>
+<p><strong>Fit a logistic regression model that predicts “Direction” using “Lag1” and “Lag2”.</strong></p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-10_c087e8ea93cc7a5b16f1dcbad3e9384d">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Weekly)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Direction <span class="sc">~</span> Lag1 <span class="sc">+</span> Lag2, <span class="at">data =</span> Weekly, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-4" class="level3">
+<h3 class="anchored" data-anchor-id="b-4">(b)</h3>
+<p><strong>Fit a logistic regression model that predicts Direction using Lag1 and Lag2 using all but the first observation.</strong></p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-11_75ea6ac7ba7db6eb2990167a08829a25">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Direction <span class="sc">~</span> Lag1 <span class="sc">+</span> Lag2, <span class="at">data =</span> Weekly, <span class="at">family =</span> binomial,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">subset =</span> <span class="sc">-</span>test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c-3" class="level3">
+<h3 class="anchored" data-anchor-id="c-3">(c)</h3>
+<p><strong>Use the model from (b) to predict the direction of the first observation. You can do this by predicting that the first observation will go up if</strong> <span class="math inline">\(P(Direction=Up|Lag1, Lag2) &gt; 0.5\)</span>. <strong>Was this observation correctly classified?</strong></p>
+<p>The code given below predicts the <code>Direction</code> for the first observation. It also shows that the first observation was incorrectly classified.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-12_43a37101c374b61c8fe4090bfb52d2c6">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm, <span class="at">newdata =</span> Weekly[test,], <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the value of Up in dataset</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrasts</span>(Weekly<span class="sc">$</span>Direction)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="do">##      Up</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Down  0</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Up    1</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict the response for observation no. 1</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="at">test =</span> prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="st">"Up"</span>, <span class="at">no =</span> <span class="st">"Down"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>pred.glm</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="do">##    1 </span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="do">## "Up"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># This observation was correctly classified: TRUE or FALSE</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>pred.glm <span class="sc">==</span> Weekly<span class="sc">$</span>Direction[test]</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-3" class="level3">
+<h3 class="anchored" data-anchor-id="d-3">(d)</h3>
+<p><strong>Write a for loop from i = 1 to i = n, where n is the number of observations in the data set, that performs each of the following steps</strong></p>
+<p>The code is written below using <code>for</code> loops. The result is stored in the vector <code>Errors</code>. The final result indicates that nearly 45% of the looped models resulted in an erroneous prediction.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-13_dd8496f3f69d8e0563fe0a8f7a4c374c">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector Errors to store results of loops</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Errors <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(Weekly))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating for loop from 1 to n</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Weekly)) {</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> i</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># i. Fit a logistic regression model using all but the ith observation </span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  fit.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Direction <span class="sc">~</span> Lag1 <span class="sc">+</span> Lag2, <span class="at">data =</span> Weekly, <span class="at">family =</span> binomial,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">subset =</span> <span class="sc">-</span>test)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ii. Compute the posterior probability of the market moving "Up" for </span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     the ith observation.</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  prob.glm <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit.glm, <span class="at">newdata =</span> Weekly[test,], <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># iii. Use the posterior probability for the ith observation in order </span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#      to predict whether or not the market moves up.</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  pred.glm <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="at">test =</span> prob.glm <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="at">yes =</span> <span class="st">"Up"</span>, <span class="at">no =</span> <span class="st">"Down"</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># iv. Determine whether or not an error was made in predicting</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     the direction for the ith observation. If an error was made,</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#     then indicate this as a 1, and otherwise indicate it as a 0.</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  Errors[i] <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pred.glm <span class="sc">!=</span> Weekly<span class="sc">$</span>Direction[test], <span class="at">yes =</span> <span class="dv">1</span>, <span class="at">no =</span> <span class="dv">0</span>)</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Errors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4499541</code></pre>
+</div>
+</div>
+</section>
+<section id="e-1" class="level3">
+<h3 class="anchored" data-anchor-id="e-1">(e)</h3>
+<p><strong>Take the average of the n numbers obtained in (d) in order to obtain the LOOCV estimate for the test error. Comment on the results.</strong></p>
+<p>As shown above. the <code>mean(Errors)</code> shows us LOOCV estimate for test error rate as 44.995 %. This is an exceptionally high error rate, and only slightly better than random guessing error rate of 50 %.</p>
+</section>
+</section>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<p><strong>We will now perform cross-validation on a simulated data set.</strong></p>
+<section id="a-5" class="level3">
+<h3 class="anchored" data-anchor-id="a-5">(a)</h3>
+<p><strong>In this data set, what is n and what is p? Write out the model used to generate the data in equation form.</strong></p>
+<p>We generate a simulated data set as follows, based on the code given in the question. In this data set, <span class="math inline">\(n = 100\)</span> and <span class="math inline">\(p=2\)</span>. The model used to generate the data in equation form is: <span class="math display">\[ y = x \ - \ 2x^2 \ + \ \epsilon\]</span></p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-14_890dc913ae87533a414e2e6f0cd83414">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b-5" class="level3">
+<h3 class="anchored" data-anchor-id="b-5">(b)</h3>
+<p><strong>Create a scatter-plot of X against Y . Comment on what you find.</strong></p>
+<p>The scatter-plot of <span class="math inline">\(y\)</span> vs.&nbsp;<span class="math inline">\(x\)</span> is shown below. It shows a prominent non-linear pattern between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-15_0f93de1e10755d6e13936e00ffacdd3e">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Chapter5e_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c-4" class="level3">
+<h3 class="anchored" data-anchor-id="c-4">(c)</h3>
+<p><strong>Set a random seed, and then compute the LOOCV errors that result from fitting the following four models using least squares:</strong></p>
+<p>The code below uses <code>for</code> loops to calculate LOOCV error rate for the fitted models involving polynomials of <span class="math inline">\(x\)</span>. The results are displayed in the <code>Result</code> data-frame at the end. It is clear the the LOOCV error rate of model (i) is very high, and thereafter the other models have similar error rates. There seems no benefit of adding <span class="math inline">\(x^3\)</span> and <span class="math inline">\(x^4\)</span> to the model.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-16_7064f1bfca48e76e28115a2e7cce477a">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting random seed</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating Data Frames for x and y, and for storing final result</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>Dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>Result <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"i"</span>, <span class="st">"ii"</span>, <span class="st">"iii"</span>, <span class="st">"iv"</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ErrorRate =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">4</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Using loops to calculate LOOCV Error Rate</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, i), <span class="at">data =</span> Dataset)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  Result[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">cv.glm</span>(<span class="at">data =</span> Dataset, fit)<span class="sc">$</span>delta[<span class="dv">1</span>]</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the error rates for all four models</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>Result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Model ErrorRate
+1     i 7.2881616
+2    ii 0.9374236
+3   iii 0.9566218
+4    iv 0.9539049</code></pre>
+</div>
+</div>
+</section>
+<section id="d-4" class="level3">
+<h3 class="anchored" data-anchor-id="d-4">(d)</h3>
+<p><strong>Repeat (c) using another random seed, and report your results. Are your results the same as what you got in (c)? Why?</strong></p>
+<p>We now repeat the results using another seed, lets say <code>set.seed(9)</code>. The results are computed below. The resulting error rates are exactly the same irrespective of the random seed. This is expected because LOOCV eliminates the aspect of randomness by using every single observation as a validation set. Thus, LOOCV estimate will never vary based on random seed. Further, in case of linear regression, LOOCV estimates can be computed with a short cut formula which does not depend on random sampling at all.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-17_43c2baec66eb14adc2db1c28319fec9d">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">9</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>Result1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">"i"</span>, <span class="st">"ii"</span>, <span class="st">"iii"</span>, <span class="st">"iv"</span>),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ErrorRate =</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">4</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, i), <span class="at">data =</span> Dataset)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  Result1[i, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">cv.glm</span>(<span class="at">data =</span> Dataset, fit)<span class="sc">$</span>delta[<span class="dv">1</span>]</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>Result1 <span class="sc">|&gt;</span> <span class="fu">kbl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ErrorRate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">i</td>
+<td style="text-align: right;">7.2881616</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ii</td>
+<td style="text-align: right;">0.9374236</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">iii</td>
+<td style="text-align: right;">0.9566218</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">iv</td>
+<td style="text-align: right;">0.9539049</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="e-2" class="level3">
+<h3 class="anchored" data-anchor-id="e-2">(e)</h3>
+<p><strong>Which of the models in (c) had the smallest LOOCV error? Is this what you expected? Explain your answer.</strong></p>
+<p>In the models computed in (c) above, the model with <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span>, i.e. model (ii) has the lowest LOOCV error. This is expected, as the true model is same as the estimate model (ii). We had created the true model in part (a).</p>
+</section>
+<section id="f-1" class="level3">
+<h3 class="anchored" data-anchor-id="f-1">(f)</h3>
+<p><strong>Comment on the statistical significance of the coefficient estimates that results from fitting each of the models in (c) using least squares. Do these results agree with the conclusions drawn based on the cross-validation results?</strong></p>
+<p>We can compute the coefficient estimates from fitting the models again as follows, and print the <code>summary(fit)</code> to examine the statistical significance of each predictor. The predictors <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> are statistically significant predictors in all models. However, the predictors <span class="math inline">\(x^3\)</span> and <span class="math inline">\(x^4\)</span> are not statistically significant. These results agree with the conclusions drawn based on cross-validation results which showed that the error rates for models using <span class="math inline">\(x^3\)</span> and <span class="math inline">\(x^4\)</span> are not any better than previous models. Adding the terms <span class="math inline">\(x^3\)</span> and <span class="math inline">\(x^4\)</span> did not lower the error rate.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-18_3468525a6f85f092c874c2234dc4b760">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, i), <span class="at">data =</span> Dataset)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(fit))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ poly(x, i), data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.5161 -0.6800  0.6812  1.5491  3.8183 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   -1.550      0.260  -5.961 3.95e-08 ***
+poly(x, i)     6.189      2.600   2.380   0.0192 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.6 on 98 degrees of freedom
+Multiple R-squared:  0.05465,   Adjusted R-squared:  0.045 
+F-statistic: 5.665 on 1 and 98 DF,  p-value: 0.01924
+
+
+Call:
+lm(formula = y ~ poly(x, i), data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9650 -0.6254 -0.1288  0.5803  2.2700 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -1.5500     0.0958  -16.18  &lt; 2e-16 ***
+poly(x, i)1   6.1888     0.9580    6.46 4.18e-09 ***
+poly(x, i)2 -23.9483     0.9580  -25.00  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.958 on 97 degrees of freedom
+Multiple R-squared:  0.873, Adjusted R-squared:  0.8704 
+F-statistic: 333.3 on 2 and 97 DF,  p-value: &lt; 2.2e-16
+
+
+Call:
+lm(formula = y ~ poly(x, i), data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9765 -0.6302 -0.1227  0.5545  2.2843 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -1.55002    0.09626 -16.102  &lt; 2e-16 ***
+poly(x, i)1   6.18883    0.96263   6.429 4.97e-09 ***
+poly(x, i)2 -23.94830    0.96263 -24.878  &lt; 2e-16 ***
+poly(x, i)3   0.26411    0.96263   0.274    0.784    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9626 on 96 degrees of freedom
+Multiple R-squared:  0.8731,    Adjusted R-squared:  0.8691 
+F-statistic: 220.1 on 3 and 96 DF,  p-value: &lt; 2.2e-16
+
+
+Call:
+lm(formula = y ~ poly(x, i), data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.0550 -0.6212 -0.1567  0.5952  2.2267 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -1.55002    0.09591 -16.162  &lt; 2e-16 ***
+poly(x, i)1   6.18883    0.95905   6.453 4.59e-09 ***
+poly(x, i)2 -23.94830    0.95905 -24.971  &lt; 2e-16 ***
+poly(x, i)3   0.26411    0.95905   0.275    0.784    
+poly(x, i)4   1.25710    0.95905   1.311    0.193    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9591 on 95 degrees of freedom
+Multiple R-squared:  0.8753,    Adjusted R-squared:  0.8701 
+F-statistic: 166.7 on 4 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<section id="a-6" class="level3">
+<h3 class="anchored" data-anchor-id="a-6">(a)</h3>
+<p>The estimate for population mean of <code>medv</code> is 22.53. This is the sample mean <span class="math inline">\(\hat{\mu}\)</span> which is an unbiased estimate for <span class="math inline">\(\mu\)</span>, the true population mean. The <code>R</code> code to compute it is given below.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-19_002da5c6feffb80a495e42a07b002640">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Boston)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(Boston)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(medv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22.53281</code></pre>
+</div>
+</div>
+</section>
+<section id="b-6" class="level3">
+<h3 class="anchored" data-anchor-id="b-6">(b)</h3>
+<p>The estimated standard error for <span class="math inline">\(\hat{\mu}\)</span> can be given by <span class="math inline">\(sd/\sqrt{n}\)</span>, where <span class="math inline">\(sd\)</span> stands for standard deviation of the random variable whose true mean is <span class="math inline">\(\mu\)</span> and <span class="math inline">\(n\)</span> represents number of observations in the sample. The <code>R</code> code below calculates this estimated standard error as 0.409.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-20_284b4605524bc570a90f8b6409693066">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(medv)<span class="sc">/</span>(<span class="fu">sqrt</span>(<span class="fu">nrow</span>(Boston)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4088611</code></pre>
+</div>
+</div>
+</section>
+<section id="c-5" class="level3">
+<h3 class="anchored" data-anchor-id="c-5">(c)</h3>
+<p>We now compute the standard error of estimated mean of <code>medv</code> using bootstrap. The estimated standard error using bootstrap method is 0.408, which is reasonably close to the previously calculated standard error of 0.409.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-21_64cfbcccc56c325b7a6b63edf75a8893">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a function which returns mean of medv as output</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>boot.fn <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index) {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mean</span>(data<span class="sc">$</span>medv[index]))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the boot.fn on whole Boston data set to ensure it works</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.fn</span>(Boston, <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Boston))</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 22.53281</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Using bootstrap to calculate standard error</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="fu">boot</span>(<span class="at">data =</span> Boston, <span class="at">statistic =</span> boot.fn, <span class="at">R =</span> <span class="dv">10000</span>)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="do">## ORDINARY NONPARAMETRIC BOOTSTRAP</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="do">## boot(data = Boston, statistic = boot.fn, R = 10000)</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Bootstrap Statistics :</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="do">##     original       bias    std. error</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="do">## t1* 22.53281 0.0002812451    0.407684</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-5" class="level3">
+<h3 class="anchored" data-anchor-id="d-5">(d)</h3>
+<p>We compute the 95% confidence interval for mean of <code>medv</code> using bootstrap standard error estimates. The resulting 95% Confidence Interval is [21.72 , 23.35]. The 95 % confidence interval computed using the <code>t.test</code> function in <code>R</code> is [21.73 , 23.34]. Thus, we conclude the the two confidence intervals are nearly identical.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-22_aad9ca9dca1ec4f63b758f4757670a03">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(medv) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span><span class="fl">0.408</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21.71681</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(medv) <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span><span class="fl">0.408</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.34881</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using t.test to calculate the 95 % Confidence Interval</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Boston<span class="sc">$</span>medv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  Boston$medv
+t = 55.111, df = 505, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 21.72953 23.33608
+sample estimates:
+mean of x 
+ 22.53281 </code></pre>
+</div>
+</div>
+</section>
+<section id="e-3" class="level3">
+<h3 class="anchored" data-anchor-id="e-3">(e)</h3>
+<p>The estimated median value of <code>medv</code> in the population is the median of the <code>Boston</code> sample data set. This <span class="math inline">\(\hat{\mu}\)</span> value is 21.2 as calculated below.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-23_d55402f0bc6706bd0c48615ca06e688f">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(Boston<span class="sc">$</span>medv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21.2</code></pre>
+</div>
+</div>
+</section>
+<section id="f-2" class="level3">
+<h3 class="anchored" data-anchor-id="f-2">(f)</h3>
+<p>As stated in the question, there is no easy formula to compute the standard error associated with a estimated sample median. Instead, we can use bootstrap method to compute the estimated standard error associated with the sample median. The estimated standard error is 0.37.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-24_32851d9fbdbb41c8e08de6bc915578b2">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a function which returns median of medv as output</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>boot.fn1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index){</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">median</span>(data<span class="sc">$</span>medv[index]))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the boot.fn on whole Boston data set to ensure it works</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.fn1</span>(Boston, <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Boston))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using bootstrap to calculate standard error</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boot</span>(<span class="at">data =</span> Boston, <span class="at">statistic =</span> boot.fn1, <span class="at">R =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = Boston, statistic = boot.fn1, R = 10000)
+
+
+Bootstrap Statistics :
+    original    bias    std. error
+t1*     21.2 -0.013245   0.3779208</code></pre>
+</div>
+</div>
+</section>
+<section id="g-1" class="level3">
+<h3 class="anchored" data-anchor-id="g-1">(g)</h3>
+<p>We can compute the estimate for 10^{th} percentile of true population <code>medv</code> using the <code>quantile()</code> function of the <code>medv</code> in <code>Boston</code> data set. The estimated <span class="math inline">\(\hat{\mu_{0.1}}\)</span> is 12.75 as shown below.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-25_4b4ea54f615f0553dda2f768d801ada8">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(Boston<span class="sc">$</span>medv, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  10% 
+12.75 </code></pre>
+</div>
+</div>
+</section>
+<section id="h-1" class="level3">
+<h3 class="anchored" data-anchor-id="h-1">(h)</h3>
+<p>Again, there is no easy mathematical formula to calculate estimated standard error associated with 10<sup>th</sup> percentile of a sample. We can use bootstrap to calculate the estimated standard error as shown below. The estimated standard error for <span class="math inline">\(\hat{\mu_{0.1}}\)</span> is 0.5.</p>
+<div class="cell" data-hash="Chapter5e_cache/html/unnamed-chunk-26_49f9def42597644cf42f5ed00ef8bcf9">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a function which returns 10th percentile of medv as output</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>boot.fn2 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, index) {</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">quantile</span>(data<span class="sc">$</span>medv[index], <span class="fl">0.1</span>))</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing the boot.fn on whole Boston data set to ensure it works</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.fn2</span>(Boston, <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(Boston))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  10% 
+12.75 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using bootstrap to calculate standard error</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boot</span>(<span class="at">data =</span> Boston, <span class="at">statistic =</span> boot.fn2, <span class="at">R =</span> <span class="dv">10000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = Boston, statistic = boot.fn2, R = 10000)
+
+
+Bootstrap Statistics :
+    original   bias    std. error
+t1*    12.75 0.011105   0.5001274</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,210 @@
+---
+title: "Chapter 5 (Lab)"
+author: "Aditya Dahiya"
+date: 2021-02-13
+subtitle: "Resampling Methods"
+execute: 
+  echo: true
+  warning: false
+  error: false
+  cache: true
+editor: 
+  markdown: 
+    wrap: 72
+editor_options: 
+  chunk_output_type: console
+---
+
+# ISLR Chapter 5 (Lab)
+
+# 5.3 Lab
+
+## Cross-Validation and the Bootstrap
+
+### 5.3.1 The Validation Set Approach
+
+We try out the **Validation Set approach** using `Auto` data set, and
+predict `mpg` using `horsepower`.
+
+```{r}
+library(ISLR)
+set.seed(1)
+data(Auto)
+attach(Auto)
+library(tidyverse)
+library(kableExtra)
+
+# Create a train vector, to create a random sample as "Training Set".
+train <- sample(1:392, size = 196, replace = FALSE)
+
+# Create a linear regression.
+fit.lm <- lm(mpg ~ horsepower, data = Auto, subset = train)
+pred.lm <- predict(fit.lm, newdata = Auto[-train, ])
+MSE.lin <- mean((pred.lm - Auto$mpg[-train])^2)
+MSE.lin
+
+# Create polynomial regression 2 and 3
+fit.lm2 <- lm(mpg ~ poly(horsepower, 2), data = Auto, subset = train)
+pred.lm2 <- predict(fit.lm2, newdata = Auto[-train, ])
+MSE.lin2 <- mean((pred.lm2 - Auto$mpg[-train])^2)
+MSE.lin2
+
+fit.lm3 <- lm(mpg ~ poly(horsepower, 3), data = Auto, subset = train)
+pred.lm3 <- predict(fit.lm3, newdata = Auto[-train, ])
+MSE.lin3 <- mean((pred.lm3 - Auto$mpg[-train])^2)
+MSE.lin3
+
+# Create 10 different validation sets and plot the MSE from polynomials upto 10
+Result <- data.frame(
+  Poly1 = rep(NA, 10),
+  Poly2 = rep(NA, 10),
+  Poly3 = rep(NA, 10),
+  Poly4 = rep(NA, 10),
+  Poly5 = rep(NA, 10),
+  Poly6 = rep(NA, 10),
+  Poly7 = rep(NA, 10),
+  Poly8 = rep(NA, 10),
+  Poly9 = rep(NA, 10),
+  Poly10 = rep(NA, 10),
+  Repetition = c(1:10)
+)
+for (p in 1:10) {
+  for (i in 1:10) {
+    set.seed(i)
+    train <- sample(1:392, size = 196, replace = FALSE)
+    fit.lm <- lm(mpg ~ poly(horsepower, p), data = Auto, subset = train)
+    pred.lm <- predict(fit.lm, newdata = Auto[-train, ])
+    Result[i, p] <- mean((pred.lm - Auto$mpg[-train])^2)
+  }
+}
+kable(Result, digits = 1) |> kable_classic_2()
+```
+
+These results show that a quadratic fit is much better than linear fit,
+but the fits of higher order are not significantly better as MSE stays
+the same.
+
+```{r}
+# Attempt to reproduce graph in Figure 5.2 (right hand side panel)
+ResultLong <- gather(Result, key = "Poly", value = "MSE", -Repetition)
+ResultLong <- ResultLong %>%
+  mutate(Poly = parse_number(Poly)) %>%
+  mutate(Repetition = paste0("Rep", Repetition, sep = ""))
+ggplot(data = ResultLong) +
+  geom_line(aes(x = Poly, y = MSE, color = Repetition), lwd = 1) +
+  theme(legend.position = "none") +
+  theme_bw()
+```
+
+### 5.3.2 Leave-One-Out Cross Validation (LOOCV)
+
+Perform LOOCV using `cv.glm` function of the `boot` library.
+
+```{r}
+library(boot)
+fit.glm <- glm(mpg ~ horsepower, data = Auto)
+cv.err <- cv.glm(data = Auto, glmfit = fit.glm)
+names(cv.err)
+cv.err$delta
+```
+
+Now, we create a loop using `for` function to calculate LOOCV error rate
+for polynomials 1 to 5.
+
+```{r, cache=TRUE}
+set.seed(17)
+cv.error = rep(NA, 10)
+for (i in 1:10) {
+  fit.glm <- glm(mpg ~ poly(horsepower, i), data = Auto)
+  cv.error[i] <- cv.glm(data = Auto, glmfit = fit.glm)$delta[1]
+}
+round(cv.error, 2)
+```
+
+### 5.3.3 k-Fold Cross Validation
+
+We now use the `cv.glm` function to do k-fold CV (using k=10).
+
+```{r}
+set.seed(17)
+cv.error.10 <- rep(NA, 10)
+for (i in 1:10) {
+  fit.glm <- glm(mpg ~ poly(horsepower, i), data = Auto)
+  cv.error.10[i] <- cv.glm(data = Auto, glmfit = fit.glm)$delta[1]
+}
+round(cv.error.10, 2)
+```
+
+### 5.3.4 The Bootstrap
+
+```{r}
+library(ISLR)
+data("Portfolio")
+summary(Portfolio)
+
+# Creating a function with an index which can then be use for the boot function
+# alpha.fn to return alpha with lowest variance
+alpha.fn <- function(data, index){
+  X <- data$X[index]
+  Y <- data$Y[index]
+  return((var(Y) - cov(X,Y)) / (var(X) + var(Y) - 2*cov(X,Y) ) )
+}
+
+# Using alpha.fn to find alpha using the full data set
+alpha.fn(Portfolio, 1:100)
+
+# Using alpha.fn to find alpha using a random sample of 100 with replacement
+set.seed(2)
+alpha.fn(Portfolio, sample(100, 100, replace = TRUE))
+# We can repeat this many many times using different seed. Or,
+
+# We can use boot() function to automate this
+library(boot)
+boot(Portfolio, alpha.fn, R = 1000)
+```
+
+**Estimating the accuracy of a linear regression model**
+
+```{r}
+# Comparing coefficients from a linear regression of mpg onto horsepower,
+# from standard least squares regression and bootstrap methods.
+
+# Creating a function to be used in bootstrap which computes output i.e. coefficients
+# of interest, and takes in an index vector as input.
+boot.fn <- function(data, index) {
+  return(coef(lm(mpg ~ horsepower, data = data, subset = index)))
+}
+
+# Testing the boot.fn on the entire Auto data set
+boot.fn(Auto, 1:392)
+
+# Getting coefficient estimates using a random sample of 392 with replacement
+boot.fn(Auto, sample(392, 392, replace = TRUE))
+boot.fn(Auto, sample(392, 392, replace = TRUE))
+# We can repeat this command a thousand times, or
+
+# Use bootstrap to automate this process
+boot(data = Auto, statistic = boot.fn, R = 1000)
+
+# Compare these with standard errors from least squares estimates
+summary(lm(mpg ~ horsepower, data = Auto))$coef
+```
+
+Now, we perform bootstrap to compare standard errors from least squares
+estimates of linear regression of mpg on quadratic form of horsepower,
+and standard errors computed using bootstrap.
+
+```{r}
+# creating a boot.fn to be used in boot() later
+boot.fn <- function(data, index){
+  return(coefficients(lm(mpg ~ horsepower + I(horsepower^2), data = data, subset = index)))
+}
+boot.fn(Auto, 1:392)
+set.seed(1)
+
+# Using boot() to estimate standard errors of coefficients
+boot(data = Auto, statistic = boot.fn, R = 1000)
+
+# Compare with standard errors of least square estimates
+summary(lm(mpg~horsepower+I(horsepower^2), data = Auto))$coef
+```
